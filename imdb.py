@@ -14,6 +14,6 @@ def get_imdb_id(search_term):
     imdb_j_response = imdb_response.json()
 
     imdb_id = imdb_j_response['results'][0]['id']           #First resulting IMDB ID 
-    imdb_api_img = imdb_j_response['results'][0]['image']
+    imdb_api_img = imdb_j_response['results'][0]['image']   #Image related to the ID (SHould be movie poster)
 
     return imdb_id, imdb_api_img

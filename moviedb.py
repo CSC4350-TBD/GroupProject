@@ -4,7 +4,8 @@ from dotenv import find_dotenv, load_dotenv
 
 load_dotenv(find_dotenv())
 
-def get_id(imdbid):
+#Purpose of this function is to just get the internal ID for themoviedb by telling it the movies' ID from IMDB
+def get_id(imdbid):     
     MOVIE_DB_API_KEY = os.getenv("MOVIE_DB_API_KEY")
 
     id_url = f"https://api.themoviedb.org/3/find/{imdbid}?api_key={MOVIE_DB_API_KEY}&language=en-US&external_source=imdb_id"
@@ -20,7 +21,8 @@ def get_id(imdbid):
 
 
 
-
+#This will be expanded upon as we decide what information we also want to garther about the movie.
+#We will probably need to define a different funciton for the acutual recomendations. 
 def get_movie_info(moviedb_id):
     MOVIE_DB_API_KEY = os.getenv("MOVIE_DB_API_KEY")
 
