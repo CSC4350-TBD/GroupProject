@@ -16,3 +16,4 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 from flask_login import UserMixin
 db.create_all()
+
