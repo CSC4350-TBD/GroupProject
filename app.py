@@ -19,9 +19,9 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 @app.route("/")
 def index():
-    return flask.render_template("index.html")
+    # return flask.render_template("index.html")
     # changed to login/register during testing for login.html
-    # return flask.render_template("login.html")
+    return flask.render_template("login.html")
 
 
 # The following will probably need to be split between diffent pages, depending on how we do the routing.
