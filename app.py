@@ -1,8 +1,6 @@
 import flask
 import os
 from flask_sqlalchemy import SQLAlchemy
-from moviedb import get_id, get_movie_info
-from imdb import get_imdb_id
 from dotenv import load_dotenv, find_dotenv
 
 load_dotenv(find_dotenv())
