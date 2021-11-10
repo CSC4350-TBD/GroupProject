@@ -34,7 +34,10 @@ class ignored_movies(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     ignoredmovieid = db.Column(db.String(20))
     usename = db.Column(db.String(64))
+<<<<<<< HEAD
+=======
 
 
 
 db.create_all()
+>>>>>>> 4dd0157535405ded793f824a62ffd66663d30da2
