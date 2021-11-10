@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+<head>
+    <title>A Basic HTML5 Template</title>
+    <link rel="icon" href={{ url_for('static', filename='icon.png' ) }} type="image/gif">
+    <link rel="stylesheet" href={{ url_for('static', filename='style.css' ) }} />
+
+</head>
+
+<body>
+    <form method='POST' , action='/register'>
+        <p>Please enter a username:<br />
+            <input type="text" name="username" placeholder="Enter username" autofocus="">
+        </p>
+        <p>Please enter a password:<br />
+            <input type="text" name="username" placeholder="Enter password" autofocus="">
+        </p>
+        <p>Please enter password again:<br />
+            <input type="text" name="username" placeholder="Enter password" autofocus="">
+        </p>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+
+</html>
