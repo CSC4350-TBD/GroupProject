@@ -63,14 +63,14 @@ def login():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegistrationForm(request.form)
-    print(form.username.data)
-    print(form.password.data)
+    # print(form.username.data)
+    # print(form.password.data)
     if form.validate():
         user = User(username=form.username.data)
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
-        print(user)
+        # print(user)
         flash('Congratulations, you are now a registered user!')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
