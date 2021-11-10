@@ -16,6 +16,8 @@ app.config["SQLALCHEMY_DATABASE_URI"] = db_url
 # Gets rid of a warning
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
+db = SQLAlchemy(app)
+
 @app.route('/')
 def index():
 	return flask.render_template(
