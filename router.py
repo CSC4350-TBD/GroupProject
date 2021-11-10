@@ -54,3 +54,12 @@ def register():
 def logout():
     logout_user()
     return redirect(url_for('login'))
+
+
+if __name__ == "__main__":
+	app.run(
+        #uncomment following 2 lines once ready for deployment to heroku.
+		#host=os.getenv('IP', '0.0.0.0'),
+		#port=int(os.getenv('PORT', 8080)),
+		debug=True
+	)
