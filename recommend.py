@@ -22,26 +22,11 @@ def get_recommendation(): #this is where you will pass the entered movie.
 
     movie_exlusions = saved_movies_list + ignored_movies_list 
 
-    rec_list = [x for x in moviedb_list not in movie_exlusions]
-
+    l1 = set(moviedb_list)
+    l2 = set(movie_exlusions)
+    rec_set = l1-l2
+    
+    rec_list = list(rec_set)
     final_rec = secrets.choice(rec_list)
 
     return final_rec
-
-def test():
-    saved_movies_list = [1,2]
-    ignored_movies_list = [7,8]
-    moviedb_list = [1,2,3,4,5,6,7,8]
-
-
-    movie_exlusions = saved_movies_list + ignored_movies_list 
-    print(ignored_movies)
-
-    rec_list = [x for x in moviedb_list not in movie_exlusions]
-    print(rec_list)
-    final_rec = secrets.choice(rec_list)
-
-    print(final_rec)
-
-    return final_rec
-test()

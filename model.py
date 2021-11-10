@@ -18,9 +18,6 @@ class User(UserMixin, db.Model):
         self.password_hash = generate_password_hash(password)
 
     def check_password(self, password):
-<<<<<<< HEAD
-        return check_password_hash(self.password_hash, password)
-=======
         return check_password_hash(self.password_hash, password)
 
 class genre_exclusions(db.Model):
@@ -37,4 +34,3 @@ class ignored_movies(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     ignoredmovieid = db.Column(db.String(20))
     usename = db.Column(db.String(64))
->>>>>>> ccc1cba2c41ae5cc6036c9df876adcd19825c9d8
