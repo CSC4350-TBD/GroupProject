@@ -4,3 +4,19 @@ body{
     margin-top:7%;
     color: rgb(48, 42, 42)
 }
+
+#user_main{
+	text-align: left;
+	width: 90%;	
+	display: flex;
+	margin: auto;
+    column-gap:4%;
+}
+
+#user_left{
+	flex-basis: 50%;
+}
+
+#user_right{
+	flex-basis: 50%;
+}

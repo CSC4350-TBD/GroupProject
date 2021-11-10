@@ -6,11 +6,20 @@
     <title>A Basic HTML5 Template</title>
     <link rel="icon" href={{ url_for('static', filename='icon.png' ) }} type="image/gif">
     <link rel="stylesheet" href={{ url_for('static', filename='style.css' ) }} />
-
 </head>
 
 <body>
-
+    <h4>Welcome!</h4>
+    <div>
+        Recommendations:
+    </div>
+    <br />
+    <div>
+        Search:
+        <input type="text" name="search" placeholder="Enter a movie you like" />
+    </div>
+    <br />
+    <a href={{ url_for('user' ) }}><button>User Profile</button></a>
 </body>
 
 </html>
