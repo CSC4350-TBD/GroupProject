@@ -1,9 +1,14 @@
 import flask
 import os
 from flask_sqlalchemy import SQLAlchemy
+from moviedb import get_id, get_movie_info
+from imdb import get_imdb_id
+from dotenv import load_dotenv, find_dotenv
+
+load_dotenv(find_dotenv())
 
 app = flask.Flask(__name__)
-db = SQLAlchemy(app)
+
 
 # Heroku DB Fix incase of bad db url
 db_url = os.getenv("DATABASE_URL")
@@ -13,7 +18,8 @@ app.config["SQLALCHEMY_DATABASE_URI"] = db_url
 
 # Gets rid of a warning
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+app.secret_key = b'I am a secret key!'  # don't defraud my app ok?
 
 from flask_login import UserMixin
-db.create_all()
 
+db = SQLAlchemy(app)
