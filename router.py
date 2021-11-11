@@ -7,14 +7,17 @@ from model import User
 import requests
 from flask import render_template, flash, redirect, url_for, request
 from form import LoginForm, RegistrationForm
+import flask
+import os
+from flask_sqlalchemy import SQLAlchemy
+from moviedb import get_id, get_movie_info
+from imdb import get_imdb_id
 
-login = LoginManager()
-login.login_view = "login"
-login.init_app(app)
+login_manager = LoginManager()
+login_manager.login_view = "login"
+login_manager.init_app(app)
 
-
-
-@login.user_loader
+@login_manager.user_loader
 def load_user(id):
     return User.query.get(int(id))
 
@@ -27,12 +30,27 @@ def index():
     return render_template('index.html')
 
 
+#The following will probably need to be split between diffent pages, depending on how we do the routing.
+#This just made it easy to make sure that the APIs work.
+@app.route('/placeholder')
+def main():
+	search_term = "Dune" #This will need to be changed into a form request later
+	imdbid, imdb_api_img = get_imdb_id(search_term)
+	moviedb_id = get_id(imdbid)
+	movie_genre, movie_title = get_movie_info(moviedb_id)
+
+	return flask.render_template(
+    	"index.html"					#placeholder
+    )
+
+
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('index'))
-    form = LoginForm()
-    if form.validate_on_submit():
+    form = LoginForm(request.form)
+    if form.validate():
         user = User.query.filter_by(username=form.username.data).first()
         if user is None or not user.check_password(form.password.data):
             flash('Invalid username or password')
@@ -44,10 +62,10 @@ def login():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    if current_user.is_authenticated:
-        return redirect(url_for('index'))
-    form = RegistrationForm()
-    if form.validate_on_submit():
+    form = RegistrationForm(request.form)
+    # print(form.username.data)
+    # print(form.password.data)
+    if form.validate():
         user = User(username=form.username.data)
         user.set_password(form.password.data)
         if User.query.filter_by(username=form.username.data).first():
@@ -55,6 +73,7 @@ def register():
             return redirect(url_for('register'))
         db.session.add(user)
         db.session.commit()
+        # print(user)
         flash('Congratulations, you are now a registered user!')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
@@ -66,9 +85,9 @@ def logout():
 
 
 if __name__ == "__main__":
-	app.run(
-        #uncomment following 2 lines once ready for deployment to heroku.
-		host=os.getenv('IP', '0.0.0.0'),
-		port=int(os.getenv('PORT', 8080)),
-		debug=True
-	)
+ app.run(
+	#uncomment following 2 lines once ready for deployment to heroku.
+	host=os.getenv('IP', '0.0.0.0'),
+	port=int(os.getenv('PORT', 8080)),
+	debug=True
+)
