@@ -1,5 +1,4 @@
 from flask import Flask
-
 from wtforms import Form, TextField, PasswordField, validators, BooleanField
 from flask_login import login_user, logout_user, current_user, login_required, UserMixin
 from app import db
@@ -37,3 +36,6 @@ class ignored_movies(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     ignoredmovieid = db.Column(db.String(20))
     usename = db.Column(db.String(64))
+
+
+db.create_all()

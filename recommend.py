@@ -1,6 +1,8 @@
-from GroupProject.model import genre_exclusions
 from moviedb import get_movie_info, get_id, get_movie_recs
 from imdb import get_imdb_id
+from model import saved_movies, ignored_movies
+from flask_login import current_user
+import secrets
 
 def get_recommendation(): #this is where you will pass the entered movie.
 
@@ -13,5 +15,18 @@ def get_recommendation(): #this is where you will pass the entered movie.
     selected_genre = movie_genre #can change this when we allow for just a search based on genre
     genre_exclusion = ""        #this will need to be a db call. (SELECT genre FROM genre_exclusions WHERE username = currentuser.username)
 
+    moviedb_list = get_movie_recs(selected_genre, genre_exclusion)
 
+    saved_movies_list = saved_movies.query.filter_by(username=current_user.username).all()
+    ignored_movies_list = ignored_movies.query.filter_by(username=current_user.username).all()
 
+    movie_exlusions = saved_movies_list + ignored_movies_list 
+
+    l1 = set(moviedb_list)
+    l2 = set(movie_exlusions)
+    rec_set = l1-l2
+    
+    rec_list = list(rec_set)
+    final_rec = secrets.choice(rec_list)
+
+    return final_rec
