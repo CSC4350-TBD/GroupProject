@@ -66,6 +66,9 @@ def register():
     if form.validate():
         user = User(username=form.username.data)
         user.set_password(form.password.data)
+        if User.query.filter_by(username=form.username.data).first():
+            flash ("The user name already exist, please try a new one.")
+            return redirect(url_for('register'))
         db.session.add(user)
         db.session.commit()
         # print(user)
