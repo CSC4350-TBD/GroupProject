@@ -47,8 +47,8 @@ def main():
 def login():
     if current_user.is_authenticated:
         return redirect(url_for("index"))
-    form = LoginForm()
-    if form.validate_on_submit():
+    form = LoginForm(request.form)
+    if form.validate():
         user = User.query.filter_by(username=form.username.data).first()
         if user is None or not user.check_password(form.password.data):
             flash("Invalid username or password")
@@ -60,22 +60,18 @@ def login():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    if current_user.is_authenticated:
-        return redirect(url_for("index"))
-    form = RegistrationForm()
-    if form.validate_on_submit():
+    form = RegistrationForm(request.form)
+    # print(form.username.data)
+    # print(form.password.data)
+    if form.validate():
         user = User(username=form.username.data)
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
+        # print(user)
         flash("Congratulations, you are now a registered user!")
         return redirect(url_for("login"))
     return render_template("register.html", title="Register", form=form)
-
-
-@app.route("/user", methods=["GET", "POST"])
-def user():
-    return render_template("user.html")
 
 
 @app.route("/logout")
@@ -84,10 +80,10 @@ def logout():
     return redirect(url_for("login"))
 
 
-# if __name__ == "__main__":
-app.run(
-    # uncomment following 2 lines once ready for deployment to heroku.
-    # host=os.getenv('IP', '0.0.0.0'),
-    # port=int(os.getenv('PORT', 8080)),
-    debug=True
-)
+if __name__ == "__main__":
+    app.run(
+        # uncomment following 2 lines once ready for deployment to heroku.
+        host=os.getenv("IP", "0.0.0.0"),
+        port=int(os.getenv("PORT", 8080)),
+        debug=True,
+    )

@@ -1,13 +1,11 @@
-from flask import Flask
-from wtforms import Form, TextField, PasswordField, validators, BooleanField
 from flask_login import login_user, logout_user, current_user, login_required, UserMixin
 from app import db
 from werkzeug.security import generate_password_hash, check_password_hash
 
 
 class User(UserMixin, db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(64), index=True, unique=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True, unique=True)
+    username = db.Column(db.String(64))
     password_hash = db.Column(db.String(128))
 
     def __repr__(self):

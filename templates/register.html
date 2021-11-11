@@ -10,18 +10,24 @@
 </head>
 
 <body>
-    <form name='RegistrationForm' method='POST' , action='/register'>
-        <p>Please enter a username:<br />
-            <input type="text" name="username" placeholder="Enter username" autofocus="">
-        </p>
-        <p>Please enter a password:<br />
-            <input type="password" name="username" placeholder="Enter password" autofocus="">
-        </p>
-        <p>Please enter password again:<br />
-            <input type="password" name="username" placeholder="Enter password" autofocus="">
-        </p>
-        <input type="submit" value="Submit">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class=flashes>
+        {% for message in messages %}
+        <li>{{message}}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    <form method='POST' , action='/register'>
+        <input type="text" name="username" placeholder="Enter User Name" required />
+        <br />
+        <input type="password" name="password" placeholder="Enter Password" required />
+        <br />
+        <button type="submit">Submit</button>
     </form>
+    <a href={{ url_for('login') }}>Login</a>
+
 </body>
 
 </html>

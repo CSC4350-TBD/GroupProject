@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, Length
@@ -22,3 +23,20 @@ class RegistrationForm(FlaskForm):
         user = User.query.filter_by(username=username.data).first()
         if user is not None:
             raise ValidationError("Please use a different username.")
+=======
+from wtforms import StringField, PasswordField, BooleanField,validators,Form
+
+
+
+
+class LoginForm(Form):
+    username = StringField('username', [validators.DataRequired()])
+    password = PasswordField('password', [validators.DataRequired()])
+    remember_me = BooleanField('remember Me',default = False)
+
+class RegistrationForm(Form):
+    username = StringField('username', [validators.DataRequired()])
+    password = PasswordField('password', [validators.DataRequired()])
+
+
+>>>>>>> main
