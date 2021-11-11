@@ -2,6 +2,8 @@ import flask
 import os
 from flask_sqlalchemy import SQLAlchemy
 
+load_dotenv(find_dotenv())
+
 app = flask.Flask(__name__)
 db = SQLAlchemy(app)
 

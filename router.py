@@ -2,11 +2,17 @@ from flask import Flask
 from flask_login import LoginManager
 from wtforms import Form,TextField,PasswordField,validators,BooleanField
 from flask_login import login_user, logout_user, current_user, login_required,UserMixin
-from app import db,app,login  #app will be the app to run the initialization
+from app import db,app  #app will be the app to run the initialization
 from model import User
 import requests
 from flask import render_template, flash, redirect, url_for, request
 from form import LoginForm, RegistrationForm
+
+login = LoginManager()
+login.login_view = "login"
+login.init_app(app)
+
+
 
 @login.user_loader
 def load_user(id):
@@ -44,6 +50,9 @@ def register():
     if form.validate_on_submit():
         user = User(username=form.username.data)
         user.set_password(form.password.data)
+        if User.query.filter_by(username=form.username.data).first():
+            flash ("The user name already exist, please try a new one.")
+            return redirect(url_for('register'))
         db.session.add(user)
         db.session.commit()
         flash('Congratulations, you are now a registered user!')
@@ -59,7 +68,7 @@ def logout():
 if __name__ == "__main__":
 	app.run(
         #uncomment following 2 lines once ready for deployment to heroku.
-		#host=os.getenv('IP', '0.0.0.0'),
-		#port=int(os.getenv('PORT', 8080)),
+		host=os.getenv('IP', '0.0.0.0'),
+		port=int(os.getenv('PORT', 8080)),
 		debug=True
 	)
