@@ -25,7 +25,7 @@ def load_user(id):
 
 @app.route("/")
 @app.route("/index")
-# @login_required
+@login_required
 def index():
     # main page here
     return render_template("index.html")
@@ -67,8 +67,8 @@ def register():
         user = User(username=form.username.data)
         user.set_password(form.password.data)
         if User.query.filter_by(username=form.username.data).first():
-            flash ("The user name already exist, please try a new one.")
-            return redirect(url_for('register'))
+            flash("The user name already exist, please try a new one.")
+            return redirect(url_for("register"))
         db.session.add(user)
         db.session.commit()
         # print(user)
@@ -93,7 +93,7 @@ def logout():
 if __name__ == "__main__":
     app.run(
         # uncomment following 2 lines once ready for deployment to heroku.
-        host=os.getenv("IP", "0.0.0.0"),
-        port=int(os.getenv("PORT", 8080)),
+        # host=os.getenv("IP", "0.0.0.0"),
+        # port=int(os.getenv("PORT", 8080)),
         debug=True,
     )
