@@ -21,16 +21,16 @@
     {% endif %}
     {% endwith %}
     <form method='POST' action='/login'>
-        <input type="text" name="username" placeholder="Enter User Name" />
-        <br />
-        <input type="password" name="password" placeholder="Enter Password" />
-        <br />
+        Username: <input type="text" name="username" placeholder="Enter User Name" />
+        <br /><br />
+        Password: <input type="password" name="password" placeholder="Enter Password" />
+        <br /><br />
         <button type="submit">Submit</button>
+        <br />
         <input type="checkbox" name="remember_me" value="" />Remember Me</label>
     </form>
     <br />
-    <a href={{ url_for('register') }}>Sign Up</a>
-
+    <a href={{ url_for('register' ) }}>No account? Register Here!</a>
 
 </body>
 
