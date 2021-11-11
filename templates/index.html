@@ -8,21 +8,32 @@
     <link rel="stylesheet" href={{ url_for('static', filename='style.css' ) }} />
 </head>
 
+
 <body>
+    <a href={{ url_for('user' ) }}><button id=nav>User Profile</button></a>
+
+    <a href="{{ url_for('logout') }}"><button id=nav>LOGOUT</button></a>
+    <br>
     <h4>Welcome!</h4>
     <p>Welcome! this is the test manin page</p>
     <div>
         Recommendations:
+        <br /><br />
+        <p>
+            put space here for recommendations
+        </p>
+        <br />
     </div>
+
     <br />
+
     <div>
+        <br />
         Search:
         <input type="text" name="search" placeholder="Enter a movie you like" />
     </div>
     <br />
-    <a href={{ url_for('user' ) }}><button>User Profile</button></a>
 
-    <p>Logout <a href="{{ url_for('logout') }}">LOGOUT</a></p>
 </body>
 
 </html>

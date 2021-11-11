@@ -74,6 +74,13 @@ def register():
     return render_template("register.html", title="Register", form=form)
 
 
+@app.route("/user", methods=["GET", "POST"])
+def user():
+    # function need to be added for removing from database
+    # removing: removing saved movies or ignored movies
+    return render_template("user.html")
+
+
 @app.route("/logout")
 def logout():
     logout_user()
@@ -83,7 +90,7 @@ def logout():
 if __name__ == "__main__":
     app.run(
         # uncomment following 2 lines once ready for deployment to heroku.
-        host=os.getenv("IP", "0.0.0.0"),
-        port=int(os.getenv("PORT", 8080)),
+        # host=os.getenv("IP", "0.0.0.0"),
+        # port=int(os.getenv("PORT", 8080)),
         debug=True,
     )
