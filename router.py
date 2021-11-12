@@ -3,7 +3,7 @@ from flask_login import LoginManager
 from wtforms import Form, TextField, PasswordField, validators, BooleanField
 from flask_login import login_user, logout_user, current_user, login_required, UserMixin
 from app import db, app  # app will be the app to run the initialization
-from model import User
+from model import User, saved_movies, genre_exclusions, ignored_movies
 import requests
 from flask import render_template, flash, redirect, url_for, request
 from form import LoginForm, RegistrationForm
@@ -27,21 +27,24 @@ def load_user(id):
 @app.route("/index")
 @login_required
 def index():
+
     # main page here
     return render_template("index.html")
 
 
 # The following will probably need to be split between diffent pages, depending on how we do the routing.
 # This just made it easy to make sure that the APIs work.
-@app.route("/placeholder")
+@app.route("/searchMovie", methods=["POST"])
 def main():
-    search_term = "Dune"  # This will need to be changed into a form request later
-    imdbid, imdb_api_img = get_imdb_id(search_term)
+    search_term = request.form['search']
+
+    (imdbid, imdb_api_img) = get_imdb_id(search_term)
     moviedb_id = get_id(imdbid)
-    movie_genre, movie_title = get_movie_info(moviedb_id)
+    (movie_genre, movie_title) = get_movie_info(moviedb_id)
 
-    return flask.render_template("index.html")  # placeholder
-
+    return flask.render_template("index.html", imdb_api_img=imdb_api_img, movie_title=movie_title, movie_genre=movie_genre)
+     
+    
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
