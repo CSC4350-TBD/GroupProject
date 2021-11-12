@@ -10,12 +10,30 @@
 
 
 <body>
+     {% with messages = get_flashed_messages() %}
+			{% if messages %}
+				<ul class=flashes>
+					{% for message in messages %}
+						<li>{{ message }}</li>
+					{% endfor %}
+				</ul>
+			{% endif %}
+		{% endwith %}
     <a href={{ url_for('user' ) }}><button id=nav>User Profile</button></a>
 
     <a href="{{ url_for('logout') }}"><button id=nav>LOGOUT</button></a>
     <br>
     <h4>Welcome!</h4>
     <p>Welcome! this is the test manin page</p>
+
+    <h2>{{movie_title}}</h2>
+	<h3>{{movie_genre}}</h3>
+    <div>
+        {% if imdb_api_img %}
+            <img src="{{imdb_api_img}}" width=300 height=300/>
+        {% endif %}
+    </div>
+
     <div>
         Recommendations:
         <br /><br />
@@ -26,12 +44,13 @@
     </div>
 
     <br />
+    <br />
 
-    <div>
-        <br />
+    <form action="/searchMovie" method="post">
         Search:
         <input type="text" name="search" placeholder="Enter a movie you like" />
-    </div>
+        <input type="submit" />
+    </form>
     <br />
 
 </body>
