@@ -41,10 +41,15 @@ def get_detailed_info(moviedb_id):
     MOVIE_DB_API_KEY = os.getenv("MOVIE_DB_API_KEY")
 
     info_url =f"https://api.themoviedb.org/3/movie/{moviedb_id}?api_key={MOVIE_DB_API_KEY}&language=en-US"
+    cast_url =f"https://api.themoviedb.org/3/movie/{moviedb_id}/credits?api_key={MOVIE_DB_API_KEY}&language=en-US"
     movie_info_response = requests.get(info_url)
+    cast_url_response = requests.get(cast_url)
+
     #print(movie_info_response)
 
     movie_info_j_response = movie_info_response.json()
+    cast_url_j_response = cast_url_response.json()
+
 
     movie_title = movie_info_j_response["original_title"]
     movie_genre = movie_info_j_response["genres"][0]["name"]
@@ -52,7 +57,21 @@ def get_detailed_info(moviedb_id):
     movie_runtime = movie_info_j_response["runtime"]
     movie_rating = movie_info_j_response["vote_average"]
 
-    return movie_title, movie_genre, movie_desc, movie_runtime, movie_rating
+    cast_limit = 3
+    cast = []
+    director = ""
+
+    for i in cast_url_j_response["cast"]:
+        if cast_limit > 0:
+            cast.append(i["name"])
+        cast_limit -=1
+
+    for i in cast_url_j_response["crew"]:
+        if i["job"]=="Director":
+            director = i["name"]
+            break
+        
+    return movie_title, movie_genre, movie_desc, movie_runtime, movie_rating, cast, director
 
 
     
