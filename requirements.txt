@@ -5,3 +5,5 @@ flask_SQLAlchemy
 flask_login
 SQLAlchemy
 psycopg2-binary
+WTForms
+Flask-WTF
