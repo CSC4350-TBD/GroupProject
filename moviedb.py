@@ -37,6 +37,25 @@ def get_movie_info(moviedb_id):
     
 
     return movie_genre, movie_title
+def get_detailed_info(moviedb_id):
+    MOVIE_DB_API_KEY = os.getenv("MOVIE_DB_API_KEY")
+
+    info_url =f"https://api.themoviedb.org/3/movie/{moviedb_id}?api_key={MOVIE_DB_API_KEY}&language=en-US"
+    movie_info_response = requests.get(info_url)
+    #print(movie_info_response)
+
+    movie_info_j_response = movie_info_response.json()
+
+    movie_title = movie_info_j_response["original_title"]
+    movie_genre = movie_info_j_response["genres"][0]["name"]
+    movie_desc = movie_info_j_response["overview"]
+    movie_runtime = movie_info_j_response["runtime"]
+    movie_rating = movie_info_j_response["vote_average"]
+
+    return movie_title, movie_genre, movie_desc, movie_runtime, movie_rating
+
+
+    
 
 def get_movie_recs(genre_exclusion, selected_genre):
     MOVIE_DB_API_KEY = os.getenv("MOVIE_DB_API_KEY")
