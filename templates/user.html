@@ -8,8 +8,14 @@
     <link rel="stylesheet" href={{ url_for('static', filename='style.css' ) }} />
 </head>
 
+<header>
+    <nav class=navigation>
+        <a href={{ url_for('index' ) }}><button>Recommendations</button></a>
+        <a href="{{ url_for('logout') }}"><button>Logout</button></a>
+    </nav>
+</header>
+
 <body>
-    <a href={{ url_for('index' ) }}><button id='back_to_index'>Back button to index page</button></a>
     <!-- main area -->
     <main id='user_main'>
         <!-- left column -->
