@@ -1,5 +1,8 @@
 body{
     background-color:lightgrey;
+	background-image: url('5uaqm1.gif');
+	background-size: auto;
+	background-size: cover;
     text-align: center;
     margin-top:3%;
     color: rgb(48, 42, 42)
@@ -41,4 +44,7 @@ nav button{
 	padding-top: .05%;
 	background-color: white;
 	border-radius: 12px ;
+	float: right;
+	margin-right: 15%;
 }
+
