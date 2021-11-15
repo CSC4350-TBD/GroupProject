@@ -20,13 +20,14 @@ def get_recommendation(): #this is where you will pass the entered movie.
     saved_movies_list = saved_movies.query.filter_by(username=current_user.username).all()
     ignored_movies_list = ignored_movies.query.filter_by(username=current_user.username).all()
 
-    movie_exlusions = saved_movies_list + ignored_movies_list 
+    movie_exlusions = saved_movies_list + ignored_movies_list #combine exclusionary fields
 
+    #Have to make the lists sets to compair them easily. 
     l1 = set(moviedb_list)
     l2 = set(movie_exlusions)
-    rec_set = l1-l2
+    rec_set = l1-l2 #final set of movies to be shown.
     
     rec_list = list(rec_set)
-    final_rec = secrets.choice(rec_list)
+    #final_rec = secrets.choice(rec_list)
 
-    return final_rec
+    return rec_list
