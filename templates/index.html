@@ -46,8 +46,11 @@
         <p>
             {% for k in title_list %}
             <a href={{ url_for('movie' ) }}>
-                <li>{{k}}</li>
+                <button type="submit" formaction={{test()}} value="{{k}}">{{k}}</button>
             </a>
+            {% endfor %}
+            {% for k in rec_list %}
+            <li>{{k}}</li>
             {% endfor %}
         </p>
         <br />

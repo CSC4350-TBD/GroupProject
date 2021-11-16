@@ -37,6 +37,10 @@ def index():
 # This just made it easy to make sure that the APIs work.
 @app.route("/searchMovie", methods=["GET", "POST"])
 def main():
+    def test():
+        moviething = print("this was a waste og time")
+        return render_template("movie.html")
+
     search_term = request.form["search"]
     # try:
     # imdbid, imdb_api_img = get_imdb_id(search_term)
@@ -72,6 +76,8 @@ def main():
         # movie_genre=movie_genre,
         title_list=title_list,
         title_list_len=title_list_len,
+        rec_list=rec_list,
+        test=test,
     )
 
 
@@ -111,7 +117,10 @@ def register():
 
 @app.route("/movie", methods=["GET", "POST"])
 def movie():
-    return render_template("movie.html")
+
+    return render_template(
+        "movie.html",
+    )
 
 
 @app.route("/user", methods=["GET", "POST"])
