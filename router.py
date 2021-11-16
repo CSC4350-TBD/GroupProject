@@ -12,7 +12,7 @@ from form import LoginForm, RegistrationForm
 import flask
 import os
 from flask_sqlalchemy import SQLAlchemy
-from moviedb import get_detailed_info, get_id, get_movie_info
+from moviedb import get_detailed_info, get_id, get_movie_info, get_movie_poster
 from imdb import get_imdb_id
 from recommend import get_recommendation
 
@@ -41,10 +41,7 @@ def index():
 def main():
     search_term = request.form["search"]
     # try:
-    # imdbid, imdb_api_img = get_imdb_id(search_term)
-    # moviedb_id = get_id(imdbid)
-    # movie_genre, movie_title = get_movie_info(moviedb_id)
-    rec_list = get_recommendation(search_term)
+    rec_list, movie_img_url = get_recommendation(search_term)
     title_list = []
     title_list_len = 10
     for i in rec_list:
@@ -58,12 +55,10 @@ def main():
     return flask.render_template(
         "index.html",
         search_term=search_term,
-        # imdb_api_img=imdb_api_img,
-        # movie_title=movie_title,
-        # movie_genre=movie_genre,
         title_list=title_list,
         title_list_len=title_list_len,
         rec_list=rec_list,
+        movie_img_url=movie_img_url
     )
 
 
