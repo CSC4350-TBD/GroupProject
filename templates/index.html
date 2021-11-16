@@ -45,12 +45,22 @@
         <br /><br />
         <p>
             {% for k in title_list %}
+<<<<<<< HEAD
             <a href={{ url_for('movie' ) }}>
                 <button type="submit" formaction={{test()}} value="{{k}}">{{k}}</button>
             </a>
             {% endfor %}
             {% for k in rec_list %}
             <li>{{k}}</li>
+=======
+                {% set title_list = title_list[loop.index-1] %}
+                {% set rec_list = rec_list[loop.index-1] %}
+            <li>{{k}}</li>
+            <form action="/details" method="post">
+                <input type="submit" name="{{rec_list}}" value="{{title_list}}"></input>
+              </form>
+            <br /><br />
+>>>>>>> main
             {% endfor %}
         </p>
         <br />

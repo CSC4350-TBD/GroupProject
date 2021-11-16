@@ -10,7 +10,7 @@ from form import LoginForm, RegistrationForm
 import flask
 import os
 from flask_sqlalchemy import SQLAlchemy
-from moviedb import get_id, get_movie_info
+from moviedb import get_detailed_info, get_id, get_movie_info
 from imdb import get_imdb_id
 from recommend import get_recommendation
 
@@ -53,17 +53,6 @@ def main():
         genre, title = get_movie_info(i)
         title_list.append(title)
     title_list_len = len(title_list)
-    print(search_term)
-    print(rec_list)
-    print(title_list)
-    print("THIS IS TO MAKE SURE THE PRINT WORKS")
-    print("THIS IS TO MAKE SURE THE PRINT WORKS")
-    print("THIS IS TO MAKE SURE THE PRINT WORKS")
-    print("THIS IS TO MAKE SURE THE PRINT WORKS")
-    print("THIS IS TO MAKE SURE THE PRINT WORKS")
-    print("THIS IS TO MAKE SURE THE PRINT WORKS")
-    print("THIS IS TO MAKE SURE THE PRINT WORKS")
-    print("THIS IS TO MAKE SURE THE PRINT WORKS")
 
     # except Exception:
     # flask.flash("Invalid movie name entered")
@@ -76,10 +65,16 @@ def main():
         # movie_genre=movie_genre,
         title_list=title_list,
         title_list_len=title_list_len,
+<<<<<<< HEAD
         rec_list=rec_list,
         test=test,
     )
 
+=======
+        rec_list=rec_list)
+     
+     
+>>>>>>> main
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -125,9 +120,31 @@ def movie():
 
 @app.route("/user", methods=["GET", "POST"])
 def user():
+    saved_movies_list = saved_movies.query.filter_by(usename=current_user.username).all()
+    ignored_movies_list = ignored_movies.query.filter_by(usename=current_user.username).all()
     # function need to be added for removing from database
     # removing: removing saved movies or ignored movies
-    return render_template("user.html")
+    return render_template("user.html",
+    saved_movies_list=saved_movies_list,
+    ignored_movies_list=ignored_movies_list)
+
+@app.route("/details",  methods=["GET", "POST"])
+def details():
+    immdict = request.form.to_dict()
+    movie_id = list(immdict.values())
+    for key, value in immdict.items():
+        movie_id = key
+    movie_title, movie_img, movie_genre, movie_desc, movie_runtime, movie_rating, cast, director = get_detailed_info(movie_id)
+
+    return render_template("details.html", 
+    movie_title=movie_title,
+    movie_img=movie_img,
+    movie_genre=movie_genre,
+    movie_desc=movie_desc,
+    movie_runtime=movie_runtime,
+    movie_rating=movie_rating,
+    cast=cast,
+    director=director)
 
 
 @app.route("/logout")
