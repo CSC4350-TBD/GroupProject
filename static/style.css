@@ -45,8 +45,10 @@ nav{
 nav button{
 	padding: 5px;
 	border-radius: 12px;
-	background-color:gold;
-	color: rgb(65, 60, 60)
+	background:linear-gradient(70deg, rgb(4, 4, 88) 60%, rgb(58, 11, 58));
+	color: white;
+	cursor: pointer;
+
 }
 
 #form_square{
@@ -71,7 +73,8 @@ button{
 	padding: 5px;
 	border-radius: 12px;
 	background-color:black;
-	color:white
+	color:white;
+	cursor: pointer;
 }
 
 #showLogin{
@@ -144,3 +147,22 @@ text-align: left;
 	margin:auto
 }
 
+#wrapDiv{
+	width: 25%;
+	margin-left: 2%;
+}
+
+#leftDiv{
+	float: left;
+}
+
+#rightDiv{
+	float: right;
+}
+
+.formButton{
+	color:white;
+	border-radius: 12px;
+	background-image: linear-gradient(to bottom left,black, white);
+	cursor: pointer;
+}

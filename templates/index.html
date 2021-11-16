@@ -17,15 +17,6 @@
 </header>
 
 <body id="index">
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-    <ul class="flashes">
-        {% for message in messages %}
-        <li>{{ message }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
-    {% endwith %}
 
     <div id="welcome_square">
         <h4>Welcome!</h4>

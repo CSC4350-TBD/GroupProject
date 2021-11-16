@@ -172,7 +172,6 @@ def save():
     usename = current_user.username
     db.session.add(saved_movies(movieid=movie_id, usename=usename))
     db.session.commit()
-    flash("Saved!")
     return render_template("index.html", movie_id=movie_id)
 
 
