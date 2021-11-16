@@ -5,14 +5,15 @@ from flask_login import current_user
 import secrets
 
 
-    #imdbid, imdb_api_img = get_imdb_id(search_term) #get usable id from imdb/also a poster
-    #moviedb_id = get_id(imdbid)                     #get moviedb id from imdbid
-    #movie_genre, movie_title = get_movie_info(moviedb_id)   #get details about the movie
-    
-    selected_genre = 35#movie_genre #can change this when we allow for just a search based on genre
-    genre_exclusion = ""        #this will need to be a db call. (SELECT genre FROM genre_exclusions WHERE username = currentuser.username)
-    
-    moviedb_list = get_movie_recs(selected_genre) #, genre_exclusion
+def get_recommendation(search_term):  # this is where you will pass the entered movie.
+    # imdbid, imdb_api_img = get_imdb_id(search_term) #get usable id from imdb/also a poster
+    # moviedb_id = get_id(imdbid)                     #get moviedb id from imdbid
+    # movie_genre, movie_title = get_movie_info(moviedb_id)   #get details about the movie
+
+    selected_genre = 35  # movie_genre #can change this when we allow for just a search based on genre
+    genre_exclusion = ""  # this will need to be a db call. (SELECT genre FROM genre_exclusions WHERE username = currentuser.username)
+
+    moviedb_list = get_movie_recs(selected_genre)  # , genre_exclusion
 
     # imdbid, imdb_api_img = get_imdb_id(
     #     search_term
