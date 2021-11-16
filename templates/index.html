@@ -32,13 +32,16 @@
         {% if imdb_api_img %}
             <img src="{{imdb_api_img}}" width=300 height=300/>
         {% endif %}
+        {% for i in rec_list_len %} 
+                  <p>{{movie_title[i]}}</p>
+              {% endfor %}  
     </div>
 
     <div>
         Recommendations:
         <br /><br />
         <p>
-            put space here for recommendations
+            
         </p>
         <br />
     </div>

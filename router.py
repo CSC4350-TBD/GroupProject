@@ -46,15 +46,15 @@ def main():
         (movie_genre, movie_title) = get_movie_info(moviedb_id)
         rec_list = get_recommendation(search_term)
         rec_list_len = len(rec_list)
-        for i in rec_list:
-            movie_title = get_movie_info(i)
-            title_list.append(movie_title)
+        # for i in rec_list_len:
+        #     movie_title = get_movie_info(i)
+        #     title_list.append(movie_title)
         
             
     except Exception:
         flask.flash("Invalid movie name entered")
         return flask.redirect(flask.url_for("index"))
-    return flask.render_template("index.html", imdb_api_img=imdb_api_img, movie_title=movie_title, movie_genre=movie_genre)
+    return flask.render_template("index.html", imdb_api_img=imdb_api_img, movie_title=movie_title, movie_genre=movie_genre,rec_list_len=rec_list_len)
      
      
 
@@ -108,7 +108,7 @@ def logout():
 if __name__ == "__main__":
     app.run(
         # uncomment following 2 lines once ready for deployment to heroku.
-        host=os.getenv("IP", "0.0.0.0"),
-        port=int(os.getenv("PORT", 8080)),
+        # host=os.getenv("IP", "0.0.0.0"),
+        # port=int(os.getenv("PORT", 8080)),
         debug=True,
     )
