@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+<head>
+    <title>Details Page Profile</title>
+    <link rel="icon" href={{ url_for('static', filename='icon.png' ) }} type="image/gif">
+    <link rel="stylesheet" href={{ url_for('static', filename='style.css' ) }} />
+</head>
+
+<body>
+    <h1>{{ movie_title }}</h1>
+    <h1>{{ movie_img }}</h1>
+    <h1>{{ movie_genre }}</h1>
+    <h1>{{ movie_desc }}</h1>
+    <h1>{{ movie_runtime }}</h1>
+    <h1>{{ movie_rating }}</h1>
+    <h1>{{ director }}</h1>
+    {% for k in cast %}
+            <li>{{k}}</li>
+            {% endfor %}
+</body>
+
+</html>
