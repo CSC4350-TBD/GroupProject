@@ -1,6 +1,30 @@
 body{
     background-color:lightgrey;
     text-align: center;
-    margin-top:7%;
+    margin-top:3%;
     color: rgb(48, 42, 42)
+}
+
+#user_main{
+	text-align: left;
+	width: 90%;	
+	display: flex;
+	margin: auto;
+    column-gap:4%;
+}
+
+#user_left{
+	flex-basis: 50%;
+}
+
+#user_right{
+	flex-basis: 50%;
+}
+
+#back_to_index{
+	float: left;
+}
+
+#nav{
+	float: right;
 }
