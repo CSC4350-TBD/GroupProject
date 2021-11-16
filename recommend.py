@@ -4,9 +4,9 @@ from model import saved_movies, ignored_movies
 from flask_login import current_user
 import secrets
 
-def get_recommendation(): #this is where you will pass the entered movie.
+def get_recommendation(search_term): #this is where you will pass the entered movie.
 
-    search_term = "Dune" #This will need to be changed into a form request later
+    #search_term = "Dune" #This will need to be changed into a form request later
 
     imdbid, imdb_api_img = get_imdb_id(search_term) #get usable id from imdb/also a poster
     moviedb_id = get_id(imdbid)                     #get moviedb id from imdbid
@@ -20,13 +20,14 @@ def get_recommendation(): #this is where you will pass the entered movie.
     saved_movies_list = saved_movies.query.filter_by(username=current_user.username).all()
     ignored_movies_list = ignored_movies.query.filter_by(username=current_user.username).all()
 
-    movie_exlusions = saved_movies_list + ignored_movies_list 
+    movie_exlusions = saved_movies_list + ignored_movies_list #combine exclusionary fields
 
+    #Have to make the lists sets to compair them easily. 
     l1 = set(moviedb_list)
     l2 = set(movie_exlusions)
-    rec_set = l1-l2
+    rec_set = l1-l2 #final set of movies to be shown.
     
     rec_list = list(rec_set)
-    final_rec = secrets.choice(rec_list)
+    #final_rec = secrets.choice(rec_list)
 
-    return final_rec
+    return rec_list
