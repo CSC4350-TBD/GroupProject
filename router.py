@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_login import LoginManager
-#from sqlalchemy.ext.declarative.api import declarative_base
+
+# from sqlalchemy.ext.declarative.api import declarative_base
 from wtforms import Form, TextField, PasswordField, validators, BooleanField
 from flask_login import login_user, logout_user, current_user, login_required, UserMixin
 from app import db, app  # app will be the app to run the initialization
@@ -103,8 +104,18 @@ def register():
 @app.route("/user", methods=["GET", "POST"])
 def user():
     usename = current_user.username
-    saved_movies_list  = [r[0] for r in db.session.query(saved_movies.movieid).filter_by(usename=usename).distinct()]
-    ignored_movies_list = [r[0] for r in db.session.query(ignored_movies.ignoredmovieid).filter_by(usename=usename).distinct()]
+    saved_movies_list = [
+        r[0]
+        for r in db.session.query(saved_movies.movieid)
+        .filter_by(usename=usename)
+        .distinct()
+    ]
+    ignored_movies_list = [
+        r[0]
+        for r in db.session.query(ignored_movies.ignoredmovieid)
+        .filter_by(usename=usename)
+        .distinct()
+    ]
     # function need to be added for removing from database
     # removing: removing saved movies or ignored movies
     print("insuerinuser")
@@ -167,6 +178,7 @@ def save():
 
     return render_template("index.html", movie_id=movie_id)
 
+
 @app.route("/ignore", methods=["GET", "POST"])
 def ignore():
     immdict = request.form.to_dict()
@@ -174,14 +186,31 @@ def ignore():
     for key, value in immdict.items():
         movie_id = key
     usename = current_user.username
-    db.session.add(saved_movies(movieid=movie_id, usename=usename))
+    db.session.add(ignored_movies(ignoredmovieid=movie_id, usename=usename))
     db.session.commit()
+    return render_template("index.html", movie_id=movie_id)
 
-@app.route("/remove", methods=["GET", "POST"])
+
+@app.route("/remove_save", methods=["GET", "POST"])
 def remove():
-    # remove from watch or remove from no show
-    # db.session.remove(movie_id)
-    # db.session.commit()
+    immdict = request.form.to_dict()
+    movie_id = list(immdict.values())
+    for key, value in immdict.items():
+        movie_id = key
+    usename = current_user.username
+    o = request.form["movie_id"]
+    print(o)
+    print("TEST")
+    print("TEST")
+    print("TEST")
+    print("TEST")
+    print("TEST")
+    print("TEST")
+    obj = saved_movies.query.filter_by(movieid=movie_id, usename=usename)
+    if obj is None:
+        obj = []
+    db.session.delete(obj)
+    db.session.commit()
     return render_template("user.html")
 
 
