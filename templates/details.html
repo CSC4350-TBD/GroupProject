@@ -19,8 +19,8 @@
 
 <body>
     <div id=details>
-        {% if imdb_api_img %}
-        <img src="{{imdb_api_img}}" width=40% height=auto align=left />
+        {% if movie_img %}
+        <img src="{{movie_img}}" width=40% height=auto align=left />
         {% else %}
         <img src="/static/no_img.png" width=40% height=auto align=left />
         {% endif %}
@@ -40,11 +40,11 @@
 
         <div>
             <form action="/save" method="post">
-                <input type="submit">Add to save</input>
-                <!-- <input type=submit>Add to Saved</button> -->
+                <input type="submit"  name="{{movie_id}}" value="Save to Watchlist"></input>
             </form>
-            <form action="/doNotShow" method="POST">
-                <input type="submit">Add to do not show</input>
+            <br /><br />
+            <form action="/ignore" method="post">
+                <input type="submit"  name="{{movie_id}}" value="Ignore This Movie"></input>
             </form>
         </div>
     </div>

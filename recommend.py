@@ -3,6 +3,7 @@ from imdb import get_imdb_id
 from model import saved_movies, ignored_movies
 from flask_login import current_user
 import secrets
+from app import db
 
 
 def get_recommendation(search_term):  # this is where you will pass the entered movie.
@@ -26,12 +27,10 @@ def get_recommendation(search_term):  # this is where you will pass the entered 
 
     moviedb_list = get_movie_recs(selected_genre)  # , genre_exclusion
 
-    saved_movies_list = saved_movies.query.filter_by(
-        usename=current_user.username
-    ).all()
-    ignored_movies_list = ignored_movies.query.filter_by(
-        usename=current_user.username
-    ).all()
+    usename = current_user.username
+
+    saved_movies_list  = [r[0] for r in db.session.query(saved_movies.movieid).filter_by(usename=usename).distinct()]
+    ignored_movies_list = [r[0] for r in db.session.query(ignored_movies.ignoredmovieid).filter_by(usename=usename).distinct()]
     movie_exlusions = (
         saved_movies_list + ignored_movies_list
     )  # combine exclusionary fields

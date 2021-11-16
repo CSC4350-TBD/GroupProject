@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_login import LoginManager
-from sqlalchemy.ext.declarative.api import declarative_base
+#from sqlalchemy.ext.declarative.api import declarative_base
 from wtforms import Form, TextField, PasswordField, validators, BooleanField
 from flask_login import login_user, logout_user, current_user, login_required, UserMixin
 from app import db, app  # app will be the app to run the initialization
@@ -102,14 +102,16 @@ def register():
 
 @app.route("/user", methods=["GET", "POST"])
 def user():
-    saved_movies_list = saved_movies.query.filter_by(
-        usename=current_user.username
-    ).all()
-    ignored_movies_list = ignored_movies.query.filter_by(
-        usename=current_user.username
-    ).all()
+    usename = current_user.username
+    saved_movies_list  = [r[0] for r in db.session.query(saved_movies.movieid).filter_by(usename=usename).distinct()]
+    ignored_movies_list = [r[0] for r in db.session.query(ignored_movies.ignoredmovieid).filter_by(usename=usename).distinct()]
     # function need to be added for removing from database
     # removing: removing saved movies or ignored movies
+    print("insuerinuser")
+    print(saved_movies_list)
+    print("insuerinuser")
+    print("insuerinuser")
+
     return render_template(
         "user.html",
         saved_movies_list=saved_movies_list,
@@ -136,6 +138,7 @@ def details():
 
     return render_template(
         "details.html",
+        movie_id=movie_id,
         movie_title=movie_title,
         movie_img=movie_img,
         movie_genre=movie_genre,
@@ -155,15 +158,24 @@ def save():
         movie_id = key
     # save to watch or no show
     # if movie_id ! in database:
-    #     usename = current_user.username
-    #     db.session.add(saved_movies(movieid=movie_id, usename=usename))
-    #     db.session.commit()
+    usename = current_user.username
+    db.session.add(saved_movies(movieid=movie_id, usename=usename))
+    db.session.commit()
     #     flash("Saved!")
     # else:
     #     flash("Already in saved!")
 
     return render_template("index.html", movie_id=movie_id)
 
+@app.route("/ignore", methods=["GET", "POST"])
+def ignore():
+    immdict = request.form.to_dict()
+    movie_id = list(immdict.values())
+    for key, value in immdict.items():
+        movie_id = key
+    usename = current_user.username
+    db.session.add(saved_movies(movieid=movie_id, usename=usename))
+    db.session.commit()
 
 @app.route("/remove", methods=["GET", "POST"])
 def remove():
