@@ -21,8 +21,7 @@ def get_id(imdbid):
 
 
 
-#This will be expanded upon as we decide what information we also want to garther about the movie.
-#We will probably need to define a different funciton for the acutual recomendations. 
+#This will be expanded upon as we decide what information we also want to garther about the movie. 
 def get_movie_info(moviedb_id):
     MOVIE_DB_API_KEY = os.getenv("MOVIE_DB_API_KEY")
 
@@ -37,6 +36,22 @@ def get_movie_info(moviedb_id):
     
 
     return movie_genre, movie_title
+
+def get_movie_poster(moviedb_id):
+    MOVIE_DB_API_KEY = os.getenv("MOVIE_DB_API_KEY")
+    img_base = "https://image.tmdb.org/t/p/original"
+    img_url = f"https://api.themoviedb.org/3/movie/{moviedb_id}/images?api_key={MOVIE_DB_API_KEY}&language=en-US&include_image_language=en"
+
+    img_response = requests.get(img_url)
+    img_j_response = img_response.json()
+
+    img_ext = img_j_response["posters"][0]["file_path"]
+
+    movie_image_url = img_base + img_ext
+
+    return movie_image_url
+
+
 def get_detailed_info(moviedb_id):
     MOVIE_DB_API_KEY = os.getenv("MOVIE_DB_API_KEY")
 
