@@ -45,16 +45,13 @@
         <br /><br />
         <p>
             {% for k in title_list %}
-            <li>{{k}}</li>
+            <a href={{ url_for('movie' ) }}>
+                <li>{{k}}</li>
+            </a>
             {% endfor %}
         </p>
-        <button>this button is for saving this movie</button>
-        <button>this button is for disliking this movie</button>
         <br />
     </div>
-
-    <br />
-    <br />
 
     <form action="/searchMovie" method="post">
         Search for movies:
