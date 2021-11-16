@@ -8,20 +8,28 @@
     <link rel="stylesheet" href={{ url_for('static', filename='style.css' ) }} />
 </head>
 
+<header>
+    <nav class=navigation>
+        <a href={{ url_for('index' ) }}><button>Recommendations</button></a>
+        <a href="{{ url_for('logout') }}"><button>Logout</button></a>
+    </nav>
+</header>
+
 <body>
-    <a href={{ url_for('index' ) }}><button id='back_to_index'>Return to Search</button></a>
     <!-- main area -->
     <main id='user_main'>
         <!-- left column -->
         <aside id='user_left'>
             <h3>Your Current Watchlist: </h3>
             <p>
-                {% for k in saved_movies_titles %}
-                    <li>{{k}}</li>
-                {% endfor %}
-                <br />
+                {% for k in saved_movies_list %}
+
+                <li>{{k}}</li>
                 <button>remove from saved</button>
+                {% endfor %}
             </p>
+
+            <br />
 
         </aside>
         <!-- end left column -->
@@ -31,11 +39,13 @@
             <h3>Movies You Ignored: </h3>
             <p>
                 {% for k in ignored_movies_list %}
-                    <li>{{k}}</li>
+                <li>{{k}}</li>
+                <button>remove from saved</button>
                 {% endfor %}
-                <br />
-                <button>remove from dislikes</button>
             </p>
+
+            <br />
+
         </aside>
         <!-- end right column -->
 

@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_login import LoginManager
+#from sqlalchemy.ext.declarative.api import declarative_base
 from wtforms import Form, TextField, PasswordField, validators, BooleanField
 from flask_login import login_user, logout_user, current_user, login_required, UserMixin
 from app import db, app  # app will be the app to run the initialization
@@ -10,7 +11,7 @@ from form import LoginForm, RegistrationForm
 import flask
 import os
 from flask_sqlalchemy import SQLAlchemy
-from moviedb import get_id, get_movie_info
+from moviedb import get_detailed_info, get_id, get_movie_info
 from imdb import get_imdb_id
 from recommend import get_recommendation
 
@@ -38,43 +39,32 @@ def index():
 # This just made it easy to make sure that the APIs work.
 @app.route("/searchMovie", methods=["GET","POST"])
 def main():
-    search_term = request.form['search']
-    #try:
-    #imdbid, imdb_api_img = get_imdb_id(search_term)
-    #moviedb_id = get_id(imdbid)
-    #movie_genre, movie_title = get_movie_info(moviedb_id)
+    search_term = request.form["search"]
+    # try:
+    # imdbid, imdb_api_img = get_imdb_id(search_term)
+    # moviedb_id = get_id(imdbid)
+    # movie_genre, movie_title = get_movie_info(moviedb_id)
     rec_list = get_recommendation(search_term)
     title_list = []
-    title_list_len=10
+    title_list_len = 10
     for i in rec_list:
         genre, title = get_movie_info(i)
         title_list.append(title)
     title_list_len = len(title_list)
-    print(search_term)
-    print(rec_list)
-    print(title_list)
-    print("THIS IS TO MAKE SURE THE PRINT WORKS")
-    print("THIS IS TO MAKE SURE THE PRINT WORKS")
-    print("THIS IS TO MAKE SURE THE PRINT WORKS")
-    print("THIS IS TO MAKE SURE THE PRINT WORKS")
-    print("THIS IS TO MAKE SURE THE PRINT WORKS")
-    print("THIS IS TO MAKE SURE THE PRINT WORKS")
-    print("THIS IS TO MAKE SURE THE PRINT WORKS")
-    print("THIS IS TO MAKE SURE THE PRINT WORKS")
 
-    #except Exception:
-        #flask.flash("Invalid movie name entered")
-        #return flask.redirect(flask.url_for("index"))
-    return flask.render_template("index.html",
-        search_term=search_term, 
-        #imdb_api_img=imdb_api_img, 
-        #movie_title=movie_title, 
-        #movie_genre=movie_genre,
+    # except Exception:
+    # flask.flash("Invalid movie name entered")
+    # return flask.redirect(flask.url_for("index"))
+    return flask.render_template(
+        "index.html",
+        search_term=search_term,
+        # imdb_api_img=imdb_api_img,
+        # movie_title=movie_title,
+        # movie_genre=movie_genre,
         title_list=title_list,
-        title_list_len=title_list_len)
-    
-     
-     
+        title_list_len=title_list_len,
+        rec_list=rec_list,
+    )
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -112,8 +102,86 @@ def register():
 
 @app.route("/user", methods=["GET", "POST"])
 def user():
+    usename = current_user.username
+    saved_movies_list  = [r[0] for r in db.session.query(saved_movies.movieid).filter_by(usename=usename).distinct()]
+    ignored_movies_list = [r[0] for r in db.session.query(ignored_movies.ignoredmovieid).filter_by(usename=usename).distinct()]
     # function need to be added for removing from database
     # removing: removing saved movies or ignored movies
+    print("insuerinuser")
+    print(saved_movies_list)
+    print("insuerinuser")
+    print("insuerinuser")
+
+    return render_template(
+        "user.html",
+        saved_movies_list=saved_movies_list,
+        ignored_movies_list=ignored_movies_list,
+    )
+
+
+@app.route("/details", methods=["GET", "POST"])
+def details():
+    immdict = request.form.to_dict()
+    movie_id = list(immdict.values())
+    for key, value in immdict.items():
+        movie_id = key
+    (
+        movie_title,
+        movie_img,
+        movie_genre,
+        movie_desc,
+        movie_runtime,
+        movie_rating,
+        cast,
+        director,
+    ) = get_detailed_info(movie_id)
+
+    return render_template(
+        "details.html",
+        movie_id=movie_id,
+        movie_title=movie_title,
+        movie_img=movie_img,
+        movie_genre=movie_genre,
+        movie_desc=movie_desc,
+        movie_runtime=movie_runtime,
+        movie_rating=movie_rating,
+        cast=cast,
+        director=director,
+    )
+
+
+@app.route("/save", methods=["GET", "POST"])
+def save():
+    immdict = request.form.to_dict()
+    movie_id = list(immdict.values())
+    for key, value in immdict.items():
+        movie_id = key
+    # save to watch or no show
+    # if movie_id ! in database:
+    usename = current_user.username
+    db.session.add(saved_movies(movieid=movie_id, usename=usename))
+    db.session.commit()
+    #     flash("Saved!")
+    # else:
+    #     flash("Already in saved!")
+
+    return render_template("index.html", movie_id=movie_id)
+
+@app.route("/ignore", methods=["GET", "POST"])
+def ignore():
+    immdict = request.form.to_dict()
+    movie_id = list(immdict.values())
+    for key, value in immdict.items():
+        movie_id = key
+    usename = current_user.username
+    db.session.add(saved_movies(movieid=movie_id, usename=usename))
+    db.session.commit()
+
+@app.route("/remove", methods=["GET", "POST"])
+def remove():
+    # remove from watch or remove from no show
+    # db.session.remove(movie_id)
+    # db.session.commit()
     return render_template("user.html")
 
 
