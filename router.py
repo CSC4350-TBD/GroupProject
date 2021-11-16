@@ -191,29 +191,6 @@ def ignore():
     return render_template("index.html", movie_id=movie_id)
 
 
-@app.route("/remove_save", methods=["GET", "POST"])
-def remove():
-    immdict = request.form.to_dict()
-    movie_id = list(immdict.values())
-    for key, value in immdict.items():
-        movie_id = key
-    usename = current_user.username
-    o = request.form["movie_id"]
-    print(o)
-    print("TEST")
-    print("TEST")
-    print("TEST")
-    print("TEST")
-    print("TEST")
-    print("TEST")
-    obj = saved_movies.query.filter_by(movieid=movie_id, usename=usename)
-    if obj is None:
-        obj = []
-    db.session.delete(obj)
-    db.session.commit()
-    return render_template("user.html")
-
-
 @app.route("/logout")
 def logout():
     logout_user()

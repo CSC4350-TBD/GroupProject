@@ -25,10 +25,8 @@
                 {% for k in saved_movies_list %}
 
                 <li>{{k}}</li>
-            <form action="/remove_save" method="post">
-                <input type="submit" name="{{movie_id}}" value="Remove From Watchlist"></input>
-            </form>
-            {% endfor %}
+
+                {% endfor %}
             </p>
 
             <br />
@@ -42,10 +40,8 @@
             <p>
                 {% for k in ignored_movies_list %}
                 <li>{{k}}</li>
-            <form action="/remove_ignore" method="post">
-                <input type="submit" name="{{movie_id}}" value="Remove From Ignore"></input>
-            </form>
-            {% endfor %}
+
+                {% endfor %}
             </p>
 
             <br />
