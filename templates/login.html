@@ -13,7 +13,6 @@
 <body id=full_body>
 
     <div id=form_square>
-        <p>Please log in</p>
         {% with messages = get_flashed_messages() %}
         {% if messages %}
         <ul class=flashes>
@@ -23,20 +22,20 @@
         </ul>
         {% endif %}
         {% endwith %}
+        <h3>Please log in</h3>
         <input type="button" id=showLogin value="Login" onclick="showDiv()" />
-        <br />
         <div id=login_form_square style="display:none">
             <form method='POST' action='/login'>
-                Username: <input type="text" name="username" placeholder="Enter User Name" />
+                <h4>Username:</h4> <input type="text" name="username" placeholder="Enter User Name" />
                 <br /><br />
-                Password: <input type="password" name="password" placeholder="Enter Password" />
+                <h4>Password:</h4> <input type="password" name="password" placeholder="Enter Password" />
                 <br /><br />
                 <button type="submit">Login</button>
                 <br /><br />
                 <input type="checkbox" name="remember_me" value="" />Remember Me</label>
             </form>
         </div>
-        <br />
+        <br /> <br />
         <a href={{ url_for('register' ) }}>No account? Register Here!</a>
         <br />
     </div>
