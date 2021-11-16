@@ -23,12 +23,13 @@
             <h3>Your Current Watchlist: </h3>
             <p>
                 {% for k in saved_movies_titles %}
+
                 <li>{{k}}</li>
+                <button>remove from saved</button>
                 {% endfor %}
             </p>
 
             <br />
-            <button>remove from saved</button>
 
         </aside>
         <!-- end left column -->
@@ -39,11 +40,11 @@
             <p>
                 {% for k in ignored_movies_list %}
                 <li>{{k}}</li>
+                <button>remove from saved</button>
                 {% endfor %}
             </p>
 
             <br />
-            <button>remove from saved</button>
 
         </aside>
         <!-- end right column -->

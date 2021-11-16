@@ -103,14 +103,6 @@ def register():
     return render_template("register.html", title="Register", form=form)
 
 
-@app.route("/movie", methods=["GET", "POST"])
-def movie():
-
-    return render_template(
-        "movie.html",
-    )
-
-
 @app.route("/user", methods=["GET", "POST"])
 def user():
     saved_movies_list = saved_movies.query.filter_by(

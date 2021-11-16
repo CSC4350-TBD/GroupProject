@@ -80,3 +80,66 @@ button{
 	background-color:black;
 	color:white
 }
+
+#details{
+text-align: left;
+}
+
+#details img{
+	margin-left: 2%;
+	margin-right: 2%;
+}
+
+.collection {
+	display: grid;
+	grid-auto-columns: max-content;
+	grid-auto-flow: dense;
+	grid-auto-rows: minmax(100px, auto);
+	grid-gap: 25px;
+	grid-template-columns: repeat(3, 1fr);
+	margin-left:12%;
+	max-width: 800px;
+	text-align: center;
+  }
+  
+.collection #grid-li{
+	list-style-type:none;
+	font-size: large;
+	font-weight: bold;
+}
+
+.collection #grid_image{
+	border-style: solid;
+	border-width: 1px;
+	border-color: black;
+}
+
+#movie_button{
+	padding: 5px;
+	border-radius: 12px;
+	background-color:black;
+	color:white;
+	width:100%;
+	cursor:pointer;
+}
+
+#index{
+	background-color:lightgrey;
+	background-image: url('bg_2.gif');
+	background-size: auto;
+	background-size: cover;
+    text-align: center;
+    margin-top:3%;
+    color: rgb(48, 42, 42)
+}
+
+#welcome_square{
+	width: 30%;
+	padding-bottom: .7%;
+	background-color: white;
+	border-radius: 12px ;
+	border-style: solid;
+	border-width: 1px;
+	border-color: black;
+	margin:auto
+}
