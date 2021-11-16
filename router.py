@@ -12,6 +12,7 @@ import os
 from flask_sqlalchemy import SQLAlchemy
 from moviedb import get_id, get_movie_info
 from imdb import get_imdb_id
+from recommend import get_recommendation
 
 login_manager = LoginManager()
 login_manager.login_view = "login"
@@ -28,6 +29,7 @@ def load_user(id):
 @login_required
 def index():
 
+
     # main page here
     return render_template("index.html")
 
@@ -37,10 +39,18 @@ def index():
 @app.route("/searchMovie", methods=["POST"])
 def main():
     search_term = request.form['search']
+    title_list = []
     try:
         (imdbid, imdb_api_img) = get_imdb_id(search_term)
         moviedb_id = get_id(imdbid)
         (movie_genre, movie_title) = get_movie_info(moviedb_id)
+        rec_list = get_recommendation(search_term)
+        rec_list_len = len(rec_list)
+        for i in rec_list:
+            movie_title = get_movie_info(i)
+            title_list.append(movie_title)
+        
+            
     except Exception:
         flask.flash("Invalid movie name entered")
         return flask.redirect(flask.url_for("index"))
