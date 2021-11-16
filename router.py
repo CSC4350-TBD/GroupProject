@@ -36,7 +36,7 @@ def index():
 # This just made it easy to make sure that the APIs work.
 @app.route("/searchMovie", methods=["POST"])
 def main():
-    search_term = request.form['search']
+    search_term = request.form["search"]
     try:
         (imdbid, imdb_api_img) = get_imdb_id(search_term)
         moviedb_id = get_id(imdbid)
@@ -44,9 +44,14 @@ def main():
     except Exception:
         flask.flash("Invalid movie name entered")
         return flask.redirect(flask.url_for("index"))
-    return flask.render_template("index.html", imdb_api_img=imdb_api_img, movie_title=movie_title, movie_genre=movie_genre)
-     
-     
+    return flask.render_template(
+        "index.html",
+        imdb_api_img=imdb_api_img,
+        movie_title=movie_title,
+        movie_genre=movie_genre,
+        moviedb_id=moviedb_id,
+    )
+
 
 @app.route("/login", methods=["GET", "POST"])
 def login():

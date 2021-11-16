@@ -48,3 +48,7 @@ nav button{
 	margin-right: 15%;
 }
 
+.flashes{
+	list-style-type: none;
+	padding:1px;
+}
