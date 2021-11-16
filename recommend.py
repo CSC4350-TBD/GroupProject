@@ -6,11 +6,8 @@ import secrets
 
 def get_recommendation(search_term): #this is where you will pass the entered movie.
 
-<<<<<<< HEAD
     search_term = "Dune" #This will need to be changed into a form request later
 
-=======
->>>>>>> 7153cc3ba74ce8a09d838dba437a216eabf77047
     imdbid, imdb_api_img = get_imdb_id(search_term) #get usable id from imdb/also a poster
     moviedb_id = get_id(imdbid)                     #get moviedb id from imdbid
     movie_genre, movie_title = get_movie_info(moviedb_id)   #get details about the movie
@@ -29,10 +26,6 @@ def get_recommendation(search_term): #this is where you will pass the entered mo
     l2 = set(movie_exlusions)
     rec_set = l1-l2 #final set of movies to be shown.
     rec_list = list(rec_set)
-<<<<<<< HEAD
     #final_rec = secrets.choice(rec_list)
     print(rec_set)
-=======
-    print(rec_list)
->>>>>>> 7153cc3ba74ce8a09d838dba437a216eabf77047
     return rec_list
