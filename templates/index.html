@@ -47,7 +47,7 @@
         <div>
 
             <div class="grid_image">
-                {% if movie_img_url %}
+                {% if movie_img_url != "https://image.tmdb.org/t/p/original" %}
                 <img src="{{movie_img_url}}" width="300" height="300" />
                 {% else %}
                 <img src="/static/no_img.png" width="300" height="300" />

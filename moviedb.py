@@ -40,12 +40,19 @@ def get_movie_info(moviedb_id):
 def get_movie_poster(moviedb_id):
     MOVIE_DB_API_KEY = os.getenv("MOVIE_DB_API_KEY")
     img_base = "https://image.tmdb.org/t/p/original"
+    img_ext = ""
     img_url = f"https://api.themoviedb.org/3/movie/{moviedb_id}/images?api_key={MOVIE_DB_API_KEY}&language=en-US&include_image_language=en"
 
     img_response = requests.get(img_url)
     img_j_response = img_response.json()
+    #print(img_j_response)
 
-    img_ext = img_j_response["posters"][0]["file_path"]
+    for i in img_j_response["posters"]:
+        img_ext=i["file_path"]
+        break
+
+    #img_ext = img_j_response["backdrops"][0]["file_path"]
+    #print(img_ext)
 
     movie_image_url = img_base + img_ext
 
@@ -103,12 +110,9 @@ def get_movie_recs(selected_genre): #genre_exclusion,
     search_response = requests.get(search_url)
 
     search_j_response = search_response.json()
-    print("THIS IS MOVIEDB>PY")
 
     movie_list = []
 
     for i in search_j_response["results"]:
         movie_list.append(i["id"])
-    print(movie_list)
-    print("THIS IS MOVIEDB>PY")
     return movie_list

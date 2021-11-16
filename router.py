@@ -99,6 +99,8 @@ def register():
 @app.route("/user", methods=["GET", "POST"])
 def user():
     usename = current_user.username
+    saved_movies_list_titles =[]
+    ignored_movies_list_titles = []
     saved_movies_list = [
         r[0]
         for r in db.session.query(saved_movies.movieid)
@@ -113,15 +115,18 @@ def user():
     ]
     # function need to be added for removing from database
     # removing: removing saved movies or ignored movies
-    print("insuerinuser")
-    print(saved_movies_list)
-    print("insuerinuser")
-    print("insuerinuser")
+
+    for i in saved_movies_list:
+        temp1, temp2 = get_movie_info(i)
+        saved_movies_list_titles.append(temp2)
+    for i in ignored_movies_list:
+        temp1, temp2 = get_movie_info(i)
+        ignored_movies_list_titles.append(temp2)
 
     return render_template(
         "user.html",
-        saved_movies_list=saved_movies_list,
-        ignored_movies_list=ignored_movies_list,
+        saved_movies_list_titles=saved_movies_list_titles,
+        ignored_movies_list_titles=ignored_movies_list_titles
     )
 
 
