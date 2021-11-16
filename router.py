@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_login import LoginManager
+from sqlalchemy.ext.declarative.api import declarative_base
 from wtforms import Form, TextField, PasswordField, validators, BooleanField
 from flask_login import login_user, logout_user, current_user, login_required, UserMixin
 from app import db, app  # app will be the app to run the initialization
@@ -37,10 +38,6 @@ def index():
 # This just made it easy to make sure that the APIs work.
 @app.route("/searchMovie", methods=["GET", "POST"])
 def main():
-    def test():
-        moviething = print("this was a waste og time")
-        return render_template("movie.html")
-
     search_term = request.form["search"]
     # try:
     # imdbid, imdb_api_img = get_imdb_id(search_term)
@@ -150,8 +147,30 @@ def details():
     )
 
 
+@app.route("/save", methods=["GET", "POST"])
 def save():
-    return render_template("index.html")
+    immdict = request.form.to_dict()
+    movie_id = list(immdict.values())
+    for key, value in immdict.items():
+        movie_id = key
+    # save to watch or no show
+    # if movie_id ! in database:
+    #     usename = current_user.username
+    #     db.session.add(saved_movies(movieid=movie_id, usename=usename))
+    #     db.session.commit()
+    #     flash("Saved!")
+    # else:
+    #     flash("Already in saved!")
+
+    return render_template("index.html", movie_id=movie_id)
+
+
+@app.route("/remove", methods=["GET", "POST"])
+def remove():
+    # remove from watch or remove from no show
+    # db.session.remove(movie_id)
+    # db.session.commit()
+    return render_template("user.html")
 
 
 @app.route("/logout")

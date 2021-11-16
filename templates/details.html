@@ -37,10 +37,14 @@
         {{ ", " if not loop.last else "" }}
         {% endfor %}
         <br /><br />
+
         <div>
             <form action="/save" method="post">
-                <input type=submit>Add to Saved</button>
-                <button>Do Not Show Again</button>
+                <input type="submit">Add to save</input>
+                <!-- <input type=submit>Add to Saved</button> -->
+            </form>
+            <form action="/doNotShow" method="POST">
+                <input type="submit">Add to do not show</input>
             </form>
         </div>
     </div>
