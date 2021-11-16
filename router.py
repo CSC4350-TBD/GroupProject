@@ -150,6 +150,10 @@ def details():
     )
 
 
+def save():
+    return render_template("index.html")
+
+
 @app.route("/logout")
 def logout():
     logout_user()
