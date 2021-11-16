@@ -26,8 +26,9 @@
     <h4>Welcome!</h4>
     <p>Welcome! this is the test manin page</p>
 
-    <h2>{{movie_title}}</h2>
-	<h3>{{movie_genre}}</h3>
+    <!-- <h2>{{movie_title}}</h2>
+	<h3>{{movie_genre}}</h3> -->
+    
     <div>
         {% if imdb_api_img %}
             <img src="{{imdb_api_img}}" width=300 height=300/>
@@ -41,7 +42,13 @@
         Recommendations:
         <br /><br />
         <p>
+<<<<<<< HEAD
             
+=======
+            {% for k in title_list %}
+                <li>{{k}}</li>
+            {% endfor %}
+>>>>>>> 7153cc3ba74ce8a09d838dba437a216eabf77047
         </p>
         <br />
     </div>
