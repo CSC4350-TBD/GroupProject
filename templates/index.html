@@ -61,6 +61,28 @@
         <button formaction="/movie"></button>
     </div>
 
+
+    <br />
+    <div>
+        <!-- this is to test linking pic to button and pass id to movie -->
+        <form action="movie.html" method="GET">
+            <h2>{{movie_title}}</h2>
+            <h3>{{movie_genre}}</h3>
+            <h2>{{moviedb_id}}</h2>
+            {% if imdb_api_img %}
+            <a href={{ url_for('movie' ) }}>
+                <button type=submit formaction="/movie" name={{moviedb_id}} data-internalid={{moviedb_id}}>
+                    <img src="{{imdb_api_img}}" width=300 height=300 />
+                </button>
+            </a>
+            {% endif %}
+        </form>
+        <!-- <button formaction="/movie"></button> -->
+
+
+    </div>
+
+
 </body>
 
 </html>

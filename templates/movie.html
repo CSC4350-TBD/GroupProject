@@ -19,11 +19,17 @@
 
 <body>
 
-    <div>
-
-        Testing
-
+    <div id=test data-internalid=580489>
+        <ul onclick="showDetails(this)" ; id="owl" data-internalid="bird">Owl</ul>
     </div>
 </body>
+
+<script>
+    function showDetails(moviedb_id) {
+        var animalType = moviedb_id.getAttribute("internalid");
+        alert("The " + moviedb_id.innerHTML + " is a " + animalType + ".");
+    }
+
+</script>
 
 </html>
