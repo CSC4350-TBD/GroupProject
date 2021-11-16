@@ -16,10 +16,6 @@
 </header>
 
 <body>
-<<<<<<< HEAD
-=======
-    <a href={{ url_for('index' ) }}><button id='back_to_index'>Return to Search</button></a>
->>>>>>> main
     <!-- main area -->
     <main id='user_main'>
         <!-- left column -->
@@ -27,11 +23,12 @@
             <h3>Your Current Watchlist: </h3>
             <p>
                 {% for k in saved_movies_titles %}
-                    <li>{{k}}</li>
+                <li>{{k}}</li>
                 {% endfor %}
-                <br />
-                <button>remove from saved</button>
             </p>
+
+            <br />
+            <button>remove from saved</button>
 
         </aside>
         <!-- end left column -->
@@ -41,11 +38,13 @@
             <h3>Movies You Ignored: </h3>
             <p>
                 {% for k in ignored_movies_list %}
-                    <li>{{k}}</li>
+                <li>{{k}}</li>
                 {% endfor %}
-                <br />
-                <button>remove from dislikes</button>
             </p>
+
+            <br />
+            <button>remove from saved</button>
+
         </aside>
         <!-- end right column -->
 
