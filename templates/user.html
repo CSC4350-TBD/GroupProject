@@ -22,7 +22,7 @@
         <aside id="user_left">
             <h3>Your Current Watchlist: </h3>
             <p>
-                {% for k in saved_movies_list %}
+                {% for k in saved_movies_list_titles %}
                 <li>{{k}}</li>
                 {% endfor %}
             </p>
@@ -36,7 +36,7 @@
         <aside id="user_right">
             <h3>Movies You Ignored: </h3>
             <p>
-                {% for k in ignored_movies_list %}
+                {% for k in ignored_movies_list_titles %}
                 <li>{{k}}</li>
                 {% endfor %}
             </p>
