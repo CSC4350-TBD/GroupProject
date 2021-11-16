@@ -4,22 +4,22 @@
 
 <head>
     <title>Recommendations</title>
-    <link rel="icon" href={{ url_for('static', filename='icon.png' ) }} type="image/gif">
-    <link rel="stylesheet" href={{ url_for('static', filename='style.css' ) }} />
+    <link rel="icon" href="{{ url_for('static', filename='icon.png' ) }}" type="image/gif">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css' ) }}" />
 </head>
 
 
 <header>
-    <nav class=navigation>
-        <a href={{ url_for('user' ) }}><button>User Profile</button></a>
+    <nav class="navigation">
+        <a href="{{ url_for('user' ) }}"><button>User Profile</button></a>
         <a href="{{ url_for('logout') }}"><button>Logout</button></a>
     </nav>
 </header>
 
-<body id=index>
+<body id="index">
     {% with messages = get_flashed_messages() %}
     {% if messages %}
-    <ul class=flashes>
+    <ul class="flashes">
         {% for message in messages %}
         <li>{{ message }}</li>
         {% endfor %}
@@ -27,7 +27,7 @@
     {% endif %}
     {% endwith %}
 
-    <div id=welcome_square>
+    <div id="welcome_square">
         <h4>Welcome!</h4>
 
         <form action="/searchMovie" method="post">
@@ -44,14 +44,12 @@
         {% set title_list = title_list[loop.index-1] %}
         {% set rec_list = rec_list[loop.index-1] %}
         <div>
-            <!-- <div>
-                <li id=grid-li>{{k}}</li>
-            </div> -->
+
             <div class="grid_image">
                 {% if imdb_api_img %}
-                <img src="{{imdb_api_img}}" width=300 height=300 />
+                <img src="{{imdb_api_img}}" width="300" height="300" />
                 {% else %}
-                <img src="/static/no_img.png" width=300 height=300 />
+                <img src="/static/no_img.png" width="300" height="300" />
                 {% endif %}
             </div>
             <div>
@@ -62,8 +60,6 @@
             </div>
         </div>
         {% endfor %}
-
-
 
 </body>
 

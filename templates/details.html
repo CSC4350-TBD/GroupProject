@@ -4,34 +4,47 @@
 
 <head>
     <title>Movie Details</title>
-    <link rel="icon" href={{ url_for('static', filename='icon.png' ) }} type="image/gif">
-    <link rel="stylesheet" href={{ url_for('static', filename='style.css' ) }} />
+    <link rel="icon" href="{{ url_for('static', filename='icon.png' ) }}" type="image/gif">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css' ) }}" />
 </head>
 
 <header>
     <nav class=navigation>
-        <a href={{ url_for('user' ) }}><button>User Profile</button></a>
-        <a href="{{ url_for('logout') }}"><button>Logout</button></a>
+        <a href="{{ url_for('user' ) }}"><button>User Profile</button></a>
+        <a href=" {{ url_for('logout') }}"><button>Logout</button></a>
     </nav>
 </header>
 
 <br />
 
 <body>
-    <div id=details>
+    <div id="details">
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul class="flashes">
+            {% for message in messages %}
+            <li>{{message}}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+
         {% if movie_img %}
         <img src="{{movie_img}}" width=40% height=auto align=left />
         {% else %}
         <img src="/static/no_img.png" width=40% height=auto align=left />
         {% endif %}
 
-        <h1 style=text-align:center>{{ movie_title }}</h1>
-        <h3 style=text-align:center>Genre: {{ movie_genre }}</h3>
+        <h1 style="text-align:center">{{ movie_title }}</h1>
+        <h3 style="text-align:center">Genre: {{ movie_genre }}</h3>
+
         <p><b>Description: </b>{{ movie_desc }}</p>
         <p><b>Runtime: </b>{{ movie_runtime }} mins</p>
         <p><b>Ratings: </b>{{ movie_rating }}/10</b></p>
         <p><b>Director: </b>{{ director }}</b></p>
         <b>Cast Members:</b>
+
         {% for k in cast %}
         <li style="list-style-type:none; display: inline">{{k}}</li>
         {{ ", " if not loop.last else "" }}
@@ -39,12 +52,12 @@
         <br /><br />
 
         <div>
-            <form action="/save" method="post">
-                <input type="submit"  name="{{movie_id}}" value="Save to Watchlist"></input>
+            <form action="/save" method="POST">
+                <input type="submit" name="{{movie_id}}" value="Save to Watchlist"></input>
             </form>
             <br /><br />
-            <form action="/ignore" method="post">
-                <input type="submit"  name="{{movie_id}}" value="Ignore This Movie"></input>
+            <form action="/ignore" method="POST">
+                <input type="submit" name="{{movie_id}}" value="Ignore This Movie"></input>
             </form>
         </div>
     </div>

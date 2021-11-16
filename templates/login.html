@@ -5,38 +5,48 @@
 
 <head>
 
-    <title>Login</title>
-    <link rel="icon" href={{ url_for('static', filename='icon.png' ) }} type="image/gif">
-    <link rel="stylesheet" href={{ url_for('static', filename='style.css' ) }} />
+    <title>Login</title>"
+    <link rel="icon" href="{{ url_for('static', filename='icon.png' ) }}" type="image/gif">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css' ) }}" />
 </head>
 
-<body id=login_signup>
+<body id="login_signup">
 
-    <div id=form_square>
+    <div id="form_square">
+
         {% with messages = get_flashed_messages() %}
         {% if messages %}
-        <ul class=flashes>
+        <ul class="flashes">
             {% for message in messages %}
             <li>{{message}}</li>
             {% endfor %}
         </ul>
         {% endif %}
         {% endwith %}
+
         <h3>Please log in</h3>
-        <input type="button" id=showLogin value="Login" onclick="showDiv()" />
-        <div id=login_form_square style="display:none">
+        <input type="button" id="showLogin" value="Login" onclick="showDiv()" />
+        <div id="login_form_square" style="display:none">
             <form method='POST' action='/login'>
-                <h4>Username:</h4> <input type="text" name="username" placeholder="Enter User Name" />
+                <h4>Username:</h4>
+                <input type="text" name="username" placeholder="Enter User Name" />
                 <br /><br />
-                <h4>Password:</h4> <input type="password" name="password" placeholder="Enter Password" />
+
+                <h4>Password:</h4>
+                <input type="password" name="password" placeholder="Enter Password" />
                 <br /><br />
+
                 <button type="submit">Login</button>
                 <br /><br />
+
                 <input type="checkbox" name="remember_me" value="" />Remember Me</label>
             </form>
         </div>
+
         <br /> <br />
-        <a href={{ url_for('register' ) }}>No account? Register Here!</a>
+
+        <a href="{{ url_for('register' ) }}">No account? Register Here!</a>
+
         <br />
     </div>
 
