@@ -88,12 +88,12 @@ def get_movie_recs(selected_genre): #genre_exclusion,
     search_response = requests.get(search_url)
 
     search_j_response = search_response.json()
-    print("THIS IS MOVIEDB>PY")
+    # print("THIS IS MOVIEDB>PY")
 
     movie_list = []
 
     for i in search_j_response["results"]:
         movie_list.append(i["id"])
     print(movie_list)
-    print("THIS IS MOVIEDB>PY")
+    # print("THIS IS MOVIEDB>PY")
     return movie_list
