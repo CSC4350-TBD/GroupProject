@@ -4,22 +4,25 @@
 
 <head>
     <title>SignUp</title>
-    <link rel="icon" href={{ url_for('static', filename='icon.png' ) }} type="image/gif">
-    <link rel="stylesheet" href={{ url_for('static', filename='style.css' ) }} />
+    <link rel="icon" href="{{ url_for('static', filename='icon.png' ) }" } type="image/gif">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css' ) }} " />
 </head>
 
-<body id=login_signup>
-    <div id=form_square>
+<body id="login_signup">
+    <div id="form_square">
+
         <h3>Register Below</h3>
+
         {% with messages = get_flashed_messages() %}
         {% if messages %}
-        <ul class=flashes>
+        <ul class="flashes">
             {% for message in messages %}
             <li>{{message}}</li>
             {% endfor %}
         </ul>
         {% endif %}
         {% endwith %}
+
         <form method='POST' , action='/register'>
             <h4>Please enter a Username:</h4>
             <input type="text" name="username" placeholder="Enter User Name" required />
@@ -29,7 +32,7 @@
             <button type="submit">Submit</button>
         </form>
         <br />
-        <a href={{ url_for('login') }}>Return to Login</a>
+        <a href="{{ url_for('login') }}">Return to Login</a>
     </div>
 </body>
 

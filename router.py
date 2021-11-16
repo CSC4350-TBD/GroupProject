@@ -167,15 +167,12 @@ def save():
     movie_id = list(immdict.values())
     for key, value in immdict.items():
         movie_id = key
-    # save to watch or no show
+    # save to watch
     # if movie_id ! in database:
     usename = current_user.username
     db.session.add(saved_movies(movieid=movie_id, usename=usename))
     db.session.commit()
-    #     flash("Saved!")
-    # else:
-    #     flash("Already in saved!")
-
+    flash("Saved!")
     return render_template("index.html", movie_id=movie_id)
 
 
