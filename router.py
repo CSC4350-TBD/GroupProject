@@ -12,6 +12,7 @@ import os
 from flask_sqlalchemy import SQLAlchemy
 from moviedb import get_id, get_movie_info
 from imdb import get_imdb_id
+from recommend import get_recommendation
 
 login_manager = LoginManager()
 login_manager.login_view = "login"
@@ -34,17 +35,42 @@ def index():
 
 # The following will probably need to be split between diffent pages, depending on how we do the routing.
 # This just made it easy to make sure that the APIs work.
-@app.route("/searchMovie", methods=["POST"])
+@app.route("/searchMovie", methods=["GET", "POST"])
 def main():
     search_term = request.form['search']
-    try:
-        (imdbid, imdb_api_img) = get_imdb_id(search_term)
-        moviedb_id = get_id(imdbid)
-        (movie_genre, movie_title) = get_movie_info(moviedb_id)
-    except Exception:
-        flask.flash("Invalid movie name entered")
-        return flask.redirect(flask.url_for("index"))
-    return flask.render_template("index.html", imdb_api_img=imdb_api_img, movie_title=movie_title, movie_genre=movie_genre)
+    #try:
+    #imdbid, imdb_api_img = get_imdb_id(search_term)
+    #moviedb_id = get_id(imdbid)
+    #movie_genre, movie_title = get_movie_info(moviedb_id)
+    rec_list = get_recommendation(search_term)
+    title_list = []
+    title_list_len=10
+    for i in rec_list:
+        genre, title = get_movie_info(i)
+        title_list.append(title)
+    title_list_len = len(title_list)
+    print(search_term)
+    print(rec_list)
+    print(title_list)
+    print("THIS IS TO MAKE SURE THE PRINT WORKS")
+    print("THIS IS TO MAKE SURE THE PRINT WORKS")
+    print("THIS IS TO MAKE SURE THE PRINT WORKS")
+    print("THIS IS TO MAKE SURE THE PRINT WORKS")
+    print("THIS IS TO MAKE SURE THE PRINT WORKS")
+    print("THIS IS TO MAKE SURE THE PRINT WORKS")
+    print("THIS IS TO MAKE SURE THE PRINT WORKS")
+    print("THIS IS TO MAKE SURE THE PRINT WORKS")
+
+    #except Exception:
+        #flask.flash("Invalid movie name entered")
+        #return flask.redirect(flask.url_for("index"))
+    return flask.render_template("index.html",
+        search_term=search_term, 
+        #imdb_api_img=imdb_api_img, 
+        #movie_title=movie_title, 
+        #movie_genre=movie_genre,
+        title_list=title_list,
+        title_list_len=title_list_len)
      
      
 
@@ -98,7 +124,7 @@ def logout():
 if __name__ == "__main__":
     app.run(
         # uncomment following 2 lines once ready for deployment to heroku.
-        host=os.getenv("IP", "0.0.0.0"),
-        port=int(os.getenv("PORT", 8080)),
+        #host=os.getenv("IP", "0.0.0.0"),
+        #port=int(os.getenv("PORT", 8080)),
         debug=True,
     )
