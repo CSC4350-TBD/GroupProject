@@ -29,12 +29,24 @@
 
     <br>
     <h4>Welcome!</h4>
+    <p>Welcome! this is the test manin page</p>
+
+    <!-- <h2>{{movie_title}}</h2>
+	<h3>{{movie_genre}}</h3> -->
+
+    <div>
+        {% if imdb_api_img %}
+        <img src="{{imdb_api_img}}" width=300 height=300 />
+        {% endif %}
+    </div>
 
     <div>
         Recommendations:
         <br /><br />
         <p>
-            put space here for recommendations
+            {% for k in title_list %}
+            <li>{{k}}</li>
+            {% endfor %}
         </p>
         <button>this button is for saving this movie</button>
         <button>this button is for disliking this movie</button>

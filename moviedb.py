@@ -32,7 +32,7 @@ def get_movie_info(moviedb_id):
 
     movie_info_j_response = movie_info_response.json()
 
-    movie_genre = movie_info_j_response["genres"][0]["name"]
+    movie_genre = movie_info_j_response["genres"][0]["id"]
     movie_title = movie_info_j_response["original_title"]
     
 
@@ -79,18 +79,21 @@ def get_detailed_info(moviedb_id):
 
     
 
-def get_movie_recs(genre_exclusion, selected_genre):
+def get_movie_recs(selected_genre): #genre_exclusion, 
     MOVIE_DB_API_KEY = os.getenv("MOVIE_DB_API_KEY")
 
     # possibly should add &with_keywords={keywords} if we want to add a keyword field
-    search_url = f"https://api.themoviedb.org/3/discover/movie?api_key={MOVIE_DB_API_KEY}&language=en-US&sort_by=popularity.desc&page=1&with_genres={selected_genre}&without_genres={genre_exclusion}"
+    #search_url = f"https://api.themoviedb.org/3/discover/movie?api_key={MOVIE_DB_API_KEY}&language=en-US&sort_by=popularity.desc&page=1&with_genres={selected_genre}" #&without_genres={genre_exclusion}
+    search_url = f"https://api.themoviedb.org/3/discover/movie?api_key={MOVIE_DB_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres={selected_genre}&with_watch_monetization_types=flatrate"
     search_response = requests.get(search_url)
 
     search_j_response = search_response.json()
+    print("THIS IS MOVIEDB>PY")
 
     movie_list = []
 
     for i in search_j_response["results"]:
         movie_list.append(i["id"])
-
+    print(movie_list)
+    print("THIS IS MOVIEDB>PY")
     return movie_list
