@@ -21,8 +21,7 @@ def get_id(imdbid):
 
 
 
-#This will be expanded upon as we decide what information we also want to garther about the movie.
-#We will probably need to define a different funciton for the acutual recomendations. 
+#This is mainly just to grab the genre easily for recomendations. 
 def get_movie_info(moviedb_id):
     MOVIE_DB_API_KEY = os.getenv("MOVIE_DB_API_KEY")
 
@@ -38,6 +37,29 @@ def get_movie_info(moviedb_id):
 
     return movie_genre, movie_title
 
+#This is to get the movie poster (think what you would see on the wall at a theatre)
+def get_movie_poster(moviedb_id):
+    MOVIE_DB_API_KEY = os.getenv("MOVIE_DB_API_KEY")
+    img_base = "https://image.tmdb.org/t/p/original"
+    img_ext = ""
+    img_url = f"https://api.themoviedb.org/3/movie/{moviedb_id}/images?api_key={MOVIE_DB_API_KEY}&language=en-US&include_image_language=en"
+
+    img_response = requests.get(img_url)
+    img_j_response = img_response.json()
+    #print(img_j_response)
+
+    for i in img_j_response["posters"]:
+        img_ext=i["file_path"]
+        break
+
+    #img_ext = img_j_response["backdrops"][0]["file_path"]
+    #print(img_ext)
+
+    movie_image_url = img_base + img_ext
+
+    return movie_image_url
+
+#This is a call that just gives an info dump so we can have the data to display
 def get_detailed_info(moviedb_id):
     MOVIE_DB_API_KEY = os.getenv("MOVIE_DB_API_KEY")
 
@@ -79,23 +101,20 @@ def get_detailed_info(moviedb_id):
 
 
     
-    
-
-def get_movie_recs(selected_genre): #genre_exclusion, 
+#this is just a complex search function, we only specify select genre for now,
+#but there are many options to be used in the future.
+def get_movie_recs(selected_genre):  
     MOVIE_DB_API_KEY = os.getenv("MOVIE_DB_API_KEY")
 
     # possibly should add &with_keywords={keywords} if we want to add a keyword field
-    #search_url = f"https://api.themoviedb.org/3/discover/movie?api_key={MOVIE_DB_API_KEY}&language=en-US&sort_by=popularity.desc&page=1&with_genres={selected_genre}" #&without_genres={genre_exclusion}
+    #search_url = f"https://api.themoviedb.org/3/discover/movie?api_key={MOVIE_DB_API_KEY}&language=en-US&sort_by=popularity.desc&page=1&with_genres={selected_genre}" #this is the old API url, was changed mid way through
     search_url = f"https://api.themoviedb.org/3/discover/movie?api_key={MOVIE_DB_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres={selected_genre}&with_watch_monetization_types=flatrate"
     search_response = requests.get(search_url)
 
     search_j_response = search_response.json()
-    print("THIS IS MOVIEDB>PY")
 
     movie_list = []
 
     for i in search_j_response["results"]:
         movie_list.append(i["id"])
-    print(movie_list)
-    print("THIS IS MOVIEDB>PY")
     return movie_list

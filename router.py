@@ -1,6 +1,5 @@
 from flask import Flask
 from flask_login import LoginManager
-#from sqlalchemy.ext.declarative.api import declarative_base
 from wtforms import Form, TextField, PasswordField, validators, BooleanField
 from flask_login import login_user, logout_user, current_user, login_required, UserMixin
 from app import db, app  # app will be the app to run the initialization
@@ -11,8 +10,7 @@ from form import LoginForm, RegistrationForm
 import flask
 import os
 from flask_sqlalchemy import SQLAlchemy
-from moviedb import get_detailed_info, get_id, get_movie_info
-from imdb import get_imdb_id
+from moviedb import get_detailed_info, get_id, get_movie_info, get_movie_poster
 from recommend import get_recommendation
 
 login_manager = LoginManager()
@@ -41,10 +39,7 @@ def index():
 def main():
     search_term = request.form["search"]
     # try:
-    # imdbid, imdb_api_img = get_imdb_id(search_term)
-    # moviedb_id = get_id(imdbid)
-    # movie_genre, movie_title = get_movie_info(moviedb_id)
-    rec_list = get_recommendation(search_term)
+    rec_list, movie_img_url = get_recommendation(search_term)
     title_list = []
     title_list_len = 10
     for i in rec_list:
@@ -58,12 +53,10 @@ def main():
     return flask.render_template(
         "index.html",
         search_term=search_term,
-        # imdb_api_img=imdb_api_img,
-        # movie_title=movie_title,
-        # movie_genre=movie_genre,
         title_list=title_list,
         title_list_len=title_list_len,
         rec_list=rec_list,
+        movie_img_url=movie_img_url,
     )
 
 @app.route("/login", methods=["GET", "POST"])
@@ -84,8 +77,6 @@ def login():
 @app.route("/register", methods=["GET", "POST"])
 def register():
     form = RegistrationForm(request.form)
-    # print(form.username.data)
-    # print(form.password.data)
     if form.validate():
         user = User(username=form.username.data)
         user.set_password(form.password.data)
@@ -94,7 +85,6 @@ def register():
             return redirect(url_for("register"))
         db.session.add(user)
         db.session.commit()
-        # print(user)
         flash("Congratulations, you are now a registered user!")
         return redirect(url_for("login"))
     return render_template("register.html", title="Register", form=form)
@@ -103,24 +93,50 @@ def register():
 @app.route("/user", methods=["GET", "POST"])
 def user():
     usename = current_user.username
-    saved_movies_list  = [r[0] for r in db.session.query(saved_movies.movieid).filter_by(usename=usename).distinct()]
-    ignored_movies_list = [r[0] for r in db.session.query(ignored_movies.ignoredmovieid).filter_by(usename=usename).distinct()]
-    # function need to be added for removing from database
-    # removing: removing saved movies or ignored movies
-    print("insuerinuser")
-    print(saved_movies_list)
-    print("insuerinuser")
-    print("insuerinuser")
+    saved_movies_list_titles = []
+    ignored_movies_list_titles = []
+    saved_movie_imgs = []
+    ignored_movie_imgs = []
+    saved_movies_list = [
+        r[0]
+        for r in db.session.query(saved_movies.movieid)
+        .filter_by(usename=usename)
+        .distinct()
+    ]
+    ignored_movies_list = [
+        r[0]
+        for r in db.session.query(ignored_movies.ignoredmovieid)
+        .filter_by(usename=usename)
+        .distinct()
+    ]
+
+    for i in saved_movies_list:
+        temp1, temp2 = get_movie_info(i)
+        saved_movies_list_titles.append(temp2)
+        saved_movie_img = get_movie_poster(i)
+        saved_movie_imgs.append(saved_movie_img)
+        print(saved_movie_img)
+
+    for i in ignored_movies_list:
+        temp1, temp2 = get_movie_info(i)
+        ignored_movies_list_titles.append(temp2)
+        ignored_movie_img = get_movie_poster(i)
+        ignored_movie_imgs.append(ignored_movie_img)
+        print(ignored_movie_img)
 
     return render_template(
         "user.html",
-        saved_movies_list=saved_movies_list,
-        ignored_movies_list=ignored_movies_list,
+        saved_movies_list_titles=saved_movies_list_titles,
+        ignored_movies_list_titles=ignored_movies_list_titles,
+        saved_movie_imgs=saved_movie_imgs,
+        ignored_movie_imgs=ignored_movie_imgs,
     )
 
 
 @app.route("/details", methods=["GET", "POST"])
 def details():
+    #this is a very abnormal way to get this data passed, we are kind of exploiting how HTML is structured to pass varriables
+    #this scales very poorly, but it works in this case. 
     immdict = request.form.to_dict()
     movie_id = list(immdict.values())
     for key, value in immdict.items():
@@ -156,16 +172,11 @@ def save():
     movie_id = list(immdict.values())
     for key, value in immdict.items():
         movie_id = key
-    # save to watch or no show
-    # if movie_id ! in database:
     usename = current_user.username
     db.session.add(saved_movies(movieid=movie_id, usename=usename))
     db.session.commit()
-    #     flash("Saved!")
-    # else:
-    #     flash("Already in saved!")
-
     return render_template("index.html", movie_id=movie_id)
+
 
 @app.route("/ignore", methods=["GET", "POST"])
 def ignore():
@@ -174,15 +185,9 @@ def ignore():
     for key, value in immdict.items():
         movie_id = key
     usename = current_user.username
-    db.session.add(saved_movies(movieid=movie_id, usename=usename))
+    db.session.add(ignored_movies(ignoredmovieid=movie_id, usename=usename))
     db.session.commit()
-
-@app.route("/remove", methods=["GET", "POST"])
-def remove():
-    # remove from watch or remove from no show
-    # db.session.remove(movie_id)
-    # db.session.commit()
-    return render_template("user.html")
+    return render_template("index.html", movie_id=movie_id)
 
 
 @app.route("/logout")

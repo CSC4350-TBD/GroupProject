@@ -4,53 +4,73 @@
 
 <head>
     <title>User Profile</title>
-    <link rel="icon" href={{ url_for('static', filename='icon.png' ) }} type="image/gif">
-    <link rel="stylesheet" href={{ url_for('static', filename='style.css' ) }} />
+    <link rel="icon" href="{{ url_for('static', filename='icon.png' ) }}" type="image/gif">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css' ) }}" />
 </head>
 
 <header>
-    <nav class=navigation>
-        <a href={{ url_for('index' ) }}><button>Recommendations</button></a>
+    <nav class="navigation">
+        <a href="{{ url_for('index' ) }}"><button>Recommendations</button></a>
         <a href="{{ url_for('logout') }}"><button>Logout</button></a>
     </nav>
 </header>
 
-<body>
-    <!-- main area -->
-    <main id='user_main'>
-        <!-- left column -->
-        <aside id='user_left'>
-            <h3>Your Current Watchlist: </h3>
-            <p>
-                {% for k in saved_movies_list %}
+<body id="user">
+    <div>
+        <!-- main area -->
+        <main id="user_main">
 
-                <li>{{k}}</li>
-                <button>remove from saved</button>
-                {% endfor %}
-            </p>
+            <!-- left column -->
+            <aside id="user_left">
+                <h3>Movies You Saved: </h3>
+                <p>
+                    {% for k in saved_movies_list_titles %}
+                    <!-- run through two lists in one jinja loop -->
+                    {% set saved_movie_imgs = saved_movie_imgs[loop.index-1] %}
+                    <li>{{k}}</li>
 
-            <br />
+                    <!-- checks if there is pic, if no, use alternate pic -->
+                    {% if saved_movie_imgs != "https://image.tmdb.org/t/p/original" %}
+                    <img src="{{saved_movie_imgs}}" width="300" height="300" />
+                    {% else %}
+                    <img src="/static/no_img.png" width="300" height="300" />
+                    {% endif %}
 
-        </aside>
-        <!-- end left column -->
+                    {%endfor%}
 
-        <!-- right column -->
-        <aside id='user_right'>
-            <h3>Movies You Ignored: </h3>
-            <p>
-                {% for k in ignored_movies_list %}
-                <li>{{k}}</li>
-                <button>remove from saved</button>
-                {% endfor %}
-            </p>
 
-            <br />
+                </p>
 
-        </aside>
-        <!-- end right column -->
+                <br />
 
-        <!-- end main area -->
-    </main>
+            </aside>
+            <!-- end left column -->
+
+            <!-- right column -->
+            <aside id="user_right">
+                <h3>Movies You Ignored: </h3>
+                <p>
+                    {% for k in ignored_movies_list_titles %}
+
+                    {% set ignored_movie_imgs = ignored_movie_imgs[loop.index-1] %}
+                    <li>{{k}}</li>
+                    {% if ignored_movie_imgs != "https://image.tmdb.org/t/p/original" %}
+                    <img src="{{ignored_movie_imgs}}" width="300" height="300" />
+                    {% else %}
+                    <img src="/static/no_img.png" width="300" height="300" />
+                    {% endif %}
+
+                    {%endfor%}
+                </p>
+
+                <br />
+
+            </aside>
+            <!-- end right column -->
+
+            <!-- end main area -->
+        </main>
+    </div>
 </body>
 
 </html>
