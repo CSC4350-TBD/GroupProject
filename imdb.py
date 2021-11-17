@@ -4,7 +4,7 @@ from dotenv import find_dotenv, load_dotenv
 
 load_dotenv(find_dotenv())
 
-#entire purpose of this function is to get a usable id from the user entered term
+# entire purpose of this function is to get a usable id from the user entered term
 def get_imdb_id(search_term):
     IMDB_API_KEY = os.getenv("IMDB_API_KEY")
 

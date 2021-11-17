@@ -14,9 +14,10 @@ current = os.path.dirname(os.path.realpath(__file__))
 parent = os.path.dirname(current)
 sys.path.append(parent)
 
+
 class BasicTests(unittest.TestCase):
     def setUp(self):
-          self.success_test_params = [
+        self.success_test_params = [
             {
                 INPUT: {},
                 EXPECTED_OUTPUT: (None, None),
@@ -28,15 +29,13 @@ class BasicTests(unittest.TestCase):
             {
                 INPUT: {
                     "original_title": "Movie title",
-                    "movie_genre": {"Movie genre" : "genres"},
-                    "movie_img" : {"images": [{"url": "image_url"}]}
-                    
+                    "movie_genre": {"Movie genre": "genres"},
+                    "movie_img": {"images": [{"url": "image_url"}]},
                 },
                 EXPECTED_OUTPUT: (
                     "Movie title",
-                     "genres",
+                    "genres",
                     "image_url",
-                    
                 ),
             },
         ]
@@ -44,11 +43,7 @@ class BasicTests(unittest.TestCase):
     def test_extract_movie_title(self):
         for test in self.success_test_params:
             self.assertEqual(get_movie_info(test[INPUT]), test[EXPECTED_OUTPUT])
-        
-
-   
 
 
-
-if __name__ =='__main__':
+if __name__ == "__main__":
     unittest.main()

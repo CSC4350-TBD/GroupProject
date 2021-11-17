@@ -12,7 +12,7 @@ pip install -r requirements.txt
 ## To Run Application
 
 Run 'python3 app.py' in command terminal
-To view on localhost, make sure lines "210-211" are commented out in router.py
+To view on localhost, make sure certain lines in app.run function are commented out in the end of router.py
 
 ## To Deploy To Heroku
 
@@ -31,11 +31,12 @@ While testing is encouraged, especially for John and the TAs, please note that t
 
 ## Testing
 
+
 Mock test library in Python allows to replace part of our app system under test with mock objects and make assertions about how they have been used. unittest.mock provides a core Mock class removing the need to create a host of stubs throughout the test suite.
 
 ## Leo
 
-Insert Leo's test problems here? Anything or issues you feel should be known, if not, just erase
+Due to the recently changed of the API, the functionality of the API calls has some formate problems.
 
 ## Yuliana
 
