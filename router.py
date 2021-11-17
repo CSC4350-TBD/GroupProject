@@ -1,7 +1,5 @@
 from flask import Flask
 from flask_login import LoginManager
-
-# from sqlalchemy.ext.declarative.api import declarative_base
 from wtforms import Form, TextField, PasswordField, validators, BooleanField
 from flask_login import login_user, logout_user, current_user, login_required, UserMixin
 from app import db, app  # app will be the app to run the initialization
@@ -13,7 +11,6 @@ import flask
 import os
 from flask_sqlalchemy import SQLAlchemy
 from moviedb import get_detailed_info, get_id, get_movie_info, get_movie_poster
-from imdb import get_imdb_id
 from recommend import get_recommendation
 
 login_manager = LoginManager()
@@ -80,8 +77,6 @@ def login():
 @app.route("/register", methods=["GET", "POST"])
 def register():
     form = RegistrationForm(request.form)
-    # print(form.username.data)
-    # print(form.password.data)
     if form.validate():
         user = User(username=form.username.data)
         user.set_password(form.password.data)
@@ -90,7 +85,6 @@ def register():
             return redirect(url_for("register"))
         db.session.add(user)
         db.session.commit()
-        # print(user)
         flash("Congratulations, you are now a registered user!")
         return redirect(url_for("login"))
     return render_template("register.html", title="Register", form=form)
@@ -115,8 +109,6 @@ def user():
         .filter_by(usename=usename)
         .distinct()
     ]
-    # function need to be added for removing from database
-    # removing: removing saved movies or ignored movies
 
     for i in saved_movies_list:
         temp1, temp2 = get_movie_info(i)
@@ -143,6 +135,8 @@ def user():
 
 @app.route("/details", methods=["GET", "POST"])
 def details():
+    #this is a very abnormal way to get this data passed, we are kind of exploiting how HTML is structured to pass varriables
+    #this scales very poorly, but it works in this case. 
     immdict = request.form.to_dict()
     movie_id = list(immdict.values())
     for key, value in immdict.items():
@@ -178,8 +172,6 @@ def save():
     movie_id = list(immdict.values())
     for key, value in immdict.items():
         movie_id = key
-    # save to watch
-    # if movie_id ! in database:
     usename = current_user.username
     db.session.add(saved_movies(movieid=movie_id, usename=usename))
     db.session.commit()
