@@ -30,19 +30,29 @@ def get_recommendation(search_term):  # this is where you will pass the entered 
     movie_exlusions = (
         saved_movies_list + ignored_movies_list
     )  # combine exclusionary fields
-    print("INRECCOMEND>PY")
-    print(movie_exlusions)
-    print("INRECCOMEND>PY")
+    print(saved_movies_list)
+    for i in saved_movies_list:
+        print(i)
+    # print(ignored_movies_list)
+    # print("INRECCOMEND>PY")
+    # print(movie_exlusions)
+    # print("INRECCOMEND>PY")
+    # print(moviedb_list)
 
     # Have to make the lists sets to compair them easily.
     l1 = set(moviedb_list)
     l2 = set(movie_exlusions)
-    #rec_set = l1 - l2  # final set of movies to be shown.
-    print(l1)
-    print(l2)
-    rec_set = l1.difference(l2)
-    print(rec_set)
-    rec_list = list(rec_set)
+    l22 = set()
+
+    for i in l2:
+        con_to_int = int(i)
+        l22.add(con_to_int)
+
+    for i in l22:
+        if i in l1:
+            l1.remove(i)
+
+    rec_list = list(l1)
 
     for i in rec_list:
         temp = get_movie_poster(i)
