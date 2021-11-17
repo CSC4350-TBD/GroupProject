@@ -29,9 +29,7 @@ While testing is encouraged, especially for John and the TAs, please note that t
 Other members add more^
 
 ## Testing
-## Leo
-Insert Leo's test problems here? Anything or issues you feel should be known, if not, just erase
-
+Due to the recently changed of the API, the functionality of the API calls has some formate problems.
 ## Yuliana
 Insert Yuliana's test problems here? Anything or issues you feel should be known, if not, just erase
 
