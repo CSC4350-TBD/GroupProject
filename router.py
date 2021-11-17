@@ -28,13 +28,14 @@ def load_user(id):
 @login_required
 def index():
 
+
     # main page here
     return render_template("index.html")
 
 
 # The following will probably need to be split between diffent pages, depending on how we do the routing.
 # This just made it easy to make sure that the APIs work.
-@app.route("/searchMovie", methods=["GET", "POST"])
+@app.route("/searchMovie", methods=["GET","POST"])
 def main():
     search_term = request.form["search"]
     # try:
@@ -57,7 +58,6 @@ def main():
         rec_list=rec_list,
         movie_img_url=movie_img_url,
     )
-
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -195,6 +195,26 @@ def logout():
     logout_user()
     return redirect(url_for("login"))
 
+
+def update_db_ids_for_user(usename, valid_ids):
+    """
+    Updates the DB so that only entries for valid_ids exist in it.
+    @param usename: the usename of the current user
+    @param valid_ids: a set of movie IDs that the DB should update itself
+        to reflect
+    """
+    existing_ids = {
+        v.movieid for v in saved_movies.query.filter_by(usesname=usename).all()
+    }
+    new_ids = valid_ids - existing_ids
+    for new_id in new_ids:
+        db.session.add(saved_movies(movieid=new_id, usename=usename))
+    if len(existing_ids - valid_ids) > 0:
+        for movie in saved_movies.query.filter_by(usename=usename).filter(
+            saved_movies.movieid.notin_(valid_ids)
+        ):
+            db.session.delete(movie)
+    db.session.commit()
 
 if __name__ == "__main__":
     app.run(
