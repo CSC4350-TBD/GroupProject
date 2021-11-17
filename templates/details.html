@@ -21,6 +21,7 @@
 <body>
     <div id="details">
 
+        <!--for flash messages-->
         {% with messages = get_flashed_messages() %}
         {% if messages %}
         <ul class="flashes">
@@ -31,12 +32,13 @@
         {% endif %}
         {% endwith %}
 
-        {% if movie_img %}
-        <img src="{{movie_img}}" width=40% height=auto align=left />
+        {% if movie_img != "https://image.tmdb.org/t/p/original"%}
+        <img src="{{movie_img}}" width="40%" height="auto" align="left" />
         {% else %}
-        <img src="/static/no_img.png" width=40% height=auto align=left />
+        <img src="/static/no_img.png" width="40%" height="auto" align="left" />
         {% endif %}
 
+        <!-- display movie info -->
         <h1 style="text-align:center">{{ movie_title }}</h1>
         <h3 style="text-align:center">Genre: {{ movie_genre }}</h3>
 
@@ -48,9 +50,12 @@
 
         {% for k in cast %}
         <li style="list-style-type:none; display: inline">{{k}}</li>
+        <!-- commas to list but not add onto last one -->
         {{ ", " if not loop.last else "" }}
         {% endfor %}
+
         <br /><br />
+
         <div id="wrapDiv">
             <div id="leftDiv">
                 <form action="/save" method="POST">

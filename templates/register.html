@@ -13,6 +13,7 @@
 
         <h3>Register Below</h3>
 
+        <!--for flash messages-->
         {% with messages = get_flashed_messages() %}
         {% if messages %}
         <ul class="flashes">
@@ -23,6 +24,7 @@
         {% endif %}
         {% endwith %}
 
+        <!--signup form-->
         <form method='POST' , action='/register'>
             <h4>Please enter a Username:</h4>
             <input type="text" name="username" placeholder="Enter User Name" required />

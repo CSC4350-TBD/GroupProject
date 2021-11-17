@@ -31,6 +31,7 @@
     <br /><br />
 
     <div class="collection">
+
         {% for k in title_list %}
         <!-- run through more than one lists in one jinja loop -->
         {% set title_list = title_list[loop.index-1] %}
@@ -39,6 +40,7 @@
         <div>
 
             <div class="grid_image">
+                <!-- checks if there is pic, if no, use alternate pic -->
                 {% if movie_img_url != "https://image.tmdb.org/t/p/original" %}
                 <img src="{{movie_img_url}}" width="300" height="300" />
                 {% else %}

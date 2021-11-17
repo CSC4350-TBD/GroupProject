@@ -28,10 +28,12 @@ body{
 
 #user_left{
 	flex-basis: 50%;
+	text-align: center;
 }
 
 #user_right{
 	flex-basis: 50%;
+	text-align: center;
 }
 
 #back_to_index{
@@ -176,8 +178,9 @@ text-align: left;
 	background-size: cover;
 }
 
-/* .card-overlay {
-	background: rgba(0, 0, 0, 0.5);
-	width:100%;
-	margin:auto
-  } */
+
+#user_main li{
+	margin-bottom: 1mm;
+	margin-top: 1cm;
+	font-weight: bold;
+}

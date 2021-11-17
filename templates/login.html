@@ -14,6 +14,7 @@
 
     <div id="form_square">
 
+        <!--for flash messages-->
         {% with messages = get_flashed_messages() %}
         {% if messages %}
         <ul class="flashes">
@@ -24,6 +25,7 @@
         {% endif %}
         {% endwith %}
 
+        <!--signin form-->
         <h3>Please log in</h3>
         <input type="button" id="showLogin" value="Login" onclick="showDiv()" />
         <div id="login_form_square" style="display:none">
