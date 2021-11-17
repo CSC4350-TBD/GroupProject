@@ -104,7 +104,7 @@ text-align: left;
 	text-align: center;
 	justify-items: center;
 	margin-left: 3%;
-	margin-right:3%
+	margin-right:3%;
 
   }
   
@@ -170,3 +170,14 @@ text-align: left;
 	background-image: linear-gradient(to bottom left,black, white);
 	cursor: pointer;
 }
+
+#user{
+	background-image: url('bg_3.jpg');
+	background-size: cover;
+}
+
+/* .card-overlay {
+	background: rgba(0, 0, 0, 0.5);
+	width:100%;
+	margin:auto
+  } */

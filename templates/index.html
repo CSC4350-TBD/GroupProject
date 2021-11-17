@@ -32,6 +32,7 @@
 
     <div class="collection">
         {% for k in title_list %}
+        <!-- run through more than one lists in one jinja loop -->
         {% set title_list = title_list[loop.index-1] %}
         {% set rec_list = rec_list[loop.index-1] %}
         {% set movie_img_url = movie_img_url[loop.index-1] %}
