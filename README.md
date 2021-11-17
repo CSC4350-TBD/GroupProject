@@ -11,7 +11,7 @@ pip install -r requirements.txt
 
 ## To Run Application
 Run 'python3 app.py' in command terminal
-To view on localhost, make sure lines "210-211" are commented out in router.py
+To view on localhost, make sure certain lines in app.run function are commented out in the end of router.py
 
 ## To Deploy To Heroku
 Create Heroku app
