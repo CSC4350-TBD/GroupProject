@@ -100,15 +100,19 @@ text-align: left;
 	grid-auto-rows: minmax(100px, auto);
 	grid-gap: 25px;
 	grid-template-columns: repeat(3, 1fr);
-	margin-left:12%;
 	max-width: 800px;
 	text-align: center;
+	justify-items: center;
+	margin-left: 3%;
+	margin-right:3%
+
   }
   
 .collection #grid-li{
 	list-style-type:none;
 	font-size: large;
 	font-weight: bold;
+	text-align: center;
 }
 
 .collection #grid_image{
