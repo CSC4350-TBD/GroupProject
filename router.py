@@ -28,14 +28,13 @@ def load_user(id):
 @login_required
 def index():
 
-
     # main page here
     return render_template("index.html")
 
 
 # The following will probably need to be split between diffent pages, depending on how we do the routing.
 # This just made it easy to make sure that the APIs work.
-@app.route("/searchMovie", methods=["GET","POST"])
+@app.route("/searchMovie", methods=["GET", "POST"])
 def main():
     search_term = request.form["search"]
     # try:
@@ -58,6 +57,7 @@ def main():
         rec_list=rec_list,
         movie_img_url=movie_img_url,
     )
+
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -135,8 +135,8 @@ def user():
 
 @app.route("/details", methods=["GET", "POST"])
 def details():
-    #this is a very abnormal way to get this data passed, we are kind of exploiting how HTML is structured to pass varriables
-    #this scales very poorly, but it works in this case. 
+    # this is a very abnormal way to get this data passed, we are kind of exploiting how HTML is structured to pass varriables
+    # this scales very poorly, but it works in this case.
     immdict = request.form.to_dict()
     movie_id = list(immdict.values())
     for key, value in immdict.items():
@@ -215,6 +215,7 @@ def update_db_ids_for_user(usename, valid_ids):
         ):
             db.session.delete(movie)
     db.session.commit()
+
 
 if __name__ == "__main__":
     app.run(
