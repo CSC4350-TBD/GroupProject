@@ -37,6 +37,7 @@ def get_movie_info(moviedb_id):
     
 
     return movie_genre, movie_title
+
 def get_detailed_info(moviedb_id):
     MOVIE_DB_API_KEY = os.getenv("MOVIE_DB_API_KEY")
 
@@ -77,6 +78,7 @@ def get_detailed_info(moviedb_id):
     return movie_title, movie_img, movie_genre, movie_desc, movie_runtime, movie_rating, cast, director
 
 
+    
     
 
 def get_movie_recs(selected_genre): #genre_exclusion, 
