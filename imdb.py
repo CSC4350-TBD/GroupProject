@@ -13,7 +13,7 @@ def get_imdb_id(search_term):
     )
 
     imdb_response = requests.get(imdb_search_url)
-    # print(imdb_response)
+    print(imdb_response)
     imdb_j_response = imdb_response.json()
 
     imdb_id = imdb_j_response["results"][0]["id"]  # First resulting IMDB ID

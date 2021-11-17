@@ -4,13 +4,12 @@
 
 <head>
     <title>SignUp</title>
-    <link rel="icon" href="{{ url_for('static', filename='icon.png' ) }" } type="image/gif">
+    <link rel="icon" href="{{ url_for('static', filename='icon.png')}}" type="image/gif">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css' ) }} " />
 </head>
 
 <body id="login_signup">
     <div id="form_square">
-
         <h3>Register Below</h3>
 
         {% with messages = get_flashed_messages() %}
