@@ -10,7 +10,7 @@ from form import LoginForm, RegistrationForm
 import flask
 import os
 from flask_sqlalchemy import SQLAlchemy
-from moviedb import get_detailed_info, get_id, get_movie_info, get_movie_poster
+from moviedb import get_detailed_info, get_id, get_movie_info, get_movie_poster, get_movie_trailer
 from recommend import get_recommendation
 
 login_manager = LoginManager()
@@ -152,6 +152,8 @@ def details():
         director,
     ) = get_detailed_info(movie_id)
 
+    trailer_url = get_movie_trailer(movie_id)
+
     return render_template(
         "details.html",
         movie_id=movie_id,
@@ -163,6 +165,7 @@ def details():
         movie_rating=movie_rating,
         cast=cast,
         director=director,
+        trailer_url=trailer_url
     )
 
 
