@@ -126,3 +126,21 @@ def get_movie_recs(selected_genre):
     for i in search_j_response["results"]:
         movie_list.append(i["id"])
     return movie_list
+
+
+def get_movie_trailer(moviedb_id):
+    MOVIE_DB_API_KEY = os.getenv("MOVIE_DB_API_KEY")
+
+    trailer_url = f"https://api.themoviedb.org/3/movie/{moviedb_id}/videos?api_key={MOVIE_DB_API_KEY}&language=en-US"
+    trailer_response = requests.get(trailer_url)
+    trailer_j_response = trailer_response.json()
+
+    movie_trailer = trailer_j_response["results"][0]["key"]
+
+    base_yt_url = "https://www.youtube.com/embed/"
+
+    yt_trailer_url = base_yt_url + movie_trailer
+
+    print(yt_trailer_url)
+
+    return yt_trailer_url
