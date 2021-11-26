@@ -15,10 +15,6 @@ class UserModelCase(unittest.TestCase):
         self.assertTrue(u2.check_password('111111'))
 
 
-   
-# class ImdbHelpTest(unittest.TestCase):
-
-
 
 
 if __name__ == '__main__':
