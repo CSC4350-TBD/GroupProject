@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+<head>
+    <title>Reset</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css' ) }} " />
+</head>
+
+<!-- <body id="reset"> -->
+
+<body>
+    <div id="form_square">
+        <h3>Reset your password</h3>
+
+        <!-- for flash messages -->
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul class="flashes">
+            {% for message in messages %}
+            <li>{{message}}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        <form method='POST' , action=''>
+            <h4>Please enter a new password:</h4>
+            <input type="password" name="password" placeholder="Enter Password" required />
+            <h4>Please repeate Password:</h4>
+            <input type="password" name="password2" placeholder="Repeate Password" required />
+            <button type="submit">Reset Password</button>
+        </form>
+    </div>
+    </div>
+</body>
+
+</html>

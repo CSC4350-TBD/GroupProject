@@ -1,25 +1,28 @@
 # Group Project - Final
-## Members: Alexander Ortiz, Lingyi Zheng, Yuliana Mircheva, SingYu Yu
 
+## Members: Alexander Ortiz, Lingyi Zheng, Yuliana Mircheva, SingYu Yu
 
 ## Heroku Link: https://recotbd.herokuapp.com/
 
-
 ## Requirements
+
 npm install
 pip install -r requirements.txt
 
 ## To Run Application
+
 Run 'python3 app.py' in command terminal
-To view on localhost, make sure lines "210-211" are commented out in router.py
+To view on localhost, make sure certain lines in app.run function are commented out in the end of router.py
 
 ## To Deploy To Heroku
+
 Create Heroku app
 Push to Heroku with command terminal using: git push heroku main
 
+# Important Information _Before_ Running
 
-# Important Information *Before* Running
-## API 
+## API
+
 The API has recently changed within the last two days.
 Previous code that worked had to be edited and changed and our team is working on fixing API calls (though all should be working now)
 The limit on API calls for IMDB API is 100 calls per day
@@ -27,16 +30,27 @@ Too many in one night will result in a ban as our team has experienced
 While testing is encouraged, especially for John and the TAs, please note that there are some movies in certain genres that may result in nasty things due to the new API filters even if the genre itself is seemingly innocent, be wary of documenteries, im pretty sure the adult filter is broken, and for some reason some adult movies are listed in that catagory
 
 ## Testing
+
+
+Mock test library in Python allows to replace part of our app system under test with mock objects and make assertions about how they have been used. unittest.mock provides a core Mock class removing the need to create a host of stubs throughout the test suite.
+
+## Leo
+
 Due to the recently changed of the API, the functionality of the API calls has some formate problems.
+
 ## Yuliana
-Insert Yuliana's test problems here? Anything or issues you feel should be known, if not, just erase
+
+Mocked server test tested if the database saves movie by ID from a hard coded username; then add the same ID to the DB. Next, adds a new ID to the DB and last pass in a list of valid IDs that doesn't include a prior one. The test pass ok.
+The other mocked test the moviedb API. mock_response.json.side_effect lets us set a list of return values and Each successive call to mock_response.all() will generate the next side effect. This test fail due to json formatting of the return value. The unmocked test is testing for the movie title. It doesn't use mock or patch to simulate a database or API. The test fail.
 
 ## Other Known Issues
+
 We used some very unique ways to pass varriables between routes/html pages. The implementation of which scales very poorly with the ammount of varriables that need to be passed in the method we have set up. If we were to expand this project it would be likely that using a front end framework like react (or atleast using some javascript) would allow for a much easier passing of data.
 
 ## Things To Improve
+
 For the HTML, there were some areas where code was being reused, such as the code to display flash messages, which probably could have been put into a php file and included in the HTML document since all the different divs and sections can it hard to realize where one has messed up when VS Code decides to take a nap and not autofill.
 
-For the CSS, it's rather messy in general. It was not sorted, and there are probably many ids and/or classes that could easily be put together to avoid confusion when searching for a specific line of code. 
+For the CSS, it's rather messy in general. It was not sorted, and there are probably many ids and/or classes that could easily be put together to avoid confusion when searching for a specific line of code.
 
-The api calls could be cleaned up, as there are some functions that might not be clear in their purpose due to similarities to other calls. One way to fix this is to change varriable names to be different, as a lot are similar enough to cause confusion 
+The api calls could be cleaned up, as there are some functions that might not be clear in their purpose due to similarities to other calls. One way to fix this is to change varriable names to be different, as a lot are similar enough to cause confusion

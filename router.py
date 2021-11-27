@@ -2,16 +2,17 @@ from flask import Flask
 from flask_login import LoginManager
 from wtforms import Form, TextField, PasswordField, validators, BooleanField
 from flask_login import login_user, logout_user, current_user, login_required, UserMixin
-from app import db, app  # app will be the app to run the initialization
+from app import db, app,mail  # app will be the app to run the initialization
 from model import User, saved_movies, genre_exclusions, ignored_movies
 import requests
 from flask import render_template, flash, redirect, url_for, request
-from form import LoginForm, RegistrationForm
+from form import LoginForm, RegistrationForm,ResetPasswordRequestForm,ResetPasswordForm
 import flask
 import os
 from flask_sqlalchemy import SQLAlchemy
-from moviedb import get_detailed_info, get_id, get_movie_info, get_movie_poster
+from moviedb import get_detailed_info, get_id, get_movie_info, get_movie_poster, get_movie_trailer
 from recommend import get_recommendation
+from sendemail import send_password_reset_email
 
 login_manager = LoginManager()
 login_manager.login_view = "login"
@@ -28,14 +29,13 @@ def load_user(id):
 @login_required
 def index():
 
-
     # main page here
     return render_template("index.html")
 
 
 # The following will probably need to be split between diffent pages, depending on how we do the routing.
 # This just made it easy to make sure that the APIs work.
-@app.route("/searchMovie", methods=["GET","POST"])
+@app.route("/searchMovie", methods=["GET", "POST"])
 def main():
     search_term = request.form["search"]
     # try:
@@ -59,6 +59,7 @@ def main():
         movie_img_url=movie_img_url,
     )
 
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if current_user.is_authenticated:
@@ -77,18 +78,52 @@ def login():
 @app.route("/register", methods=["GET", "POST"])
 def register():
     form = RegistrationForm(request.form)
+    print(form.email.data)
+    print(type(form.email.data))
     if form.validate():
         user = User(username=form.username.data)
         user.set_password(form.password.data)
         if User.query.filter_by(username=form.username.data).first():
             flash("The user name already exist, please try a new one.")
             return redirect(url_for("register"))
+        user.email = form.email.data
         db.session.add(user)
         db.session.commit()
         flash("Congratulations, you are now a registered user!")
         return redirect(url_for("login"))
     return render_template("register.html", title="Register", form=form)
 
+#request to reset password.
+@app.route("/reset_request",methods=["GET", "POST"])
+def reset_request():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    form = ResetPasswordRequestForm(request.form)
+    if form.validate():
+        user = User.query.filter_by(email=form.email.data).first()
+        if user is None:
+            flash("this email is not regisited!")
+            return redirect(url_for('reset_request'))
+        send_password_reset_email(user)
+        flash('please check your email to reset your password!')
+        return redirect(url_for('login'))
+    return render_template('reset_password_request.html',title="reset password",form=form)
+
+#reset password
+@app.route("/reset_password/<token>",methods=["GET", "POST"])
+def reset_password(token):
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    user = User.verify_jwt_token(token)
+    if user is None:
+        return redirect(url_for('index'))
+    form = ResetPasswordForm(request.form)
+    if form.validate():
+        user.set_password(form.password.data)
+        db.session.commit()
+        flash('Your password reset successfully!')
+        return redirect(url_for('login'))
+    return render_template('reset.html',token=token,form=form)
 
 @app.route("/user", methods=["GET", "POST"])
 def user():
@@ -135,8 +170,8 @@ def user():
 
 @app.route("/details", methods=["GET", "POST"])
 def details():
-    #this is a very abnormal way to get this data passed, we are kind of exploiting how HTML is structured to pass varriables
-    #this scales very poorly, but it works in this case. 
+    # this is a very abnormal way to get this data passed, we are kind of exploiting how HTML is structured to pass varriables
+    # this scales very poorly, but it works in this case.
     immdict = request.form.to_dict()
     movie_id = list(immdict.values())
     for key, value in immdict.items():
@@ -152,6 +187,8 @@ def details():
         director,
     ) = get_detailed_info(movie_id)
 
+    trailer_url = get_movie_trailer(movie_id)
+
     return render_template(
         "details.html",
         movie_id=movie_id,
@@ -163,6 +200,7 @@ def details():
         movie_rating=movie_rating,
         cast=cast,
         director=director,
+        trailer_url=trailer_url
     )
 
 
@@ -216,6 +254,8 @@ def update_db_ids_for_user(usename, valid_ids):
             db.session.delete(movie)
     db.session.commit()
 
+
+    
 if __name__ == "__main__":
     app.run(
         # uncomment following 2 lines once ready for deployment to heroku.
