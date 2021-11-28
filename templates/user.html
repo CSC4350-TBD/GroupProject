@@ -27,6 +27,7 @@
                     {% for k in saved_movies_list_titles %}
                     <!-- run through two lists in one jinja loop -->
                     {% set saved_movie_imgs = saved_movie_imgs[loop.index-1] %}
+                    {% set saved_movies_list = saved_movies_list[loop.index-1] %}
                     <li>{{k}}</li>
                     
 
@@ -37,7 +38,7 @@
                     <img src="/static/no_img.png" width="300" height="300" />
                     {% endif %}
                     <form action="/removeSaved" method="POST">
-                        <input class="formButton" type="submit" onClick="removedMessage()" name="{{k}}"
+                        <input class="formButton" type="submit" onClick="removedMessage()" name="{{saved_movies_list}}"
                             value="Remove from WatchList"></input>
                     </form>
 
@@ -58,6 +59,7 @@
                     {% for k in ignored_movies_list_titles %}
 
                     {% set ignored_movie_imgs = ignored_movie_imgs[loop.index-1] %}
+                    {% set ignored_movies_list = ignored_movies_list[loop.index-1] %}
                     <li>{{k}}</li>
                     {% if ignored_movie_imgs != "https://image.tmdb.org/t/p/original" %}
                     <img src="{{ignored_movie_imgs}}" width="300" height="300" />
@@ -65,7 +67,7 @@
                     <img src="/static/no_img.png" width="300" height="300" />
                     {% endif %}
                     <form action="/removeIgnored" method="POST">
-                        <input class="formButton" type="submit" onClick="removedMessage()" name="{{k}}"
+                        <input class="formButton" type="submit" onClick="removedMessage()" name="{{ignored_movies_list}}"
                             value="Remove from WatchList"></input>
                     </form>
 

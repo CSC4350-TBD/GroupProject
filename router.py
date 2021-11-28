@@ -165,6 +165,8 @@ def user():
         ignored_movies_list_titles=ignored_movies_list_titles,
         saved_movie_imgs=saved_movie_imgs,
         ignored_movie_imgs=ignored_movie_imgs,
+        saved_movies_list=saved_movies_list,
+        ignored_movies_list=ignored_movies_list
     )
 
 
@@ -235,8 +237,8 @@ def remove_ignored():
         movie_id = key
     usename = current_user.username
 
-    #stmt = ignored_movies.delete().where(ignoredmovieid=movie_id).where(usename=usename)
-    #db.execute(stmt)
+    ignored_movies.query.filter_by(ignoredmovieid=movie_id, usename=usename).delete()
+    db.session.commit()
 
     return redirect(url_for("user"))
 
@@ -249,13 +251,7 @@ def remove_saved():
         movie_id = key
     usename = current_user.username
 
-    stmt = saved_movies.query.filter_by(movieid=movie_id).filter_by(usename=usename).delete()
-    print("----------------------------------------------")
-    print("----------------------------------------------")
-    print(stmt)
-    print("----------------------------------------------")
-    print("----------------------------------------------")
-    db.session.execute(stmt)
+    saved_movies.query.filter_by(movieid=movie_id, usename=usename).delete()
     db.session.commit()
 
     return redirect(url_for("user"))
