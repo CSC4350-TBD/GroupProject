@@ -249,9 +249,13 @@ def remove_saved():
         movie_id = key
     usename = current_user.username
 
-    saved_movies.query.filter_by(movieid=movie_id).filter_by(usename=usename).delete()
-    
-    # db.session.delete(stmt)
+    stmt = saved_movies.query.filter_by(movieid=movie_id).filter_by(usename=usename).delete()
+    print("----------------------------------------------")
+    print("----------------------------------------------")
+    print(stmt)
+    print("----------------------------------------------")
+    print("----------------------------------------------")
+    db.session.execute(stmt)
     db.session.commit()
 
     return redirect(url_for("user"))
