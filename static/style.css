@@ -19,6 +19,7 @@ body{
 }
 
 #user_main{
+	padding-top: 5%;
 	text-align: left;
 	width: 90%;	
 	display: flex;
@@ -207,4 +208,10 @@ button{
 #trailerDetails{
 	flex-basis: 50%;
 	text-align: center;
+}
+
+.movie_section{
+	background-color: white;
+	border-radius:15px 50px 30px;
+	text-shadow: 2px 2px 8px #5e61ff;
 }
