@@ -50,8 +50,14 @@
         <a href="{{ url_for('register' ) }}">No account? Register Here!</a>
 
         <br />
+        
     </div>
-
+      
+    <div id = quotes>
+        <p>{{random_quote}}</p>
+        <!-- <p>"{{random_quote.text}}"</p>
+        <p>-{{random_quote.author}}</p> -->
+        </div> 
     <script>
         function showDiv() {
             var showLogin = document.getElementById('showLogin');
@@ -63,7 +69,7 @@
             document.body.style.backgroundImage = "url(static/login_img1.jpg)";
         }
     </script>
-
+      
 </body>
 
 </html>

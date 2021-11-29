@@ -58,22 +58,22 @@ class UpdateSaveDBIDsTests(unittest.TestCase):
                         self.assertEqual(self.db_mock[1].movieid, "baz")
 
 
-class GetMoviedbTests(unittest.TestCase):
-    def test_get_id(self):
-        with patch("moviedb.requests.get") as mock_requests_get:
-            mock_response = MagicMock()
+# class GetMoviedbTests(unittest.TestCase):
+#     def test_get_id(self):
+#         with patch("moviedb.requests.get") as mock_requests_get:
+#             mock_response = MagicMock()
 
-            mock_response.json.side_effect = [
-                {},
-                {"movie_results": {"id": [{550}]}},
-            ]
-            mock_requests_get.return_value = mock_response
+#             mock_response.json.side_effect = [
+#                 {},
+#                 {"movie_results": {"id": [{550}]}},
+#             ]
+#             mock_requests_get.return_value = mock_response
 
-            self.assertEqual(get_id("Movie id"), None)
-            self.assertEqual(
-                get_id("moviebd_id2"),
-                550,
-            )
+#             self.assertEqual(get_id("Movie id"), None)
+#             self.assertEqual(
+#                 get_id("moviebd_id2"),
+#                 550,
+#             )
 
 
 if __name__ == "__main__":

@@ -81,6 +81,23 @@
             alert("Movie was ignored")
         }
     </script>
+    <br>
+    <div>
+     <form action="/details/{{movie_id}}/reviews" method="post">
+            <h4>Would you like to add a review?</h4>
+            <input type="text" name="review" placeholder="Enter review here" />
+            <input type="submit" />
+        </form>
+        </div>
+        <br>
+    <div>
+         {% for k in reviews %}
+         
+        <p>Review {{loop.index}}: "{{k}}"</p>
+        <!-- commas to list but not add onto last one -->
+       <br>
+        {% endfor %}
+    </div>
 </body>
 
 </html>
