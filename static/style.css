@@ -86,14 +86,7 @@ button{
 	color:white
 }
 
-#details{
-text-align: left;
-}
 
-#details img{
-	margin-left: 2%;
-	margin-right: 2%;
-}
 
 /* .collection {
 	display: grid;
@@ -156,8 +149,11 @@ text-align: left;
 }
 
 #wrapDiv{
-	width: 25%;
-	margin-left: 2%;
+	width: 30%;
+	margin:auto;
+	justify-content: center;
+	display: block;
+	overflow: hidden;
 }
 
 #leftDiv{
@@ -165,7 +161,7 @@ text-align: left;
 }
 
 #rightDiv{
-	float: right;
+	float:right;
 }
 
 .formButton{

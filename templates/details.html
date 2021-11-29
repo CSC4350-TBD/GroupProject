@@ -6,7 +6,12 @@
     <title>Movie Details</title>
     <link rel="icon" href="{{ url_for('static', filename='icon.png' ) }}" type="image/gif" />
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css' ) }}" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 
 <header>
@@ -51,6 +56,7 @@
         <div style="width:90%; text-align: center; margin:auto">
             <!-- display movie info -->
             <h1 style="text-align:center">{{ movie_title }}</h1>
+            <hr />
             <h3 style="text-align:center">Genre: {{ movie_genre }}</h3>
 
             <p><b>Description: </b>{{ movie_desc }}</p>
@@ -66,24 +72,24 @@
             {% endfor %}
 
             <br /><br />
-        </div>
 
+        </div>
         <div id="wrapDiv">
-            <div id="leftDiv">
+            <div class="col-xs-12 col-sm-12 col-md-6" id="leftDiv">
                 <form action="/save" method="POST">
                     <input class="formButton" type="submit" onClick="savedMessage()" name="{{movie_id}}"
                         value="Save to Watchlist"></input>
                 </form>
             </div>
-            <div id="rightDiv">
+            <div class="col-xs-12 col-sm-12 col-md-6" id="rightDiv">
                 <form action="/ignore" method="POST">
                     <input class="formButton" type="submit" onCLick="ignoredMessage()" name="{{movie_id}}"
                         value="Ignore This Movie"></input>
                 </form>
             </div>
         </div>
-
     </div>
+    <br /><br />
 
     <script>
         function savedMessage() {
