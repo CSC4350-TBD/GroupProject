@@ -2,9 +2,12 @@ from flask import Flask
 from flask_login import LoginManager
 from wtforms import Form, TextField, PasswordField, validators, BooleanField
 from flask_login import login_user, logout_user, current_user, login_required, UserMixin
+from app import db, app  # app will be the app to run the initialization
+from model import User, saved_movies, genre_exclusions, ignored_movies, reviews
 from app import db, app,mail  # app will be the app to run the initialization
 from model import User, saved_movies, genre_exclusions, ignored_movies
 import requests
+import random
 from flask import render_template, flash, redirect, url_for, request
 from form import LoginForm, RegistrationForm,ResetPasswordRequestForm,ResetPasswordForm
 import flask
@@ -13,6 +16,7 @@ from flask_sqlalchemy import SQLAlchemy
 from moviedb import get_detailed_info, get_id, get_movie_info, get_movie_poster, get_movie_trailer
 from recommend import get_recommendation
 from sendemail import send_password_reset_email
+
 
 login_manager = LoginManager()
 login_manager.login_view = "login"
@@ -62,6 +66,17 @@ def main():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+
+    # choses a random movie quote and disply it on login page
+    f = open('static/quotes.txt','r')
+    content = f.readlines()
+    random_index = random.randint(0, len(content) - 1)
+    random_quote = content[random_index]
+
+    print(content[1])
+    f.close()
+   
+
     if current_user.is_authenticated:
         return redirect(url_for("index"))
     form = LoginForm(request.form)
@@ -72,8 +87,7 @@ def login():
             return redirect(url_for("login"))
         login_user(user, remember=form.remember_me.data)
         return redirect(url_for("index"))
-    return render_template("login.html", title="Sign In", form=form)
-
+    return render_template("login.html", title="Sign In", form=form, random_quote=random_quote)
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -178,6 +192,9 @@ def details():
     movie_id = list(immdict.values())
     for key, value in immdict.items():
         movie_id = key
+    return get_details(movie_id)
+
+def get_details(movie_id):
     (
         movie_title,
         movie_img,
@@ -188,6 +205,8 @@ def details():
         cast,
         director,
     ) = get_detailed_info(movie_id)
+    reviews = get_reviews_from_db(movie_id)
+   
 
     trailer_url = get_movie_trailer(movie_id)
 
@@ -202,6 +221,7 @@ def details():
         movie_rating=movie_rating,
         cast=cast,
         director=director,
+        reviews=reviews,
         trailer_url=trailer_url
     )
 
@@ -228,6 +248,8 @@ def ignore():
     db.session.add(ignored_movies(ignoredmovieid=movie_id, usename=usename))
     db.session.commit()
     return render_template("index.html", movie_id=movie_id)
+    
+  
 
 @app.route("/removeIgnored", methods=["GET", "POST"])
 def remove_ignored():
@@ -262,6 +284,27 @@ def logout():
     logout_user()
     return redirect(url_for("login"))
 
+@app.route('/details/<movie_id>/reviews', methods=["GET","POST"])
+def get_reviews(movie_id):
+    
+    review = request.form["review"]
+    
+    usename = current_user.username
+    db.session.add(reviews(review=review, movie_id=movie_id, usename=usename,))
+    db.session.commit()
+    # return render_template("index.html")
+    return get_details(movie_id)
+
+def get_reviews_from_db(movie_id):
+    reviews_list = [
+        r[0]
+        for r in db.session.query(reviews.review)
+        .filter_by(movie_id=movie_id)
+        .distinct()
+    ]
+    return reviews_list
+
+
 
 def update_db_ids_for_user(usename, valid_ids):
     """
@@ -286,9 +329,13 @@ def update_db_ids_for_user(usename, valid_ids):
 
     
 if __name__ == "__main__":
+#     app.run(
+#         # uncomment following 2 lines once ready for deployment to heroku.
+#         host=os.getenv("IP", "0.0.0.0"),
+#         port=int(os.getenv("PORT", 8080)),
+#         debug=True,
+#     )
+
     app.run(
-        # uncomment following 2 lines once ready for deployment to heroku.
-        #host=os.getenv("IP", "0.0.0.0"),
-        #port=int(os.getenv("PORT", 8080)),
-        debug=True,
-    )
+        debug=True
+        )

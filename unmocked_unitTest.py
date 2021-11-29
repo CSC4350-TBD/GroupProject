@@ -4,7 +4,8 @@ from unittest.mock import MagicMock, patch
 import sys
 import os
 
-from moviedb import get_movie_info
+from flask import Flask, request, Response
+from router import app
 
 
 INPUT = "IMPUT"
@@ -14,35 +15,29 @@ current = os.path.dirname(os.path.realpath(__file__))
 parent = os.path.dirname(current)
 sys.path.append(parent)
 
+class UserLogin(unittest.TestCase):
 
-class BasicTests(unittest.TestCase):
     def setUp(self):
-        self.success_test_params = [
-            {
-                INPUT: {},
-                EXPECTED_OUTPUT: (None, None),
-            },
-            {
-                INPUT: {"original_title": "Movie title"},
-                EXPECTED_OUTPUT: ("Movie Title", None),
-            },
-            {
-                INPUT: {
-                    "original_title": "Movie title",
-                    "movie_genre": {"Movie genre": "genres"},
-                    "movie_img": {"images": [{"url": "image_url"}]},
-                },
-                EXPECTED_OUTPUT: (
-                    "Movie title",
-                    "genres",
-                    "image_url",
-                ),
-            },
-        ]
+        self.app = app.test_client()
 
-    def test_extract_movie_title(self):
-        for test in self.success_test_params:
-            self.assertEqual(get_movie_info(test[INPUT]), test[EXPECTED_OUTPUT])
+    def test_login_invalid_username(self):
+        rv = self.app.post('/login', data=dict(username="007", password="006"))
+        self.assertIn('/login', rv.get_data().decode())
+        self.assertEqual(302, rv.status_code)
+
+    def test_login_invalid_password(self):
+        rv = self.app.post('/login', data=dict(username="yul", password="006"))
+        self.assertIn('/login', rv.get_data().decode())
+        self.assertEqual(302, rv.status_code)
+
+    def test_login_valid_username_and_password(self):
+        rv = self.app.post('/login', data=dict(username="Yul", password="123"))
+        print(rv)
+        self.assertIn('/index', rv.get_data().decode())
+        self.assertEqual(302, rv.status_code)
+
+
+
 
 
 if __name__ == "__main__":

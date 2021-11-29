@@ -1,186 +1,203 @@
-body{
-    background-color:lightgrey;
-	/* background-image: url('5uaqm1.gif'); */
-	background-size: auto;
-	background-size: cover;
-    text-align: center;
-    margin-top:3%;
-    color: rgb(48, 42, 42)
+body {
+  background-color: lightgrey;
+  /* background-image: url('5uaqm1.gif'); */
+  background-size: auto;
+  background-size: cover;
+  text-align: center;
+  margin-top: 3%;
+  color: rgb(48, 42, 42);
 }
 
-#login_signup{
-	background-color:lightgrey;
-	background-image: url('5uaqm1.gif');
-	background-size: auto;
-	background-size: cover;
-    text-align: center;
-    margin-top:3%;
-    color: rgb(48, 42, 42)
+#login_signup {
+  background-color: lightgrey;
+  background-image: url("5uaqm1.gif");
+  background-size: auto;
+  background-size: cover;
+  text-align: center;
+  margin-top: 3%;
+  color: rgb(48, 42, 42);
 }
 
-#user_main{
-	text-align: left;
-	width: 90%;	
-	display: flex;
-	margin: auto;
-    column-gap:4%;
+#user_main {
+  text-align: left;
+  width: 90%;
+  display: flex;
+  margin: auto;
+  column-gap: 4%;
 }
 
-#user_left{
-	flex-basis: 50%;
-	text-align: center;
+#user_left {
+  flex-basis: 50%;
+  text-align: center;
 }
 
-#user_right{
-	flex-basis: 50%;
-	text-align: center;
+#user_right {
+  flex-basis: 50%;
+  text-align: center;
 }
 
-#back_to_index{
-	float: left;
+#back_to_index {
+  float: left;
 }
 
-nav{
-	float: right;
+nav {
+  float: right;
 }
 
-nav button{
-	padding: 5px;
-	border-radius: 12px;
-	background:linear-gradient(70deg, rgb(4, 4, 88) 60%, rgb(58, 11, 58));
-	color: white;
-	cursor: pointer;
-
+nav button {
+  padding: 5px;
+  border-radius: 12px;
+  background: linear-gradient(70deg, rgb(4, 4, 88) 60%, rgb(58, 11, 58));
+  color: white;
+  cursor: pointer;
 }
 
-#form_square{
-	width: 20%;
-	padding-bottom: .7%;
-	padding-top: .05%;
-	background-color: white;
-	border-radius: 12px ;
-	float: right;
-	margin-right: 15%;
-	border-style: solid;
-	border-width: 1px;
-	border-color: black;
+#form_square {
+  width: 20%;
+  padding-bottom: 0.7%;
+  padding-top: 0.05%;
+  background-color: white;
+  border-radius: 12px;
+  float: right;
+  margin-right: 15%;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
 }
 
-.flashes{
-	list-style-type: none;
-	padding:1px;
+.flashes {
+  list-style-type: none;
+  padding: 1px;
 }
 
-button{
-	padding: 5px;
-	border-radius: 12px;
-	background-color:black;
-	color:white;
-	cursor: pointer;
+button {
+  padding: 5px;
+  border-radius: 12px;
+  background-color: black;
+  color: white;
+  cursor: pointer;
 }
 
-#showLogin{
-	padding: 5px;
-	border-radius: 12px;
-	background-color:black;
-	color:white
+#showLogin {
+  padding: 5px;
+  border-radius: 12px;
+  background-color: black;
+  color: white;
 }
 
-#details{
-text-align: left;
+#details {
+  text-align: left;
 }
 
-#details img{
-	margin-left: 2%;
-	margin-right: 2%;
+#details img {
+  margin-left: 2%;
+  margin-right: 2%;
 }
 
 .collection {
-	display: grid;
-	grid-auto-columns: max-content;
-	grid-auto-flow: dense;
-	grid-auto-rows: minmax(100px, auto);
-	grid-gap: 25px;
-	grid-template-columns: repeat(3, 1fr);
-	max-width: 800px;
-	text-align: center;
-	justify-items: center;
-	margin-left: 3%;
-	margin-right:3%;
-
-  }
-  
-.collection #grid-li{
-	list-style-type:none;
-	font-size: large;
-	font-weight: bold;
-	text-align: center;
+  display: grid;
+  grid-auto-columns: max-content;
+  grid-auto-flow: dense;
+  grid-auto-rows: minmax(100px, auto);
+  grid-gap: 25px;
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 800px;
+  text-align: center;
+  justify-items: center;
+  margin-left: 3%;
+  margin-right: 3%;
 }
 
-.collection #grid_image{
-	border-style: solid;
-	border-width: 1px;
-	border-color: black;
+.collection #grid-li {
+  list-style-type: none;
+  font-size: large;
+  font-weight: bold;
+  text-align: center;
 }
 
-#movie_button{
-	padding: 5px;
-	border-radius: 12px;
-	background-color:black;
-	color:white;
-	width:100%;
-	cursor:pointer;
+.collection #grid_image {
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
 }
 
-#index{
-	background-color:lightgrey;
-	background-image: url('bg_2.gif');
-	background-size: auto;
-	background-size: cover;
-    text-align: center;
-    margin-top:3%;
-    color: rgb(48, 42, 42)
+#movie_button {
+  padding: 5px;
+  border-radius: 12px;
+  background-color: black;
+  color: white;
+  width: 100%;
+  cursor: pointer;
 }
 
-#welcome_square{
-	width: 30%;
-	padding-bottom: .7%;
-	background-color: white;
-	border-radius: 12px ;
-	border-style: solid;
-	border-width: 1px;
-	border-color: black;
-	margin:auto
+#index {
+  background-color: lightgrey;
+  background-image: url("bg_2.gif");
+  background-size: auto;
+  background-size: cover;
+  text-align: center;
+  margin-top: 3%;
+  color: rgb(48, 42, 42);
 }
 
-#wrapDiv{
-	width: 25%;
-	margin-left: 2%;
+#welcome_square {
+  width: 30%;
+  padding-bottom: 0.7%;
+  background-color: white;
+  border-radius: 12px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+  margin: auto;
 }
 
-#leftDiv{
-	float: left;
+#wrapDiv {
+  width: 25%;
+  margin-left: 2%;
 }
 
-#rightDiv{
-	float: right;
+#leftDiv {
+  float: left;
 }
 
-.formButton{
-	color:white;
-	border-radius: 12px;
-	background-image: linear-gradient(to bottom left,black, white);
-	cursor: pointer;
+#rightDiv {
+  float: right;
 }
 
-#user{
-	background-image: url('bg_3.jpg');
-	background-size: cover;
+.formButton {
+  color: white;
+  border-radius: 12px;
+  background-image: linear-gradient(to bottom left, black, white);
+  cursor: pointer;
 }
 
+#user {
+  background-image: url("bg_3.jpg");
+  background-size: cover;
+}
 
-#user_main li{
-	margin-bottom: 1mm;
-	margin-top: 1cm;
-	font-weight: bold;
+#user_main li {
+  margin-bottom: 1mm;
+  margin-top: 1cm;
+  font-weight: bold;
+}
+
+#quotes {
+  width: 25%;
+  padding-bottom: 0.7%;
+  padding-top: 0.05%;
+  background-color: white;
+  font-size: large;
+
+  border-radius: 12px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  /* bottom: 0; */
+  margin-right: -50%;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
 }

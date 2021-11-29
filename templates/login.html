@@ -49,7 +49,12 @@
         <a href="{{ url_for('reset_request' ) }}">Forget password?</a>
 
     </div>
-
+      
+    <div id = quotes>
+        <p>{{random_quote}}</p>
+        <!-- <p>"{{random_quote.text}}"</p>
+        <p>-{{random_quote.author}}</p> -->
+        </div> 
     <script>
         function showDiv() {
             var showLogin = document.getElementById('showLogin');
@@ -61,7 +66,7 @@
             document.body.style.backgroundImage = "url(static/login_img1.jpg)";
         }
     </script>
-
+      
 </body>
 
 </html>
