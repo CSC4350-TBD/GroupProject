@@ -17,10 +17,6 @@
 </head>
 
 <header>
-    <!-- <nav class="navigation">
-        <a href="{{ url_for('index' ) }}"><button>Recommendations</button></a>
-        <a href="{{ url_for('logout') }}"><button>Logout</button></a>
-    </nav> -->
     <nav class="navbar navbar-expand-sm navbar-light bg-light">
         <a class="navbar-brand" href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='icon.png' ) }}"
                 id=nav_img></a>
@@ -36,7 +32,7 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                        aria-haspopup="true" aria-expanded="false">Menu</a>
                     <div class="dropdown-menu" aria-labelledby="dropdownId">
                         <a class="dropdown-item" href=#>Quotes</a>
                         <a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a>

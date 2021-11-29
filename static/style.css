@@ -42,7 +42,7 @@ body{
 
 nav{
 	float: right;
-	width: 100%
+	width:100%
 }
 
 
@@ -141,7 +141,7 @@ button{
 	background-size: auto;
 	background-size: cover;
     text-align: center;
-    margin-top:3%;
+    margin-top:auto;
     color: rgb(48, 42, 42)
 }
 
