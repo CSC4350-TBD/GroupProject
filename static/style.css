@@ -42,6 +42,14 @@ body{
 
 nav{
 	float: right;
+	width: 100%
+}
+
+
+#nav_img{
+	height:15%;
+	width:15%;
+	padding:0%
 }
 
 nav button{
