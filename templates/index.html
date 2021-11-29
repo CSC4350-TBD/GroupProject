@@ -33,11 +33,21 @@
 
     <div class="container-fluid">
         <div class="row">
+
             {% for k in title_list %}
             <!-- run through more than one lists in one jinja loop -->
-            {% set title_list = title_list[loop.index-1] %}
-            {% set rec_list = rec_list[loop.index-1] %}
-            {% set movie_img_url = movie_img_url[loop.index-1] %}
+            <div class=".col-4">
+                {% set title_list = title_list[loop.index-1] %}
+                {% set rec_list = rec_list[loop.index-1] %}
+                {% set movie_img_url = movie_img_url[loop.index-1] %}
+            </div>
+            {% if (loop.index %3 == 0) and (loop.index != loop.last) %}
+
+            <div class="row"></div>
+            {% endif %}
+
+
+
             <div>
 
                 <div class="grid_image">
