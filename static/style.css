@@ -137,11 +137,11 @@ button{
 
 #index{
 	background-color:lightgrey;
-	background-image: url('bg_2.gif');
+	/* background-image: url('bg_2.gif'); */
 	background-size: auto;
 	background-size: cover;
     text-align: center;
-    margin-top:auto;
+	margin: auto;
     color: rgb(48, 42, 42)
 }
 
