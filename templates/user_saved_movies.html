@@ -24,28 +24,35 @@
             aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
-        <div class="collapse navbar-collapse" id="collapsibleNavId">
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link" href="{{ url_for('index') }}">Home</a>
+                    <a class="nav-link" href="{{ url_for('index') }}">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">Menu</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownId">
-                        <a class="dropdown-item" href="{{ url_for('user') }}">
-                            <div class="dropdown-menu dropdown-menu-right" href="{{ url_for('user') }}">User Profile
-                                <a class="dropdown-item" href="{{ url_for('user_saved_movies') }}">Saved Movies</a>
-                                <a class="dropdown-item" href="{{ url_for('user_ignored_movies') }}">Ignored Movies</a>
-                            </div>
-                        </a>
+                    <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Menu
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle"
+                                href="{{ url_for('user') }}">User Profile</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{ url_for('user_saved_movies') }}">Saved Movies</a>
+                                </li>
+                                <li><a class="dropdown-item" href="{{ url_for('user_ignored_movies') }}">Ignored
+                                        Movies</a></li>
 
-
-                        <a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a>
-                    </div>
+                            </ul>
+                        </li>
+                        <li><a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a></li>
+                    </ul>
                 </li>
             </ul>
+        </div>
+
+        </li>
+        </ul>
 
         </div>
         <!-- <a href="{{ url_for('index' ) }}"><button>Recommendations</button></a>
