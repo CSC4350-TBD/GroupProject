@@ -110,13 +110,7 @@ text-align: left;
 
   } */
 
-  .col-centered {
-	display:inline-block;
-	float:none;
-	text-align:left;
-	margin-right:-4px;
-	text-align: center;
-}
+
   
 /* .collection #grid-li{
 	list-style-type:none;
@@ -191,4 +185,22 @@ text-align: left;
 	margin-bottom: 1mm;
 	margin-top: 1cm;
 	font-weight: bold;
+}
+
+
+#detailsAside{
+	width: 90%;	
+	display: flex;
+	margin: auto;
+    column-gap:4%;
+}
+
+#movieDetails{
+	flex-basis: 50%;
+	text-align: center;
+}
+
+#trailerDetails{
+	flex-basis: 50%;
+	text-align: center;
 }
