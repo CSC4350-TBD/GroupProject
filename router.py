@@ -165,6 +165,8 @@ def user():
         ignored_movies_list_titles=ignored_movies_list_titles,
         saved_movie_imgs=saved_movie_imgs,
         ignored_movie_imgs=ignored_movie_imgs,
+        saved_movies_list=saved_movies_list,
+        ignored_movies_list=ignored_movies_list
     )
 
 
@@ -227,6 +229,33 @@ def ignore():
     db.session.commit()
     return render_template("index.html", movie_id=movie_id)
 
+@app.route("/removeIgnored", methods=["GET", "POST"])
+def remove_ignored():
+    immdict = request.form.to_dict()
+    movie_id = list(immdict.values())
+    for key, value in immdict.items():
+        movie_id = key
+    usename = current_user.username
+
+    ignored_movies.query.filter_by(ignoredmovieid=movie_id, usename=usename).delete()
+    db.session.commit()
+
+    return redirect(url_for("user"))
+
+
+@app.route("/removeSaved", methods=["GET", "POST"])
+def remove_saved():
+    immdict = request.form.to_dict()
+    movie_id = list(immdict.values())
+    for key, value in immdict.items():
+        movie_id = key
+    usename = current_user.username
+
+    saved_movies.query.filter_by(movieid=movie_id, usename=usename).delete()
+    db.session.commit()
+
+    return redirect(url_for("user"))
+
 
 @app.route("/logout")
 def logout():
@@ -259,7 +288,7 @@ def update_db_ids_for_user(usename, valid_ids):
 if __name__ == "__main__":
     app.run(
         # uncomment following 2 lines once ready for deployment to heroku.
-        host=os.getenv("IP", "0.0.0.0"),
-        port=int(os.getenv("PORT", 8080)),
+        #host=os.getenv("IP", "0.0.0.0"),
+        #port=int(os.getenv("PORT", 8080)),
         debug=True,
     )
