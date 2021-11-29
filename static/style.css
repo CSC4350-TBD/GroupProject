@@ -38,10 +38,6 @@ body {
   text-align: center;
 }
 
-#back_to_index {
-  float: left;
-}
-
 nav{
 	float: right;
 	width:100%
@@ -129,10 +125,9 @@ button {
 	background-image: url('bg_2.gif');
 	background-size: auto;
 	background-size: cover;
-    text-align: center;
+  text-align: center;
 	margin: auto;
-	/*margin-top: 3%; */
-    color: rgb(48, 42, 42)
+  color: rgb(48, 42, 42)
 }
 
 #welcome_square {
@@ -235,6 +230,7 @@ button {
 	display: block;
 	width:inherit */
 }
+
 
 .listDisplay{
 	text-align: center;

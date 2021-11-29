@@ -77,13 +77,16 @@
         <main id=detailsAside>
             <aside id=movieDetails>
                 {% if movie_img != "https://image.tmdb.org/t/p/original"%}
-                <img src="{{movie_img}}" width="100%" height="100%" align="left" />
+                <img class="rounded img-thumbnail img-fluid" src="{{movie_img}}" width="100%" height="100%"
+                    align="left" />
                 {% else %}
-                <img src="/static/no_img.png" width="100%" height="100%" align="left" />
+                <img class="rounded img-thumbnail img-fluid" src="/static/no_img.png" width="100%" height="100%"
+                    align="left" />
                 {% endif %}
             </aside>
             <aside id=trailerDetails>
-                <iframe width="100%" height="100%" src={{trailer_url}} title="YouTube video player" frameborder="0"
+                <iframe width="100%" height="100%" src={{trailer_url}} alt="Trailer Unavailable"
+                    title="YouTube video player" frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen></iframe>
             </aside>
@@ -134,7 +137,7 @@
             </form>
         </div>
         <br>
-        <div>
+        <div id="reviews">
             {% for k in reviews %}
 
             <p>Review {{loop.index}}: "{{k}}"</p>

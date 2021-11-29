@@ -335,7 +335,7 @@ def remove_ignored():
     ignored_movies.query.filter_by(ignoredmovieid=movie_id, usename=usename).delete()
     db.session.commit()
 
-    return redirect(url_for("ignored_movies"))
+    return redirect(url_for("user_ignored_movies"))
 
 
 @app.route("/removeSaved", methods=["GET", "POST"])
@@ -349,7 +349,7 @@ def remove_saved():
     saved_movies.query.filter_by(movieid=movie_id, usename=usename).delete()
     db.session.commit()
 
-    return redirect(url_for("saved_movies"))
+    return redirect(url_for("user_saved_movies"))
 
 
 @app.route("/logout")
