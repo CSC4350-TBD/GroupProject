@@ -3,7 +3,7 @@
 <html lang="en-us">
 
 <head>
-    <title>User Profile</title>
+    <title>Ignored Movies</title>
     <link rel="icon" href="{{ url_for('static', filename='icon.png' ) }}" type="image/gif" />
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css' ) }}" />
     <!-- Required meta tags -->
@@ -47,43 +47,30 @@
 
 </header>
 
-<body id="user">
-
+<body>
     <div>
-        <!-- main area -->
-        <main id="user_main">
 
-            <!-- left column -->
-            <aside id="user_left">
-                <h3>Movies You Saved: </h3>
+        <h3>Movies You Ignored: </h3>
 
-                <br />
-                <a href="{{ url_for('user_saved_movies') }}"><img src="/static/saved_movie.png" width="100%"
-                        height="75%" /></a>
+        {% for k in ignored_movies_list_titles %}
 
-            </aside>
-            <!-- end left column -->
+        {% set ignored_movie_imgs = ignored_movie_imgs[loop.index-1] %}
+        {% set ignored_movies_list = ignored_movies_list[loop.index-1] %}
+        <li>{{k}}</li>
+        {% if ignored_movie_imgs != "https://image.tmdb.org/t/p/original" %}
+        <img src="{{ignored_movie_imgs}}" width="300" height="300" />
+        {% else %}
+        <img src="/static/no_img.png" width="300" height="300" />
+        {% endif %}
+        <form action="/removeIgnored" method="POST">
+            <input class="formButton" type="submit" onClick="removedMessage()" name="{{ignored_movies_list}}"
+                value="Remove from Ignored List"></input>
+        </form>
+        <br />
+        {%endfor%}
 
-            <!-- right column -->
-            <aside id="user_right">
-                <h3>Movies You Ignored: </h3>
-
-                <br />
-                <a href="{{ url_for('user_ignored_movies') }}"><img src="/static/ignored_movie.png" width="100%"
-                        height="75%" /></a>
-
-            </aside>
-            <!-- end right column -->
-
-            <!-- end main area -->
-        </main>
     </div>
 
-    <script>
-        function sremovedMessage() {
-            alert("Movie was removed!")
-        }
-    </script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
@@ -93,7 +80,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-
 </body>
 
 </html>

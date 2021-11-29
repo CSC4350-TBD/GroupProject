@@ -47,43 +47,41 @@
 
 </header>
 
-<body id="user">
-
+<body>
     <div>
-        <!-- main area -->
-        <main id="user_main">
+        <h3>Movies You Saved:</h3>
 
-            <!-- left column -->
-            <aside id="user_left">
-                <h3>Movies You Saved: </h3>
+        {% for k in saved_movies_list_titles %}
+        <!-- run through two lists in one jinja loop -->
+        {% set saved_movie_imgs = saved_movie_imgs[loop.index-1] %}
+        {% set saved_movies_list = saved_movies_list[loop.index-1] %}
+        <li>{{k}}</li>
 
-                <br />
-                <a href="{{ url_for('user_saved_movies') }}"><img src="/static/saved_movie.png" width="100%"
-                        height="75%" /></a>
 
-            </aside>
-            <!-- end left column -->
+        <!-- checks if there is pic, if no, use alternate pic -->
+        {% if saved_movie_imgs != "https://image.tmdb.org/t/p/original" %}
+        <img src="{{saved_movie_imgs}}" width="300" height="300" />
+        {% else %}
+        <img src="/static/no_img.png" width="300" height="300" />
+        {% endif %}
 
-            <!-- right column -->
-            <aside id="user_right">
-                <h3>Movies You Ignored: </h3>
+        <form action="/removeSaved" method="POST">
+            <input class="formButton" type="submit" onClick="removedMessage()" name="{{saved_movies_list}}"
+                value="Remove from Watch List"></input>
+        </form>
 
-                <br />
-                <a href="{{ url_for('user_ignored_movies') }}"><img src="/static/ignored_movie.png" width="100%"
-                        height="75%" /></a>
+        <br />
 
-            </aside>
-            <!-- end right column -->
+        {%endfor%}
 
-            <!-- end main area -->
-        </main>
+
+
+
+
+        <br />
+
     </div>
 
-    <script>
-        function sremovedMessage() {
-            alert("Movie was removed!")
-        }
-    </script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
@@ -93,7 +91,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-
 </body>
 
 </html>
