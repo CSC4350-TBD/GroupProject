@@ -32,8 +32,14 @@
                     <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">Menu</a>
                     <div class="dropdown-menu" aria-labelledby="dropdownId">
-                        <a class="dropdown-item" href=#>Quotes</a>
-                        <a class="dropdown-item" href="{{ url_for('user') }}">User Profile</a>
+                        <a class="dropdown-item" href="{{ url_for('user') }}">
+                            <div class="dropdown-menu dropdown-menu-right" href="{{ url_for('user') }}">User Profile
+                                <a class="dropdown-item" href="{{ url_for('user_saved_movies') }}">Saved Movies</a>
+                                <a class="dropdown-item" href="{{ url_for('user_ignored_movies') }}">Ignored Movies</a>
+                            </div>
+                        </a>
+
+
                         <a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a>
                     </div>
                 </li>
@@ -111,25 +117,29 @@
                 </form>
             </div>
         </div>
+
+        <div id=reviewForm>
+            <form action="/details/{{movie_id}}/reviews" method="post">
+                <h4>Would you like to add a review?</h4>
+                <input type="text" name="review" placeholder="Enter review here" />
+                <input type="submit" />
+            </form>
+        </div>
+        <br>
+        <div>
+            {% for k in reviews %}
+
+            <p>Review {{loop.index}}: "{{k}}"</p>
+            <!-- commas to list but not add onto last one -->
+            <br>
+            {% endfor %}
+        </div>
+
+
     </div>
     <br /><br />
 
-    <div>
-        <form action="/details/{{movie_id}}/reviews" method="post">
-            <h4>Would you like to add a review?</h4>
-            <input type="text" name="review" placeholder="Enter review here" />
-            <input type="submit" />
-        </form>
-    </div>
-    <br>
-    <div>
-        {% for k in reviews %}
 
-        <p>Review {{loop.index}}: "{{k}}"</p>
-        <!-- commas to list but not add onto last one -->
-        <br>
-        {% endfor %}
-    </div>
 
     <script>
         function savedMessage() {

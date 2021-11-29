@@ -33,8 +33,14 @@
                     <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">Menu</a>
                     <div class="dropdown-menu" aria-labelledby="dropdownId">
-                        <a class="dropdown-item" href=#>Quotes</a>
-                        <a class="dropdown-item" href="{{ url_for('user') }}">User Profile</a>
+                        <a class="dropdown-item" href="{{ url_for('user') }}">
+                            <div class="dropdown-menu dropdown-menu-right" href="{{ url_for('user') }}">User Profile
+                                <a class="dropdown-item" href="{{ url_for('user_saved_movies') }}">Saved Movies</a>
+                                <a class="dropdown-item" href="{{ url_for('user_ignored_movies') }}">Ignored Movies</a>
+                            </div>
+                        </a>
+
+
                         <a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a>
                     </div>
                 </li>
@@ -68,8 +74,6 @@
                 {% set title_list = title_list[loop.index-1] %}
                 {% set rec_list = rec_list[loop.index-1] %}
                 {% set movie_img_url = movie_img_url[loop.index-1] %}
-
-
 
 
                 <div>
