@@ -31,35 +31,38 @@
 
     <br /><br />
 
-    <div class="container">
-
-        <!-- </div>container-fluid"> -->
+    <div class="container-fluid">
         <div class="row">
 
-            {% for k in title_list | batch(3, '&nbsp;') %}
+            {% for k in title_list %}
             <!-- run through more than one lists in one jinja loop -->
-            <!-- <div class=".col-4"> -->
-            {% set title_list = title_list[loop.index-1] %}
-            {% set rec_list = rec_list[loop.index-1] %}
-            {% set movie_img_url = movie_img_url[loop.index-1] %}
-            <div class="col-md-4 col-md-4 col-md-4">
+            <div class=".col-4">
+                {% set title_list = title_list[loop.index-1] %}
+                {% set rec_list = rec_list[loop.index-1] %}
+                {% set movie_img_url = movie_img_url[loop.index-1] %}
+            </div>
+            {% if (loop.index %3 == 0) and (loop.index != loop.last) %}
 
+            <div class="row"></div>
+            {% endif %}
+
+
+
+            <div>
+
+                <div class="grid_image">
+                    <!-- checks if there is pic, if no, use alternate pic -->
+                    {% if movie_img_url != "https://image.tmdb.org/t/p/original" %}
+                    <img src="{{movie_img_url}}" width="300" height="300" />
+                    {% else %}
+                    <img src="/static/no_img.png" width="300" height="300" />
+                    {% endif %}
+                </div>
                 <div>
-
-                    <div class="grid_image">
-                        <!-- checks if there is pic, if no, use alternate pic -->
-                        {% if movie_img_url != "https://image.tmdb.org/t/p/original" %}
-                        <img src="{{movie_img_url}}" width="300" height="300" />
-                        {% else %}
-                        <img src="/static/no_img.png" width="300" height="300" />
-                        {% endif %}
-                    </div>
-                    <div>
-                        <form action="/details" method="POST">
-                            <input type="submit" id=movie_button name="{{rec_list}}" value="{{title_list}}"></input>
-                        </form>
-                        <br /><br />
-                    </div>
+                    <form action="/details" method="POST">
+                        <input type="submit" id=movie_button name="{{rec_list}}" value="{{title_list}}"></input>
+                    </form>
+                    <br /><br />
                 </div>
             </div>
             {% endfor %}
