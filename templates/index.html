@@ -4,7 +4,7 @@
 
 <head>
     <title>Recommendations</title>
-    <link rel="icon" href="{{ url_for('static', filename='icon.png' ) }}" type="image/gif">/
+    <link rel="icon" href="{{ url_for('static', filename='icon.png' ) }}" type="image/gif">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css' ) }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
@@ -19,7 +19,7 @@
 
 <body id="index">
 
-    <div id="welcome_square">
+    <div class="col-lg-8 col-xs-12" id="welcome_square">
         <h4>Welcome!</h4>
 
         <form action="/searchMovie" method="post">
@@ -36,15 +36,11 @@
 
             {% for k in title_list %}
             <!-- run through more than one lists in one jinja loop -->
-            <div class=".col-4">
+            <div class="col-4">
                 {% set title_list = title_list[loop.index-1] %}
                 {% set rec_list = rec_list[loop.index-1] %}
                 {% set movie_img_url = movie_img_url[loop.index-1] %}
             </div>
-            {% if (loop.index %3 == 0) and (loop.index != loop.last) %}
-
-            <div class="row"></div>
-            {% endif %}
 
 
 
@@ -53,9 +49,9 @@
                 <div class="grid_image">
                     <!-- checks if there is pic, if no, use alternate pic -->
                     {% if movie_img_url != "https://image.tmdb.org/t/p/original" %}
-                    <img src="{{movie_img_url}}" width="300" height="300" />
+                    <img src="{{movie_img_url}}" width="20%" height="20%" />
                     {% else %}
-                    <img src="/static/no_img.png" width="300" height="300" />
+                    <img src="/static/no_img.png" width="20%" height="20%" />
                     {% endif %}
                 </div>
                 <div>

@@ -95,7 +95,7 @@ text-align: left;
 	margin-right: 2%;
 }
 
-.collection {
+/* .collection {
 	display: grid;
 	grid-auto-columns: max-content;
 	grid-auto-flow: dense;
@@ -108,16 +108,24 @@ text-align: left;
 	margin-left: 3%;
 	margin-right:3%;
 
-  }
+  } */
+
+  .col-centered {
+	display:inline-block;
+	float:none;
+	text-align:left;
+	margin-right:-4px;
+	text-align: center;
+}
   
-.collection #grid-li{
+/* .collection #grid-li{
 	list-style-type:none;
 	font-size: large;
 	font-weight: bold;
 	text-align: center;
-}
+} */
 
-.collection #grid_image{
+.row #grid_image{
 	border-style: solid;
 	border-width: 1px;
 	border-color: black;
