@@ -95,8 +95,8 @@ text-align: left;
 	margin-right: 2%;
 }
 
-.collection {
-	display: grid;
+.container-fluid {
+	/* display: grid;
 	grid-auto-columns: max-content;
 	grid-auto-flow: dense;
 	grid-auto-rows: minmax(100px, auto);
@@ -106,18 +106,18 @@ text-align: left;
 	text-align: center;
 	justify-items: center;
 	margin-left: 3%;
-	margin-right:3%;
+	margin-right:3%; */
 
   }
   
-.collection #grid-li{
+.container-fluid .row{
 	list-style-type:none;
 	font-size: large;
 	font-weight: bold;
 	text-align: center;
 }
 
-.collection #grid_image{
+.container-fluid #grid_image{
 	border-style: solid;
 	border-width: 1px;
 	border-color: black;
