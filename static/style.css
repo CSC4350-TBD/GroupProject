@@ -1,21 +1,21 @@
-body{
-    background-color:lightgrey;
-	/* background-image: url('5uaqm1.gif'); */
-	background-size: auto;
-	background-size: cover;
-    text-align: center;
-    margin-top:3%;
-    color: rgb(48, 42, 42)
+body {
+  background-color: lightgrey;
+  /* background-image: url('5uaqm1.gif'); */
+  background-size: auto;
+  background-size: cover;
+  text-align: center;
+  margin-top: 3%;
+  color: rgb(48, 42, 42);
 }
 
-#login_signup{
-	background-color:lightgrey;
-	background-image: url('5uaqm1.gif');
-	background-size: auto;
-	background-size: cover;
-    text-align: center;
-    margin-top:3%;
-    color: rgb(48, 42, 42)
+#login_signup {
+  background-color: lightgrey;
+  background-image: url("5uaqm1.gif");
+  background-size: auto;
+  background-size: cover;
+  text-align: center;
+  margin-top: 3%;
+  color: rgb(48, 42, 42);
 }
 
 #user_main{
@@ -27,18 +27,18 @@ body{
     column-gap:4%;
 }
 
-#user_left{
-	flex-basis: 50%;
-	text-align: center;
+#user_left {
+  flex-basis: 50%;
+  text-align: center;
 }
 
-#user_right{
-	flex-basis: 50%;
-	text-align: center;
+#user_right {
+  flex-basis: 50%;
+  text-align: center;
 }
 
-#back_to_index{
-	float: left;
+#back_to_index {
+  float: left;
 }
 
 nav{
@@ -53,73 +53,46 @@ nav{
 	padding:0%
 }
 
-nav button{
-	padding: 5px;
-	border-radius: 12px;
-	background:linear-gradient(70deg, rgb(4, 4, 88) 60%, rgb(58, 11, 58));
-	color: white;
-	cursor: pointer;
-
+nav button {
+  padding: 5px;
+  border-radius: 12px;
+  background: linear-gradient(70deg, rgb(4, 4, 88) 60%, rgb(58, 11, 58));
+  color: white;
+  cursor: pointer;
 }
 
-#form_square{
-	width: 20%;
-	padding-bottom: .7%;
-	padding-top: .05%;
-	background-color: white;
-	border-radius: 12px ;
-	float: right;
-	margin-right: 15%;
-	border-style: solid;
-	border-width: 1px;
-	border-color: black;
+#form_square {
+  width: 20%;
+  padding-bottom: 0.7%;
+  padding-top: 0.05%;
+  background-color: white;
+  border-radius: 12px;
+  float: right;
+  margin-right: 15%;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
 }
 
-.flashes{
-	list-style-type: none;
-	padding:1px;
+.flashes {
+  list-style-type: none;
+  padding: 1px;
 }
 
-button{
-	padding: 5px;
-	border-radius: 12px;
-	background-color:black;
-	color:white;
-	cursor: pointer;
+button {
+  padding: 5px;
+  border-radius: 12px;
+  background-color: black;
+  color: white;
+  cursor: pointer;
 }
 
-#showLogin{
-	padding: 5px;
-	border-radius: 12px;
-	background-color:black;
-	color:white
+#showLogin {
+  padding: 5px;
+  border-radius: 12px;
+  background-color: black;
+  color: white;
 }
-
-
-
-/* .collection {
-	display: grid;
-	grid-auto-columns: max-content;
-	grid-auto-flow: dense;
-	grid-auto-rows: minmax(100px, auto);
-	grid-gap: 5%;
-	grid-template-columns: repeat(3, 1fr);
-	max-width: 800px;
-	text-align: center;
-	justify-items: center;
-	margin-left: 3%;
-	margin-right:3%;
-
-  } */
-
-
-  
-/* .collection #grid-li{
-	list-style-type:none;
-	font-size: large;
-	font-weight: bold;
-	text-align: center;
-} */
 
 .row #grid_image{
 	border-style: solid;
@@ -127,34 +100,36 @@ button{
 	border-color: black;
 }
 
-#movie_button{
-	padding: 5px;
-	border-radius: 12px;
-	background-color:black;
-	color:white;
-	width:100%;
-	cursor:pointer;
+
+#movie_button {
+  padding: 5px;
+  border-radius: 12px;
+  background-color: black;
+  color: white;
+  width: 100%;
+  cursor: pointer;
 }
 
 #index{
 	background-color:lightgrey;
-	/* background-image: url('bg_2.gif'); */
+	background-image: url('bg_2.gif');
 	background-size: auto;
 	background-size: cover;
     text-align: center;
 	margin: auto;
+	/*margin-top: 3%; */
     color: rgb(48, 42, 42)
 }
 
-#welcome_square{
-	width: 30%;
-	padding-bottom: .7%;
-	background-color: white;
-	border-radius: 12px ;
-	border-style: solid;
-	border-width: 1px;
-	border-color: black;
-	margin:auto
+#welcome_square {
+  width: 30%;
+  padding-bottom: 0.7%;
+  background-color: white;
+  border-radius: 12px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+  margin: auto;
 }
 
 #wrapDiv{
@@ -165,26 +140,31 @@ button{
 	overflow: hidden;
 }
 
-#leftDiv{
-	float: left;
+#leftDiv {
+  float: left;
 }
 
 #rightDiv{
 	float:right;
 }
 
-.formButton{
-	color:white;
-	border-radius: 12px;
-	background-image: linear-gradient(to bottom left,black, white);
-	cursor: pointer;
+.formButton {
+  color: white;
+  border-radius: 12px;
+  background-image: linear-gradient(to bottom left, black, white);
+  cursor: pointer;
 }
 
-#user{
-	background-image: url('bg_3.jpg');
-	background-size: cover;
+#user {
+  background-image: url("bg_3.jpg");
+  background-size: cover;
 }
 
+#user_main li {
+  margin-bottom: 1mm;
+  margin-top: 1cm;
+  font-weight: bold;
+}
 
 #user_main li{
 	margin-bottom: 1mm;
@@ -214,4 +194,23 @@ button{
 	background-color: white;
 	border-radius:15px 50px 30px;
 	text-shadow: 2px 2px 8px #5e61ff;
+}
+#quotes {
+  width: 25%;
+  padding-bottom: 0.7%;
+  padding-top: 0.05%;
+  background-color: white;
+  font-size: large;
+
+  border-radius: 12px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  /* bottom: 0; */
+  margin-right: -50%;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
 }
