@@ -18,17 +18,19 @@ body {
   color: rgb(48, 42, 42);
 }
 
-#user_main {
-  text-align: left;
-  width: 90%;
-  display: flex;
-  margin: auto;
-  column-gap: 4%;
+#user_main{
+	padding-top: 5%;
+	text-align: left;
+	width: 90%;	
+	display: flex;
+	margin: auto;
+    column-gap:4%;
 }
 
 #user_left {
   flex-basis: 50%;
   text-align: center;
+
 }
 
 #user_right {
@@ -40,8 +42,16 @@ body {
   float: left;
 }
 
-nav {
-  float: right;
+nav{
+	float: right;
+	width:100%
+}
+
+
+#nav_img{
+	height:15%;
+	width:15%;
+	padding:0%
 }
 
 nav button {
@@ -51,6 +61,19 @@ nav button {
   color: white;
   cursor: pointer;
 }
+
+.navbar-nav li:hover > ul.dropdown-menu {
+    display: block;
+}
+.dropdown-submenu {
+    position:relative;
+}
+.dropdown-submenu>.dropdown-menu {
+    top:0;
+    left:100%;
+    margin-top:-6px;
+}
+
 
 #form_square {
   width: 20%;
@@ -85,41 +108,12 @@ button {
   color: white;
 }
 
-#details {
-  text-align: left;
+.row #grid_image{
+	border-style: solid;
+	border-width: 1px;
+	border-color: black;
 }
 
-#details img {
-  margin-left: 2%;
-  margin-right: 2%;
-}
-
-.collection {
-  display: grid;
-  grid-auto-columns: max-content;
-  grid-auto-flow: dense;
-  grid-auto-rows: minmax(100px, auto);
-  grid-gap: 25px;
-  grid-template-columns: repeat(3, 1fr);
-  max-width: 800px;
-  text-align: center;
-  justify-items: center;
-  margin-left: 3%;
-  margin-right: 3%;
-}
-
-.collection #grid-li {
-  list-style-type: none;
-  font-size: large;
-  font-weight: bold;
-  text-align: center;
-}
-
-.collection #grid_image {
-  border-style: solid;
-  border-width: 1px;
-  border-color: black;
-}
 
 #movie_button {
   padding: 5px;
@@ -130,14 +124,15 @@ button {
   cursor: pointer;
 }
 
-#index {
-  background-color: lightgrey;
-  background-image: url("bg_2.gif");
-  background-size: auto;
-  background-size: cover;
-  text-align: center;
-  margin-top: 3%;
-  color: rgb(48, 42, 42);
+#index{
+	background-color:lightgrey;
+	background-image: url('bg_2.gif');
+	background-size: auto;
+	background-size: cover;
+    text-align: center;
+	margin: auto;
+	/*margin-top: 3%; */
+    color: rgb(48, 42, 42)
 }
 
 #welcome_square {
@@ -151,17 +146,20 @@ button {
   margin: auto;
 }
 
-#wrapDiv {
-  width: 25%;
-  margin-left: 2%;
+#wrapDiv{
+	width: 30%;
+	margin:auto;
+	justify-content: center;
+	display: block;
+	overflow: hidden;
 }
 
 #leftDiv {
   float: left;
 }
 
-#rightDiv {
-  float: right;
+#rightDiv{
+	float:right;
 }
 
 .formButton {
@@ -182,6 +180,35 @@ button {
   font-weight: bold;
 }
 
+#user_main li{
+	margin-bottom: 1mm;
+	margin-top: 1cm;
+	font-weight: bold;
+}
+
+
+#detailsAside{
+	width: 90%;	
+	display: flex;
+	margin: auto;
+    column-gap:4%;
+}
+
+#movieDetails{
+	flex-basis: 50%;
+	text-align: center;
+}
+
+#trailerDetails{
+	flex-basis: 50%;
+	text-align: center;
+}
+
+.movie_section{
+	background-color: white;
+	border-radius:15px 50px 30px;
+	text-shadow: 2px 2px 8px #5e61ff;
+}
 #quotes {
   width: 25%;
   padding-bottom: 0.7%;
@@ -200,4 +227,19 @@ button {
   border-style: solid;
   border-width: 1px;
   border-color: black;
+}
+
+#reviewForm{
+	text-align: center;
+	/* margin:auto;
+	display: block;
+	width:inherit */
+}
+
+.listDisplay{
+	text-align: center;
+}
+
+.listDisplay li{
+	list-style-type: none;
 }

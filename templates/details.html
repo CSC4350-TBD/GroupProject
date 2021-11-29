@@ -4,15 +4,57 @@
 
 <head>
     <title>Movie Details</title>
-    <link rel="icon" href="{{ url_for('static', filename='icon.png' ) }}" type="image/gif">
+    <link rel="icon" href="{{ url_for('static', filename='icon.png' ) }}" type="image/gif" />
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css' ) }}" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 
 <header>
-    <nav class=navigation>
-        <a href="{{ url_for('index' ) }}"><button>Recommendations</button></a>
-        <a href="{{ url_for('user' ) }}"><button>User Profile</button></a>
-        <a href=" {{ url_for('logout') }}"><button>Logout</button></a>
+    <nav class="navbar navbar-expand-sm navbar-light bg-light">
+        <a class="navbar-brand" href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='icon.png' ) }}"
+                id=nav_img></a>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+            aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for('index') }}">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Menu
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle"
+                                href="{{ url_for('user') }}">User Profile</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{ url_for('user_saved_movies') }}">Saved Movies</a>
+                                </li>
+                                <li><a class="dropdown-item" href="{{ url_for('user_ignored_movies') }}">Ignored
+                                        Movies</a></li>
+
+                            </ul>
+                        </li>
+                        <li><a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        </li>
+        </ul>
+
+        </div>
+        <!-- <a href="{{ url_for('index' ) }}"><button>Recommendations</button></a>
+        <a href="{{ url_for('logout') }}"><button>Logout</button></a> -->
     </nav>
 </header>
 
@@ -32,47 +74,80 @@
         {% endif %}
         {% endwith %}
 
-        {% if movie_img != "https://image.tmdb.org/t/p/original"%}
-        <img src="{{movie_img}}" width="40%" height="auto" align="left" />
-        {% else %}
-        <img src="/static/no_img.png" width="40%" height="auto" align="left" />
-        {% endif %}
-        
-        <iframe width="560" height="315" src={{trailer_url}} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <main id=detailsAside>
+            <aside id=movieDetails>
+                {% if movie_img != "https://image.tmdb.org/t/p/original"%}
+                <img src="{{movie_img}}" width="100%" height="100%" align="left" />
+                {% else %}
+                <img src="/static/no_img.png" width="100%" height="100%" align="left" />
+                {% endif %}
+            </aside>
+            <aside id=trailerDetails>
+                <iframe width="100%" height="100%" src={{trailer_url}} title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </aside>
+        </main>
 
-        <!-- display movie info -->
-        <h1 style="text-align:center">{{ movie_title }}</h1>
-        <h3 style="text-align:center">Genre: {{ movie_genre }}</h3>
+        <div style="width:90%; text-align: center; margin:auto">
+            <!-- display movie info -->
+            <h1 style="text-align:center">{{ movie_title }}</h1>
+            <hr />
+            <h3 style="text-align:center">Genre: {{ movie_genre }}</h3>
 
-        <p><b>Description: </b>{{ movie_desc }}</p>
-        <p><b>Runtime: </b>{{ movie_runtime }} mins</p>
-        <p><b>Ratings: </b>{{ movie_rating }}/10</b></p>
-        <p><b>Director: </b>{{ director }}</b></p>
-        <b>Cast Members:</b>
+            <p><b>Description: </b>{{ movie_desc }}</p>
+            <p><b>Runtime: </b>{{ movie_runtime }} mins</p>
+            <p><b>Ratings: </b>{{ movie_rating }}/10</b></p>
+            <p><b>Director: </b>{{ director }}</b></p>
+            <b>Cast Members:</b>
 
-        {% for k in cast %}
-        <li style="list-style-type:none; display: inline">{{k}}</li>
-        <!-- commas to list but not add onto last one -->
-        {{ ", " if not loop.last else "" }}
-        {% endfor %}
+            {% for k in cast %}
+            <li style="list-style-type:none; display: inline">{{k}}</li>
+            <!-- commas to list but not add onto last one -->
+            {{ ", " if not loop.last else "" }}
+            {% endfor %}
 
-        <br /><br />
+            <br /><br />
 
+        </div>
         <div id="wrapDiv">
-            <div id="leftDiv">
+            <div class="col-xs-12 col-sm-12 col-md-6" id="leftDiv">
                 <form action="/save" method="POST">
                     <input class="formButton" type="submit" onClick="savedMessage()" name="{{movie_id}}"
                         value="Save to Watchlist"></input>
                 </form>
             </div>
-            <div id="rightDiv">
+            <div class="col-xs-12 col-sm-12 col-md-6" id="rightDiv">
                 <form action="/ignore" method="POST">
                     <input class="formButton" type="submit" onCLick="ignoredMessage()" name="{{movie_id}}"
                         value="Ignore This Movie"></input>
                 </form>
             </div>
         </div>
+        <br />
+        <hr />
+        <div id=reviewForm>
+            <form action="/details/{{movie_id}}/reviews" method="post">
+                <h4>Would you like to add a review?</h4>
+                <input type="text" name="review" placeholder="Enter review here" />
+                <input type="submit" />
+            </form>
+        </div>
+        <br>
+        <div>
+            {% for k in reviews %}
+
+            <p>Review {{loop.index}}: "{{k}}"</p>
+            <!-- commas to list but not add onto last one -->
+            <br>
+            {% endfor %}
+        </div>
+
+
     </div>
+    <br /><br />
+
+
 
     <script>
         function savedMessage() {
@@ -83,23 +158,16 @@
             alert("Movie was ignored")
         }
     </script>
-    <br>
-    <div>
-     <form action="/details/{{movie_id}}/reviews" method="post">
-            <h4>Would you like to add a review?</h4>
-            <input type="text" name="review" placeholder="Enter review here" />
-            <input type="submit" />
-        </form>
-        </div>
-        <br>
-    <div>
-         {% for k in reviews %}
-         
-        <p>Review {{loop.index}}: "{{k}}"</p>
-        <!-- commas to list but not add onto last one -->
-       <br>
-        {% endfor %}
-    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

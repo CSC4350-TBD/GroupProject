@@ -61,47 +61,43 @@
 
 </header>
 
-<body id="user">
+<body>
+    <div class=listDisplay>
+        <h3>Movies You Saved:</h3>
+        <br />
 
-    <div>
-        <!-- main area -->
-        <main id="user_main">
+        {% for k in saved_movies_list_titles %}
+        <!-- run through two lists in one jinja loop -->
+        {% set saved_movie_imgs = saved_movie_imgs[loop.index-1] %}
+        {% set saved_movies_list = saved_movies_list[loop.index-1] %}
+        <li>
+            <h6>{{k}}</h6>
+        </li>
 
-            <!-- left column -->
-            <aside id="user_left">
-                <h3 class=movie_section>Movies You Saved: </h3>
 
-                <br />
-                <a href="{{ url_for('user_saved_movies') }}"><img src="/static/saved_movie.png" width="100%"
-                        height="75%" /></a>
+        <!-- checks if there is pic, if no, use alternate pic -->
+        {% if saved_movie_imgs != "https://image.tmdb.org/t/p/original" %}
+        <img src="{{saved_movie_imgs}}" width="300" height="300" />
+        {% else %}
+        <img src="/static/no_img.png" width="300" height="300" />
+        {% endif %}
 
-            </aside>
-            <!-- end left column -->
+        <form action="/removeSaved" method="POST">
+            <input class="formButton" type="submit" onClick="removedMessage()" name="{{saved_movies_list}}"
+                value="Remove from Watch List"></input>
+        </form>
 
-            <!-- right column -->
-            <aside id="user_right">
-                <h3 class=movie_section>Movies You Ignored: </h3>
+        <br />
 
-                <br />
-                <a href="{{ url_for('user_ignored_movies') }}"><img src="/static/ignored_movie.png" width="100%"
-                        height="75%" /></a>
+        {%endfor%}
 
-            </aside>
-            <!-- end right column -->
 
-            <!-- end main area -->
-        </main>
+
+
+
+        <br />
+
     </div>
-
-    <script>
-        function sremovedMessage() {
-            alert("Movie was removed!")
-        }
-    </script>
-    <script>
-
-    </script>
-
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -112,7 +108,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-
 </body>
 
 </html>
