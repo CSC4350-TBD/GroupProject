@@ -4,8 +4,9 @@
 
 <head>
     <title>Movie Details</title>
-    <link rel="icon" href="{{ url_for('static', filename='icon.png' ) }}" type="image/gif">
+    <link rel="icon" href="{{ url_for('static', filename='icon.png' ) }}" type="image/gif" />
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css' ) }}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <header>
@@ -37,8 +38,10 @@
         {% else %}
         <img src="/static/no_img.png" width="40%" height="auto" align="left" />
         {% endif %}
-        
-        <iframe width="560" height="315" src={{trailer_url}} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+        <iframe width="560" height="315" src={{trailer_url}} title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
 
         <!-- display movie info -->
         <h1 style="text-align:center">{{ movie_title }}</h1>

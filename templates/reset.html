@@ -5,6 +5,7 @@
 <head>
     <title>Reset</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css' ) }} " />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <!-- <body id="reset"> -->
@@ -26,7 +27,7 @@
         <form method='POST' , action=''>
             <h4>Please enter a new password:</h4>
             <input type="password" name="password" placeholder="Enter Password" required />
-            <h4>Please repeate Password:</h4>
+            <h4>Please repeat Password:</h4>
             <input type="password" name="password2" placeholder="Repeate Password" required />
             <button type="submit">Reset Password</button>
         </form>
