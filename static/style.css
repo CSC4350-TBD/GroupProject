@@ -30,6 +30,7 @@ body {
 #user_left {
   flex-basis: 50%;
   text-align: center;
+
 }
 
 #user_right {
@@ -233,12 +234,16 @@ button {
 }
 
 #reviewForm{
-	color:blue;
+	text-align: center;
 	/* margin:auto;
 	display: block;
 	width:inherit */
 }
 
-#listDisplay{
-	margin:auto
+.listDisplay{
+	text-align: center;
+}
+
+.listDisplay li{
+	list-style-type: none;
 }

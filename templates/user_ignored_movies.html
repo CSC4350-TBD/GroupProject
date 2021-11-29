@@ -54,20 +54,25 @@
 </header>
 
 <body>
-    <div>
+    <div class=listDisplay>
 
         <h3>Movies You Ignored: </h3>
+        <br />
 
         {% for k in ignored_movies_list_titles %}
 
         {% set ignored_movie_imgs = ignored_movie_imgs[loop.index-1] %}
         {% set ignored_movies_list = ignored_movies_list[loop.index-1] %}
-        <li>{{k}}</li>
+        <li>
+            <h6>{{k}}</h6>
+        </li>
+
         {% if ignored_movie_imgs != "https://image.tmdb.org/t/p/original" %}
         <img src="{{ignored_movie_imgs}}" width="300" height="300" />
         {% else %}
         <img src="/static/no_img.png" width="300" height="300" />
         {% endif %}
+
         <form action="/removeIgnored" method="POST">
             <input class="formButton" type="submit" onClick="removedMessage()" name="{{ignored_movies_list}}"
                 value="Remove from Ignored List"></input>

@@ -57,12 +57,15 @@
 <body>
     <div class=listDisplay>
         <h3>Movies You Saved:</h3>
+        <br />
 
         {% for k in saved_movies_list_titles %}
         <!-- run through two lists in one jinja loop -->
         {% set saved_movie_imgs = saved_movie_imgs[loop.index-1] %}
         {% set saved_movies_list = saved_movies_list[loop.index-1] %}
-        <li>{{k}}</li>
+        <li>
+            <h6>{{k}}</h6>
+        </li>
 
 
         <!-- checks if there is pic, if no, use alternate pic -->
