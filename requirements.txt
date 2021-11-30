@@ -7,3 +7,6 @@ SQLAlchemy
 psycopg2-binary
 WTForms==2.3.3
 Flask-WTF
+flask-mail
+pyjwt
+wtforms[email]
