@@ -203,6 +203,7 @@ button {
 	background-color: white;
 	border-radius:15px 50px 30px;
 	text-shadow: 2px 2px 8px #5e61ff;
+  height:10%
 }
 #quotes {
   width: 25%;
@@ -226,9 +227,12 @@ button {
 
 #reviewForm{
 	text-align: center;
-	/* margin:auto;
-	display: block;
-	width:inherit */
+}
+
+#reviews{
+  margin: auto;
+  text-align: center;
+  
 }
 
 
