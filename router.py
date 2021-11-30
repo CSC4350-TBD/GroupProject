@@ -171,6 +171,7 @@ def user_saved_movies():
     usename = current_user.username
     saved_movies_list_titles = []
     saved_movie_imgs = []
+    saved_movie_desc = []
     saved_movies_list = [
         r[0]
         for r in db.session.query(saved_movies.movieid)
@@ -183,13 +184,25 @@ def user_saved_movies():
         saved_movies_list_titles.append(temp2)
         saved_movie_img = get_movie_poster(i)
         saved_movie_imgs.append(saved_movie_img)
-        print(saved_movie_img)
+        (
+        movie_title,
+        movie_img,
+        movie_genre,
+        movie_desc,
+        movie_runtime,
+        movie_rating,
+        cast,
+        director,
+        ) = get_detailed_info(i)
+        saved_movie_desc.append(movie_desc)
 
     return render_template(
         "user_saved_movies.html",
         saved_movies_list_titles=saved_movies_list_titles,
         saved_movie_imgs=saved_movie_imgs,
         saved_movies_list=saved_movies_list,
+        saved_movie_desc=saved_movie_desc
+        
     )
 
 
