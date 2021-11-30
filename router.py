@@ -159,46 +159,10 @@ def reset_password(token):
 
 @app.route("/user", methods=["GET", "POST"])
 def user():
-    # usename = current_user.username
-    # saved_movies_list_titles = []
-    # ignored_movies_list_titles = []
-    # saved_movie_imgs = []
-    # ignored_movie_imgs = []
-    # saved_movies_list = [
-    #     r[0]
-    #     for r in db.session.query(saved_movies.movieid)
-    #     .filter_by(usename=usename)
-    #     .distinct()
-    # ]
-    # ignored_movies_list = [
-    #     r[0]
-    #     for r in db.session.query(ignored_movies.ignoredmovieid)
-    #     .filter_by(usename=usename)
-    #     .distinct()
-    # ]
-
-    # for i in saved_movies_list:
-    #     temp1, temp2 = get_movie_info(i)
-    #     saved_movies_list_titles.append(temp2)
-    #     saved_movie_img = get_movie_poster(i)
-    #     saved_movie_imgs.append(saved_movie_img)
-    #     print(saved_movie_img)
-
-    # for i in ignored_movies_list:
-    #     temp1, temp2 = get_movie_info(i)
-    #     ignored_movies_list_titles.append(temp2)
-    #     ignored_movie_img = get_movie_poster(i)
-    #     ignored_movie_imgs.append(ignored_movie_img)
-    #     print(ignored_movie_img)
+  
 
     return render_template(
         "user.html",
-        # saved_movies_list_titles=saved_movies_list_titles,
-        # ignored_movies_list_titles=ignored_movies_list_titles,
-        # saved_movie_imgs=saved_movie_imgs,
-        # ignored_movie_imgs=ignored_movie_imgs,
-        # saved_movies_list=saved_movies_list,
-        # ignored_movies_list=ignored_movies_list,
     )
 
 
@@ -227,7 +191,6 @@ def user_saved_movies():
         saved_movie_imgs=saved_movie_imgs,
         saved_movies_list=saved_movies_list,
     )
-    # return render_template("user_saved_movies.html")
 
 
 @app.route("/user_ignored_movies", methods=["GET", "POST"])
@@ -255,7 +218,6 @@ def user_ignored_movies():
         ignored_movie_imgs=ignored_movie_imgs,
         ignored_movies_list=ignored_movies_list,
     )
-    # return render_template("user_saved_movies.html")
 
 
 @app.route("/details", methods=["GET", "POST"])
