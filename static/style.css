@@ -108,6 +108,13 @@ button {
   cursor: pointer;
 }
 
+.formButton {
+  color: white;
+  border-radius: 12px;
+  background-image: linear-gradient(to bottom left, black, white);
+  cursor: pointer;
+}
+
 #index{
 	background-color:lightgrey;
 	background-image: url('bg_2.gif');
