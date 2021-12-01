@@ -220,7 +220,15 @@ button {
 #reviews{
   margin: auto;
   text-align: center;
-  
+}
+
+#reviewBox{
+  color:blue;
+  border-style: outset;
+  width:max-content;
+  padding-left: .5%;
+  padding-right: .5%;
+  border-width:thick;
 }
 
 

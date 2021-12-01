@@ -130,10 +130,10 @@ def reset_request():
     if form.validate():
         user = User.query.filter_by(email=form.email.data).first()
         if user is None:
-            flash("this email is not regisited!")
+            flash("This email is not registered!")
             return redirect(url_for("reset_request"))
         send_password_reset_email(user)
-        flash("please check your email to reset your password!")
+        flash("Please check your email to reset your password!")
         return redirect(url_for("login"))
     return render_template(
         "reset_password_request.html", title="reset password", form=form
@@ -151,8 +151,8 @@ def reset_password(token):
     form = ResetPasswordForm(request.form)
     if form.validate():
         if user.check_password(form.password.data):
-            flash('New password should be different with the old password')
-            return redirect(url_for('reset_password',token=token))
+            flash("New password should be different with the old password")
+            return redirect(url_for("reset_password", token=token))
         user.set_password(form.password.data)
         db.session.commit()
         flash("Your password reset successfully!")
