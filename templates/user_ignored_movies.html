@@ -75,11 +75,11 @@
                         {% set ignored_movie_desc = ignored_movie_desc[loop.index-1] %}
 
                         {% if ignored_movie_imgs != "https://image.tmdb.org/t/p/original" %}
-                        <img class="rounded img-thumbnail img-fluid" src="{{ignored_movie_imgs}}" width="300"
-                            height="300" />
+                        <img class="rounded img-thumbnail img-fluid card-img-top" src="{{ignored_movie_imgs}}"
+                            width="100%" height="100%" />
                         {% else %}
-                        <img class="rounded img-thumbnail img-fluid" src="/static/no_img.png" width="300"
-                            height="300" />
+                        <img class="rounded img-thumbnail img-fluid card-img-top" src="/static/no_img.png" width="100%"
+                            height="100%" />
                         {% endif %}
                         <div class="card-body">
                             <h5 class="card-title">{{k}}</h5>
