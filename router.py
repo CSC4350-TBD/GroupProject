@@ -149,6 +149,8 @@ def reset_password(token):
     if user is None:
         return redirect(url_for("index"))
     form = ResetPasswordForm(request.form)
+    if not form.validate():
+        flash("input password not match, please try again!")
     if form.validate():
         if user.check_password(form.password.data):
             flash("New password should be different with the old password")
@@ -156,7 +158,8 @@ def reset_password(token):
         user.set_password(form.password.data)
         db.session.commit()
         flash("Your password reset successfully!")
-        return redirect(url_for("login"))
+        return redirect(url_for("login"))       
+
     return render_template("reset.html", token=token, form=form)
 
 
