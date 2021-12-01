@@ -20,27 +20,11 @@ body {
 
 #user_main{
 	padding-top: 5%;
-	text-align: left;
-	width: 90%;	
 	display: flex;
 	margin: auto;
-    column-gap:4%;
+  padding-bottom: 5%;
 }
 
-#user_left {
-  flex-basis: 50%;
-  text-align: center;
-
-}
-
-#user_right {
-  flex-basis: 50%;
-  text-align: center;
-}
-
-#back_to_index {
-  float: left;
-}
 
 nav{
 	float: right;
@@ -124,15 +108,21 @@ button {
   cursor: pointer;
 }
 
+.formButton {
+  color: white;
+  border-radius: 12px;
+  background-image: linear-gradient(to bottom left, black, white);
+  cursor: pointer;
+}
+
 #index{
 	background-color:lightgrey;
 	background-image: url('bg_2.gif');
 	background-size: auto;
 	background-size: cover;
-    text-align: center;
+  text-align: center;
 	margin: auto;
-	/*margin-top: 3%; */
-    color: rgb(48, 42, 42)
+  color: rgb(48, 42, 42)
 }
 
 #welcome_square {
@@ -160,13 +150,6 @@ button {
 
 #rightDiv{
 	float:right;
-}
-
-.formButton {
-  color: white;
-  border-radius: 12px;
-  background-image: linear-gradient(to bottom left, black, white);
-  cursor: pointer;
 }
 
 #user {
@@ -208,6 +191,7 @@ button {
 	background-color: white;
 	border-radius:15px 50px 30px;
 	text-shadow: 2px 2px 8px #5e61ff;
+  height:10%
 }
 #quotes {
   width: 25%;
@@ -231,10 +215,22 @@ button {
 
 #reviewForm{
 	text-align: center;
-	/* margin:auto;
-	display: block;
-	width:inherit */
 }
+
+#reviews{
+  margin: auto;
+  text-align: center;
+}
+
+#reviewBox{
+  color:blue;
+  border-style: outset;
+  width:max-content;
+  padding-left: .5%;
+  padding-right: .5%;
+  border-width:thick;
+}
+
 
 .listDisplay{
 	text-align: center;

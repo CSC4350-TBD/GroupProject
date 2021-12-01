@@ -65,30 +65,40 @@
 
         <h3>Movies You Ignored: </h3>
         <br />
+        <div class=container-fluid>
+            <div class=row>
+                <div class="card-deck">
+                    {% for k in ignored_movies_list_titles %}
+                    <div class="card  col-md-4 col-sm">
+                        {% set ignored_movie_imgs = ignored_movie_imgs[loop.index-1] %}
+                        {% set ignored_movies_list = ignored_movies_list[loop.index-1] %}
+                        {% set ignored_movie_desc = ignored_movie_desc[loop.index-1] %}
 
-        {% for k in ignored_movies_list_titles %}
+                        {% if ignored_movie_imgs != "https://image.tmdb.org/t/p/original" %}
+                        <img class="rounded img-thumbnail img-fluid" src="{{ignored_movie_imgs}}" width="300"
+                            height="300" />
+                        {% else %}
+                        <img class="rounded img-thumbnail img-fluid" src="/static/no_img.png" width="300"
+                            height="300" />
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{k}}</h5>
+                            <p class="card-text">{{ignored_movie_desc}}</p>
+                        </div>
+                        <div class="card-footer">
+                            <form action="/removeIgnored" method="POST">
+                                <input class="formButton" type="submit" onClick="removedMessage()"
+                                    name="{{ignored_movies_list}}" value="Remove from Ignored List"></input>
+                            </form>
 
-        {% set ignored_movie_imgs = ignored_movie_imgs[loop.index-1] %}
-        {% set ignored_movies_list = ignored_movies_list[loop.index-1] %}
-        <li>
-            <h6>{{k}}</h6>
-        </li>
-
-        {% if ignored_movie_imgs != "https://image.tmdb.org/t/p/original" %}
-        <img src="{{ignored_movie_imgs}}" width="300" height="300" />
-        {% else %}
-        <img src="/static/no_img.png" width="300" height="300" />
-        {% endif %}
-
-        <form action="/removeIgnored" method="POST">
-            <input class="formButton" type="submit" onClick="removedMessage()" name="{{ignored_movies_list}}"
-                value="Remove from Ignored List"></input>
-        </form>
-        <br />
-        {%endfor%}
-
+                        </div>
+                    </div>
+                    {%endfor%}
+                </div>
+            </div>
+        </div>
     </div>
-
+    <br />
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>

@@ -63,39 +63,44 @@
 
 <body>
     <div class=listDisplay>
+        <br /><br />
         <h3>Movies You Saved:</h3>
         <br />
+        <div class=container-fluid>
+            <div class=row>
+                <div class="card-deck">
+                    {% for k in saved_movies_list_titles %}
+                    <div class="card  col-md-4 col-sm">
+                        {% set saved_movie_imgs = saved_movie_imgs[loop.index-1] %}
+                        {% set saved_movies_list = saved_movies_list[loop.index-1] %}
+                        {% set saved_movie_desc = saved_movie_desc[loop.index-1] %}
 
-        {% for k in saved_movies_list_titles %}
-        <!-- run through two lists in one jinja loop -->
-        {% set saved_movie_imgs = saved_movie_imgs[loop.index-1] %}
-        {% set saved_movies_list = saved_movies_list[loop.index-1] %}
-        <li>
-            <h6>{{k}}</h6>
-        </li>
+                        {% if saved_movie_imgs != "https://image.tmdb.org/t/p/original" %}
+                        <img class="rounded img-thumbnail img-fluid card-img-top" src="{{saved_movie_imgs}}"
+                            width="100%" height="100%" />
+                        {% else %}
+                        <img class="rounded img-thumbnail img-fluid card-img-top" src="/static/no_img.png" width="100%"
+                            height="100%" />
+                        {% endif %}
 
+                        <div class="card-body">
+                            <h5 class="card-title">{{k}}</h5>
+                            <p class="card-text">{{saved_movie_desc}}</p>
+                        </div>
+                        <div class="card-footer">
+                            <form action="/removeSaved" method="POST">
+                                <input class="formButton" type="submit" onClick="removedMessage()"
+                                    name="{{saved_movies_list}}" value="Remove from Watch List"></input>
+                            </form>
+                        </div>
+                    </div>
+                    {%endfor%}
+                </div>
+            </div>
+        </div>
+    </div>
 
-        <!-- checks if there is pic, if no, use alternate pic -->
-        {% if saved_movie_imgs != "https://image.tmdb.org/t/p/original" %}
-        <img src="{{saved_movie_imgs}}" width="300" height="300" />
-        {% else %}
-        <img src="/static/no_img.png" width="300" height="300" />
-        {% endif %}
-
-        <form action="/removeSaved" method="POST">
-            <input class="formButton" type="submit" onClick="removedMessage()" name="{{saved_movies_list}}"
-                value="Remove from Watch List"></input>
-        </form>
-
-        <br />
-
-        {%endfor%}
-
-
-
-
-
-        <br />
+    <br />
 
     </div>
 
