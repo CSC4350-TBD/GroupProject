@@ -137,16 +137,20 @@
             </form>
         </div>
         <br>
-        <div id="reviews">
-            {% for k in reviews %}
+        <div id="reviews" class="container-fluid">
+            <div class="row">
+                {% for k in reviews %}
+                <div class="col-md-4 col-xs-12">
+                    <div id=reviewBox class="mx-auto rounded">
+                        <p>Review {{loop.index}}: "{{k}}"</p>
+                    </div>
+                    <br />
+                </div>
 
-            <div id=reviewBox class="mx-auto rounded">
-                <p>Review {{loop.index}}: "{{k}}"</p>
+                {% endfor %}
             </div>
-            <!-- commas to list but not add onto last one -->
-            <br>
-            {% endfor %}
         </div>
+    </div>
 
 
     </div>
