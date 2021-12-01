@@ -20,23 +20,11 @@ body {
 
 #user_main{
 	padding-top: 5%;
-	text-align: left;
-	width: 90%;	
 	display: flex;
 	margin: auto;
-    column-gap:4%;
+  padding-bottom: 5%;
 }
 
-#user_left {
-  flex-basis: 50%;
-  text-align: center;
-
-}
-
-#user_right {
-  flex-basis: 50%;
-  text-align: center;
-}
 
 nav{
 	float: right;

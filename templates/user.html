@@ -63,44 +63,56 @@
 
 <body id="user">
 
-    <div>
-        <!-- main area -->
-        <main id="user_main">
+    <div class="container card-deck" id=user_main>
+        <div class="card-deck mx-auto">
 
-            <!-- left column -->
-            <aside id="user_left" class="col-md-6 mb-4">
-                <div class=container>
-                    <br />
+            <div class="card">
+                <div class="d-flex justify-content-center card-header">
                     <a href="{{ url_for('user_saved_movies') }}">
-                        <div class="view flex-center card">
+                        <h4 class="movie_section">
+                            Saved Movies
+                        </h4>
+                    </a>
 
-                            <img class="rounded img-thumbnail img-fluid card-img-top" src="/static/saved_movie.png"
-                                width="100%" height="75%" />
-                            <div class="card-img-overlay d-flex justify-content-center">
-                                <div class="card-title movie_section">
-                                    <h4>Saved Movies</h4>
-                                </div>
-                            </div>
+                </div>
+                <a href="{{ url_for('user_saved_movies') }}">
+                    <img class="card-img-top  rounded img-fluid" src="/static/saved_movie.png">
+                    <div class="card-body">
 
-                        </div>
+                        <p class="card-text"> </p>
+                    </div>
+                </a>
+                <div class=" d-flex justify-content-center card-footer">
+                    <p></p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="d-flex justify-content-center card-header">
+                    <a href="{{ url_for('user_ignored_movies') }}">
+                        <h4 class="movie_section">
+                            Ignored Movies
+                        </h4>
+                    </a>
+
+                </div>
+                <a href="{{ url_for('user_ignored_movies') }}">
+                    <img class="card-img-top  rounded  img-fluid" src="/static/ignored_movie.png">
+                </a>
+                <div class="card-body">
+                    <a href="{{ url_for('user_ignored_movies') }}">
+                        <br />
                     </a>
                 </div>
-            </aside>
-            <!-- end left column -->
+                <div class="d-flex justify-content-center card-footer">
+                    <p></p>
 
-            <!-- right column -->
-            <aside id=" user_right">
-                <h3 class=movie_section>Movies You Ignored: </h3>
+                </div>
+            </div>
+        </div>
 
-                <br />
-                <a href="{{ url_for('user_ignored_movies') }}"><img class="rounded img-thumbnail img-fluid"
-                        src="/static/ignored_movie.png" width="100%" height="75%" /></a>
 
-            </aside>
-            <!-- end right column -->
 
-            <!-- end main area -->
-        </main>
     </div>
 
     <script>
