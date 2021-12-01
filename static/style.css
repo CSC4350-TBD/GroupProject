@@ -145,13 +145,6 @@ button {
 	float:right;
 }
 
-.formButton {
-  color: white;
-  border-radius: 12px;
-  background-image: linear-gradient(to bottom left, black, white);
-  cursor: pointer;
-}
-
 #user {
   background-image: url("bg_3.jpg");
   background-size: cover;
