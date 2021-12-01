@@ -72,6 +72,7 @@
                     <div class="card  col-md-4 col-sm">
                         {% set ignored_movie_imgs = ignored_movie_imgs[loop.index-1] %}
                         {% set ignored_movies_list = ignored_movies_list[loop.index-1] %}
+                        {% set ignored_movie_desc = ignored_movie_desc[loop.index-1] %}
 
                         {% if ignored_movie_imgs != "https://image.tmdb.org/t/p/original" %}
                         <img class="rounded img-thumbnail img-fluid" src="{{ignored_movie_imgs}}" width="300"
@@ -82,8 +83,7 @@
                         {% endif %}
                         <div class="card-body">
                             <h5 class="card-title">{{k}}</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This content is a little bit longer.</p>
+                            <p class="card-text">{{ignored_movie_desc}}</p>
                         </div>
                         <div class="card-footer">
                             <form action="/removeIgnored" method="POST">

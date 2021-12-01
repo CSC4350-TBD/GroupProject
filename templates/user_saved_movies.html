@@ -73,7 +73,7 @@
                     <div class="card  col-md-4 col-sm">
                         {% set saved_movie_imgs = saved_movie_imgs[loop.index-1] %}
                         {% set saved_movies_list = saved_movies_list[loop.index-1] %}
-
+                        {% set saved_movie_desc = saved_movie_desc[loop.index-1] %}
 
                         {% if saved_movie_imgs != "https://image.tmdb.org/t/p/original" %}
                         <img class="rounded img-thumbnail img-fluid card-img-top" src="{{saved_movie_imgs}}"
@@ -85,8 +85,7 @@
 
                         <div class="card-body">
                             <h5 class="card-title">{{k}}</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This content is a little bit longer.</p>
+                            <p class="card-text">{{saved_movie_desc}}</p>
                         </div>
                         <div class="card-footer">
                             <form action="/removeSaved" method="POST">

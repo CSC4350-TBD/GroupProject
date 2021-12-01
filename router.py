@@ -159,7 +159,6 @@ def reset_password(token):
 
 @app.route("/user", methods=["GET", "POST"])
 def user():
-  
 
     return render_template(
         "user.html",
@@ -185,14 +184,14 @@ def user_saved_movies():
         saved_movie_img = get_movie_poster(i)
         saved_movie_imgs.append(saved_movie_img)
         (
-        movie_title,
-        movie_img,
-        movie_genre,
-        movie_desc,
-        movie_runtime,
-        movie_rating,
-        cast,
-        director,
+            movie_title,
+            movie_img,
+            movie_genre,
+            movie_desc,
+            movie_runtime,
+            movie_rating,
+            cast,
+            director,
         ) = get_detailed_info(i)
         saved_movie_desc.append(movie_desc)
 
@@ -201,8 +200,7 @@ def user_saved_movies():
         saved_movies_list_titles=saved_movies_list_titles,
         saved_movie_imgs=saved_movie_imgs,
         saved_movies_list=saved_movies_list,
-        saved_movie_desc=saved_movie_desc
-        
+        saved_movie_desc=saved_movie_desc,
     )
 
 
@@ -211,6 +209,7 @@ def user_ignored_movies():
     usename = current_user.username
     ignored_movies_list_titles = []
     ignored_movie_imgs = []
+    ignored_movie_desc = []
     ignored_movies_list = [
         r[0]
         for r in db.session.query(ignored_movies.ignoredmovieid)
@@ -224,12 +223,24 @@ def user_ignored_movies():
         ignored_movie_img = get_movie_poster(i)
         ignored_movie_imgs.append(ignored_movie_img)
         print(ignored_movie_img)
+        (
+            movie_title,
+            movie_img,
+            movie_genre,
+            movie_desc,
+            movie_runtime,
+            movie_rating,
+            cast,
+            director,
+        ) = get_detailed_info(i)
+        ignored_movie_desc.append(movie_desc)
 
     return render_template(
         "user_ignored_movies.html",
         ignored_movies_list_titles=ignored_movies_list_titles,
         ignored_movie_imgs=ignored_movie_imgs,
         ignored_movies_list=ignored_movies_list,
+        ignored_movie_desc=ignored_movie_desc,
     )
 
 
