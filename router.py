@@ -53,18 +53,18 @@ def index():
 @app.route("/searchMovie", methods=["GET", "POST"])
 def main():
     search_term = request.form["search"]
-    # try:
-    rec_list, movie_img_url = get_recommendation(search_term)
-    title_list = []
-    title_list_len = 10
-    for i in rec_list:
-        genre, title = get_movie_info(i)
-        title_list.append(title)
-    title_list_len = len(title_list)
+    try:
+        rec_list, movie_img_url = get_recommendation(search_term)
+        title_list = []
+        title_list_len = 10
+        for i in rec_list:
+            genre, title = get_movie_info(i)
+            title_list.append(title)
+        title_list_len = len(title_list)
 
-    # except Exception:
-    # flask.flash("Invalid movie name entered")
-    # return flask.redirect(flask.url_for("index"))
+    except Exception:
+        flask.flash("Invalid movie name entered")
+        return flask.redirect(flask.url_for("index"))
     return flask.render_template(
         "index.html",
         search_term=search_term,

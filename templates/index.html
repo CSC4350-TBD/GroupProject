@@ -63,7 +63,15 @@
     <br /><br /><br /><br />
     <div class="col-lg-8 col-xs-12" id="welcome_square">
         <h4>Welcome!</h4>
-
+        {% with messages = get_flashed_messages() %}
+			{% if messages %}
+				<ul class=flashes>
+					{% for message in messages %}
+						<li>{{ message }}</li>
+					{% endfor %}
+				</ul>
+			{% endif %}
+		{% endwith %}
         <form action="/searchMovie" method="post">
             <h4>Search for Movie Recommendations:</h4>
             <input type="text" name="search" placeholder="Enter a movie you like" />
