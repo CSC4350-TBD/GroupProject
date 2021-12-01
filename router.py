@@ -130,10 +130,10 @@ def reset_request():
     if form.validate():
         user = User.query.filter_by(email=form.email.data).first()
         if user is None:
-            flash("this email is not regisited!")
+            flash("This email is not registered!")
             return redirect(url_for("reset_request"))
         send_password_reset_email(user)
-        flash("please check your email to reset your password!")
+        flash("Please check your email to reset your password!")
         return redirect(url_for("login"))
     return render_template(
         "reset_password_request.html", title="reset password", form=form
@@ -149,17 +149,22 @@ def reset_password(token):
     if user is None:
         return redirect(url_for("index"))
     form = ResetPasswordForm(request.form)
+    if not form.validate():
+        flash("input password not match, please try again!")
     if form.validate():
+        if user.check_password(form.password.data):
+            flash("New password should be different with the old password")
+            return redirect(url_for("reset_password", token=token))
         user.set_password(form.password.data)
         db.session.commit()
         flash("Your password reset successfully!")
-        return redirect(url_for("login"))
+        return redirect(url_for("login"))       
+
     return render_template("reset.html", token=token, form=form)
 
 
 @app.route("/user", methods=["GET", "POST"])
 def user():
-  
 
     return render_template(
         "user.html",
@@ -185,14 +190,14 @@ def user_saved_movies():
         saved_movie_img = get_movie_poster(i)
         saved_movie_imgs.append(saved_movie_img)
         (
-        movie_title,
-        movie_img,
-        movie_genre,
-        movie_desc,
-        movie_runtime,
-        movie_rating,
-        cast,
-        director,
+            movie_title,
+            movie_img,
+            movie_genre,
+            movie_desc,
+            movie_runtime,
+            movie_rating,
+            cast,
+            director,
         ) = get_detailed_info(i)
         saved_movie_desc.append(movie_desc)
 
@@ -201,8 +206,7 @@ def user_saved_movies():
         saved_movies_list_titles=saved_movies_list_titles,
         saved_movie_imgs=saved_movie_imgs,
         saved_movies_list=saved_movies_list,
-        saved_movie_desc=saved_movie_desc
-        
+        saved_movie_desc=saved_movie_desc,
     )
 
 
@@ -211,6 +215,7 @@ def user_ignored_movies():
     usename = current_user.username
     ignored_movies_list_titles = []
     ignored_movie_imgs = []
+    ignored_movie_desc = []
     ignored_movies_list = [
         r[0]
         for r in db.session.query(ignored_movies.ignoredmovieid)
@@ -224,12 +229,24 @@ def user_ignored_movies():
         ignored_movie_img = get_movie_poster(i)
         ignored_movie_imgs.append(ignored_movie_img)
         print(ignored_movie_img)
+        (
+            movie_title,
+            movie_img,
+            movie_genre,
+            movie_desc,
+            movie_runtime,
+            movie_rating,
+            cast,
+            director,
+        ) = get_detailed_info(i)
+        ignored_movie_desc.append(movie_desc)
 
     return render_template(
         "user_ignored_movies.html",
         ignored_movies_list_titles=ignored_movies_list_titles,
         ignored_movie_imgs=ignored_movie_imgs,
         ignored_movies_list=ignored_movies_list,
+        ignored_movie_desc=ignored_movie_desc,
     )
 
 

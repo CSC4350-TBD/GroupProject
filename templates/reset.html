@@ -16,9 +16,9 @@
 
 <!-- <body id="reset"> -->
 
-<body>
+<body id=login_signup>
     <div id="form_square">
-        <h3>Reset your password</h3>
+        <h3>Reset Your Password</h3>
 
         <!-- for flash messages -->
         {% with messages = get_flashed_messages() %}
@@ -31,11 +31,13 @@
         {% endif %}
         {% endwith %}
         <form method='POST' , action=''>
-            <h4>Please enter a new password:</h4>
-            <input type="password" name="password" placeholder="Enter Password" required />
-            <h4>Please repeat Password:</h4>
-            <input type="password" name="password2" placeholder="Repeate Password" required />
-            <button type="submit">Reset Password</button>
+            <h5>Please enter a new password:</h5>
+            <input type="password" class=rounded name="password" placeholder="Enter Password" required />
+            <br /><br />
+            <h5>Please repeat Password:</h5>
+            <input type="password" class=rounded name="password2" placeholder="Repeat Password" required />
+            <br /><br />
+            <button type="submit" style="border-radius: 12px;">Reset Password</button>
         </form>
     </div>
     </div>
