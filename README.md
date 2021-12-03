@@ -4,7 +4,11 @@ This is a school group project app. Movies TBD is a functional tool that provide
 
 ## Members: Alexander Ortiz, Lingyi Zheng, Yuliana Mircheva, SingYu Yu
 
-## Heroku Link: https://recotbd.herokuapp.com/
+## Heroku Link: https://recotbdtwo.herokuapp.com/
+
+## Clone the repo
+
+git@github.com:CSC4350-TBD/GroupProject.git
 
 ## Requirements
 
@@ -58,3 +62,13 @@ For the HTML, there were some areas where code was being reused, such as the cod
 For the CSS, it's rather messy in general. It was not sorted, and there are probably many ids and/or classes that could easily be put together to avoid confusion when searching for a specific line of code.
 
 The api calls could be cleaned up, as there are some functions that might not be clear in their purpose due to similarities to other calls. One way to fix this is to change varriable names to be different, as a lot are similar enough to cause confusion
+
+## Contributing
+
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement". Don't forget to give the project a star! Thanks again!
+
+Fork the Project
+Create your Feature Branch (git checkout -b feature/AmazingFeature)
+Commit your Changes (git commit -m 'Add some AmazingFeature')
+Push to the Branch (git push origin feature/AmazingFeature)
+Open a Pull Request
