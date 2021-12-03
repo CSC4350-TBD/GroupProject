@@ -18,24 +18,38 @@ body {
   color: rgb(48, 42, 42);
 }
 
-#user_main{
-	padding-top: 5%;
-	display: flex;
-	margin: auto;
-  padding-bottom: 5%;
+#user_main {
+  padding-top: 5%;
+  text-align: left;
+  width: 90%;
+  display: flex;
+  margin: auto;
+  column-gap: 4%;
 }
 
-
-nav{
-	float: right;
-	width:100%
+#user_left {
+  flex-basis: 50%;
+  text-align: center;
 }
 
+#user_right {
+  flex-basis: 50%;
+  text-align: center;
+}
 
-#nav_img{
-	height:15%;
-	width:15%;
-	padding:0%
+#back_to_index {
+  float: left;
+}
+
+nav {
+  float: right;
+  width: 100%;
+}
+
+#nav_img {
+  height: 15%;
+  width: 15%;
+  padding: 0%;
 }
 
 nav button {
@@ -47,17 +61,16 @@ nav button {
 }
 
 .navbar-nav li:hover > ul.dropdown-menu {
-    display: block;
+  display: block;
 }
 .dropdown-submenu {
-    position:relative;
+  position: relative;
 }
-.dropdown-submenu>.dropdown-menu {
-    top:0;
-    left:100%;
-    margin-top:-6px;
+.dropdown-submenu > .dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
 }
-
 
 #form_square {
   width: 20%;
@@ -92,12 +105,11 @@ button {
   color: white;
 }
 
-.row #grid_image{
-	border-style: solid;
-	border-width: 1px;
-	border-color: black;
+.row #grid_image {
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
 }
-
 
 #movie_button {
   padding: 5px;
@@ -108,21 +120,15 @@ button {
   cursor: pointer;
 }
 
-.formButton {
-  color: white;
-  border-radius: 12px;
-  background-image: linear-gradient(to bottom left, black, white);
-  cursor: pointer;
-}
-
-#index{
-	background-color:lightgrey;
-	background-image: url('bg_2.gif');
-	background-size: auto;
-	background-size: cover;
+#index {
+  background-color: lightgrey;
+  background-image: url("bg_2.gif");
+  background-size: auto;
+  background-size: cover;
   text-align: center;
-	margin: auto;
-  color: rgb(48, 42, 42)
+  margin: auto;
+  /*margin-top: 3%; */
+  color: rgb(48, 42, 42);
 }
 
 #welcome_square {
@@ -136,20 +142,27 @@ button {
   margin: auto;
 }
 
-#wrapDiv{
-	width: 30%;
-	margin:auto;
-	justify-content: center;
-	display: block;
-	overflow: hidden;
+#wrapDiv {
+  width: 30%;
+  margin: auto;
+  justify-content: center;
+  display: block;
+  overflow: hidden;
 }
 
 #leftDiv {
   float: left;
 }
 
-#rightDiv{
-	float:right;
+#rightDiv {
+  float: right;
+}
+
+.formButton {
+  color: white;
+  border-radius: 12px;
+  background-image: linear-gradient(to bottom left, black, white);
+  cursor: pointer;
 }
 
 #user {
@@ -163,35 +176,33 @@ button {
   font-weight: bold;
 }
 
-#user_main li{
-	margin-bottom: 1mm;
-	margin-top: 1cm;
-	font-weight: bold;
+#user_main li {
+  margin-bottom: 1mm;
+  margin-top: 1cm;
+  font-weight: bold;
 }
 
-
-#detailsAside{
-	width: 90%;	
-	display: flex;
-	margin: auto;
-    column-gap:4%;
+#detailsAside {
+  width: 90%;
+  display: flex;
+  margin: auto;
+  column-gap: 4%;
 }
 
-#movieDetails{
-	flex-basis: 50%;
-	text-align: center;
+#movieDetails {
+  flex-basis: 50%;
+  text-align: center;
 }
 
-#trailerDetails{
-	flex-basis: 50%;
-	text-align: center;
+#trailerDetails {
+  flex-basis: 50%;
+  text-align: center;
 }
 
-.movie_section{
-	background-color: white;
-	border-radius:15px 50px 30px;
-	text-shadow: 2px 2px 8px #5e61ff;
-  height:10%
+.movie_section {
+  background-color: white;
+  border-radius: 15px 50px 30px;
+  text-shadow: 2px 2px 8px #5e61ff;
 }
 #quotes {
   width: 25%;
@@ -213,29 +224,21 @@ button {
   border-color: black;
 }
 
-#reviewForm{
-	text-align: center;
+#reviewForm {
+  text-align: center;
+  /* margin:auto;
+	display: block;
+	width:inherit */
 }
 
-#reviews{
-  margin: auto;
+.listDisplay {
   text-align: center;
 }
 
-#reviewBox{
-  color:blue;
-  border-style: outset;
-  width:max-content;
-  padding-left: .5%;
-  padding-right: .5%;
-  border-width:thick;
+.listDisplay li {
+  list-style-type: none;
 }
 
-
-.listDisplay{
-	text-align: center;
-}
-
-.listDisplay li{
-	list-style-type: none;
+.flashes {
+  color: grey;
 }
