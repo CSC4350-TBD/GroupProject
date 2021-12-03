@@ -88,6 +88,7 @@ nav button {
 .flashes {
   list-style-type: none;
   padding: 1px;
+  color: grey;
 }
 
 button {
@@ -226,9 +227,20 @@ button {
 
 #reviewForm {
   text-align: center;
-  /* margin:auto;
-	display: block;
-	width:inherit */
+}
+
+#reviews{
+  margin: auto;
+  text-align: center;
+}
+
+#reviewBox{
+  color:blue;
+  border-style: outset;
+  width:max-content;
+  padding-left: .5%;
+  padding-right: .5%;
+  border-width:thick;
 }
 
 .listDisplay {
@@ -239,6 +251,46 @@ button {
   list-style-type: none;
 }
 
-.flashes {
-  color: grey;
+.animate span{
+	position: relative;
+	text-align: center;
+}
+
+.animate.forwards > span{
+	animation: animateForwards 1s ease-in-out 
+forwards;
+}
+
+@keyframes animateForwards {
+	from { top: 0; transform: rotate(0deg); }
+	to { top: .9em; transform: rotate(-15deg); }
+}
+
+#info{
+  margin-left:3%;
+  width:1%;
+}
+
+.glow {
+  font-size: 80px;
+  color: white;
+  text-align: center;
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -moz-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes glow {
+  from {
+    text-shadow: 0 0 10px black, 0 0 20px black, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+  }
+  to {
+    text-shadow: 0 0 20px black, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+  }
+}
+
+#names{
+  position: absolute;
+bottom:0;
+width: 100%;
 }

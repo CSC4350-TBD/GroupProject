@@ -158,7 +158,7 @@ def reset_password(token):
         user.set_password(form.password.data)
         db.session.commit()
         flash("Your password reset successfully!")
-        return redirect(url_for("login"))       
+        return redirect(url_for("login"))
 
     return render_template("reset.html", token=token, form=form)
 
@@ -405,4 +405,4 @@ if __name__ == "__main__":
         host=os.getenv("IP", "0.0.0.0"),
         port=int(os.getenv("PORT", 8080)),
         debug=True,
-        )
+    )
