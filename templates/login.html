@@ -15,6 +15,13 @@
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 
+<header>
+    <div id=info class="rounded glow">
+        <h3 class="animate forwards">Lost for Movies? </h3>
+        <h3 class="animate forwards"> Search Movie Recommendations Here!</h3>
+    </div>
+</header>
+
 <body id="login_signup">
 
     <div id="form_square">
@@ -29,6 +36,8 @@
         </ul>
         {% endif %}
         {% endwith %}
+
+
 
         <!--signin form-->
         <h3>Please log in</h3>
@@ -62,6 +71,24 @@
     </div>
 
     <script>
+
+        window.addEventListener("load", function () {
+            var delay = 2;
+            var nodes = document.querySelectorAll
+                (".animate");
+            for (var i = 0; i < nodes.length; i++) {
+                var words = nodes[i].innerText.split(" ");
+                nodes[i].innerHTML = "";
+                for (var i2 = 0; i2 < words.length; i2++) {
+                    var item = document.createElement("span");
+                    item.innerText = words[i2];
+                    var calc = (delay + ((nodes.length + i2) / 3));
+                    item.style.animationDelay = calc + "s";
+                    nodes[i].appendChild(item);
+                }
+            }
+        });
+
         function showDiv() {
             var showLogin = document.getElementById('showLogin');
             var showForm = document.getElementById('login_form_square').style.display = "block";
@@ -71,6 +98,24 @@
             }
             document.body.style.backgroundImage = "url(static/login_img1.jpg)";
         }
+    </script>
+    <script>
+        window.addEventListener("load", function () {
+            var delay = 2;
+            var nodes = document.querySelectorAll
+                (".animate");
+            for (var i = 0; i < nodes.length; i++) {
+                var words = nodes[i].innerText.split(" ");
+                nodes[i].innerHTML = "";
+                for (var i2 = 0; i2 < words.length; i2++) {
+                    var item = document.createElement("span");
+                    item.innerText = words[i2];
+                    var calc = (delay + ((nodes.length + i2) / 3));
+                    item.style.animationDelay = calc + "s";
+                    nodes[i].appendChild(item);
+                }
+            }
+        });
     </script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
