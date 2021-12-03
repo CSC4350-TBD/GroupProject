@@ -1,4 +1,6 @@
-# Group Project - Final
+# Group Project - TBD movie recommendation app
+
+This is a school group project app. Movies TBD is a functional tool that provides an exceptional custom search experience ability to save a favorite movie to a Watchlist. Movie TBD configures Search page which provides movies recommendation based on genre. Users can browse through the catalog and select any movie of interest. They can check the details of the movie including short description, rating, runtime, cast members, director, and genre. As well, the client can watch the trailers and leave a review for future clients. Prior to use the app users are required to login or sign up.
 
 ## Members: Alexander Ortiz, Lingyi Zheng, Yuliana Mircheva, SingYu Yu
 
@@ -8,6 +10,9 @@
 
 npm install
 pip install -r requirements.txt
+pip install flask-mail
+pip install pyjwt
+pip install wtforms[email]
 
 ## To Run Application
 
@@ -31,7 +36,6 @@ While testing is encouraged, especially for John and the TAs, please note that t
 
 ## Testing
 
-
 Mock test library in Python allows to replace part of our app system under test with mock objects and make assertions about how they have been used. unittest.mock provides a core Mock class removing the need to create a host of stubs throughout the test suite.
 
 ## Leo
@@ -41,7 +45,7 @@ Due to the recently changed of the API, the functionality of the API calls has s
 ## Yuliana
 
 Mocked server test tested if the database saves movie by ID from a hard coded username; then add the same ID to the DB. Next, adds a new ID to the DB and last pass in a list of valid IDs that doesn't include a prior one. The test pass ok.
-The other mocked test the moviedb API. mock_response.json.side_effect lets us set a list of return values and Each successive call to mock_response.all() will generate the next side effect. This test fail due to json formatting of the return value. The unmocked test is testing for the movie title. It doesn't use mock or patch to simulate a database or API. The test fail.
+Succesfully pass login route for user and password.
 
 ## Other Known Issues
 
