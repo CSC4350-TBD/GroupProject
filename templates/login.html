@@ -70,6 +70,7 @@
         <p>-{{random_quote.author}}</p> -->
     </div>
 
+
     <script>
 
         window.addEventListener("load", function () {
@@ -97,6 +98,8 @@
                 showLogin.style.display = 'none';
             }
             document.body.style.backgroundImage = "url(static/login_img1.jpg)";
+
+            document.getElementById('names').style.display = "none";
         }
     </script>
     <script>
@@ -128,5 +131,13 @@
         crossorigin="anonymous"></script>
 
 </body>
+
+<footer>
+    <div id=names>
+        <marquee onClick=showDiv()>
+            <img src=/static/names.png>
+        </marquee>
+    </div>
+</footer>
 
 </html>
