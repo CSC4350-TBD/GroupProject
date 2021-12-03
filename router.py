@@ -158,7 +158,7 @@ def reset_password(token):
         user.set_password(form.password.data)
         db.session.commit()
         flash("Your password reset successfully!")
-        return redirect(url_for("login"))       
+        return redirect(url_for("login"))
 
     return render_template("reset.html", token=token, form=form)
 
@@ -402,7 +402,7 @@ def update_db_ids_for_user(usename, valid_ids):
 if __name__ == "__main__":
     app.run(
         # uncomment following 2 lines once ready for deployment to heroku.
-        host=os.getenv("IP", "0.0.0.0"),
-        port=int(os.getenv("PORT", 8080)),
+        # host=os.getenv("IP", "0.0.0.0"),
+        # port=int(os.getenv("PORT", 8080)),
         debug=True,
-        )
+    )

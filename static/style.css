@@ -88,6 +88,7 @@ nav button {
 .flashes {
   list-style-type: none;
   padding: 1px;
+  color: grey;
 }
 
 button {
@@ -231,6 +232,20 @@ button {
 	width:inherit */
 }
 
+#reviews{
+  margin: auto;
+  text-align: center;
+}
+
+#reviewBox{
+  color:blue;
+  border-style: outset;
+  width:max-content;
+  padding-left: .5%;
+  padding-right: .5%;
+  border-width:thick;
+}
+
 .listDisplay {
   text-align: center;
 }
@@ -239,6 +254,3 @@ button {
   list-style-type: none;
 }
 
-.flashes {
-  color: grey;
-}
